@@ -20,7 +20,6 @@ background-attachment: fixed;
 color: #ffffff;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 padding-bottom: 50px;
-scroll-behavior: smooth;
 }
 /* Barra de Navegación Deslizable Horizontalmente */
 .navbar {
@@ -49,14 +48,15 @@ font-weight: bold;
 font-size: 14px;
 letter-spacing: 1px;
 flex-shrink: 0;
+cursor: pointer;
 transition: color 0.2s ease;
 }
-.navbar a:hover {
+.navbar a:hover, .navbar a.active-link {
 color: #ffcc00;
 }
 .header {
 text-align: center;
-padding: 40px 0 10px 0;
+padding: 60px 20px 20px 20px;
 }
 .header h1 {
 color: #ffcc00;
@@ -71,7 +71,7 @@ color: #ffffff;
 font-size: 28px;
 text-transform: uppercase;
 letter-spacing: 3px;
-margin: 60px 0 20px 0;
+margin: 40px 0 20px 0;
 }
 .grid-container {
 display: grid;
@@ -118,7 +118,6 @@ padding: 4px 12px;
 border-radius: 20px;
 margin-bottom: 8px;
 }
-/* Estilo especial para la etiqueta de Último Lanzamiento */
 .tag-new {
 background-color: #ffcc00;
 color: #0b0c10;
@@ -148,7 +147,26 @@ transition: transform 0.2s ease, background-color 0.2s ease;
 transform: scale(1.03);
 background-color: #1ed760;
 }
-/* Estilos para los botones de Redes Sociales */
+/* Estilo específico para los botones de Videoclips (YouTube Rojo) */
+.btn-youtube-clip {
+background-color: #FF0000;
+color: #ffffff;
+text-decoration: none;
+font-weight: bold;
+font-size: 13px;
+padding: 10px 0;
+border-radius: 25px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.btn-youtube-clip:hover {
+transform: scale(1.03);
+background-color: #cc0000;
+}
 .social-container {
 display: flex;
 justify-content: center;
@@ -185,7 +203,6 @@ border-color: #fe2c55;
 .btn-youtube {
 background-color: #FF0000;
 }
-/* Estilos para la sección Sobre Mí */
 .about-container {
 max-width: 800px;
 margin: 0 auto;
@@ -211,30 +228,39 @@ font-size: 18px;
 color: #3b82f6;
 font-weight: bold;
 }
+
+/* SISTEMA DE OCULTAR/MOSTRAR APARTADOS */
+.content-section {
+display: none;
+}
+.content-section.active-section {
+display: block;
+}
 </style>
 </head>
 <body>
 
-<!-- MENÚ DE NAVEGACIÓN DESLIZABLE -->
+<!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
-<a href="#inicio">INICIO</a>
-<a href="#lanzamientos">LANZAMIENTOS</a>
-<a href="#videoclips">VIDEOCLIPS</a>
-<a href="#redes">REDES</a>
-<a href="#sobre-mi">SOBRE MÍ</a>
+<a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
+<a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
+<a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
+<a onclick="switchTab('redes', this)" id="link-redes">REDES</a>
+<a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
 </nav>
 
-<!-- INICIO / ENCABEZADO -->
-<header id="inicio" class="header">
+<!-- SECCIÓN INICIO -->
+<div id="inicio" class="content-section active-section">
+<header class="header">
 <h1>pablox</h1>
 </header>
+</div>
 
 <!-- SECCIÓN LANZAMIENTOS -->
-<h2 id="lanzamientos" class="section-title">LANZAMIENTOS</h2>
-
+<div id="lanzamientos" class="content-section">
+<h2 class="section-title">LANZAMIENTOS</h2>
 <main class="grid-container">
 
-<!-- 0. Eclipse (Último Lanzamiento) -->
 <div class="card">
 <div class="card-cover"><span>🌙</span></div>
 <span class="tag tag-new">ÚLTIMO LANZAMIENTO</span>
@@ -244,7 +270,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 1. Bellakeo -->
 <div class="card">
 <div class="card-cover"><span>🔥</span></div>
 <span class="tag">SENCILLO</span>
@@ -254,7 +279,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 2. Mi Presencia -->
 <div class="card">
 <div class="card-cover"><span>👑</span></div>
 <span class="tag">SENCILLO</span>
@@ -264,7 +288,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 3. Prueba -->
 <div class="card">
 <div class="card-cover"><span>🔥</span></div>
 <span class="tag">SENCILLO</span>
@@ -274,7 +297,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 4. La roja en del Mundial -->
 <div class="card">
 <div class="card-cover"><span>⚽</span></div>
 <span class="tag">SENCILLO</span>
@@ -284,7 +306,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 5. Tiempo atrás -->
 <div class="card">
 <div class="card-cover"><span>⏳</span></div>
 <span class="tag">SENCILLO</span>
@@ -294,7 +315,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 6. Triste -->
 <div class="card">
 <div class="card-cover"><span>🖤</span></div>
 <span class="tag">SENCILLO</span>
@@ -304,7 +324,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 7. La Feria (Versión Cumbia) -->
 <div class="card">
 <div class="card-cover"><span>🪗</span></div>
 <span class="tag">SENCILLO</span>
@@ -314,7 +333,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 8. Fin del Verano -->
 <div class="card">
 <div class="card-cover"><span>🌅</span></div>
 <span class="tag">EP</span>
@@ -324,7 +342,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 9. Destino -->
 <div class="card">
 <div class="card-cover"><span>✨</span></div>
 <span class="tag">SENCILLO</span>
@@ -334,7 +351,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 10. La noche Brilla -->
 <div class="card">
 <div class="card-cover"><span>🌟</span></div>
 <span class="tag">SENCILLO</span>
@@ -344,7 +360,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 11. Feria -->
 <div class="card">
 <div class="card-cover"><span>🎡</span></div>
 <span class="tag">SENCILLO</span>
@@ -354,7 +369,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 12. Luminoche -->
 <div class="card">
 <div class="card-cover"><span>💿</span></div>
 <span class="tag">ÁLBUM</span>
@@ -364,7 +378,6 @@ font-weight: bold;
 </a>
 </div>
 
-<!-- 13. Desde Cero -->
 <div class="card">
 <div class="card-cover"><span>🚀</span></div>
 <span class="tag">SENCILLO</span>
@@ -375,17 +388,27 @@ font-weight: bold;
 </div>
 
 </main>
+</div>
 
 <!-- SECCIÓN VIDEOCLIPS -->
-<section id="videoclips">
+<div id="videoclips" class="content-section">
 <h2 class="section-title">VIDEOCLIPS</h2>
 <div class="grid-container">
-<!-- Aquí irán tus videoclips -->
+
+<div class="card">
+<div class="card-cover"><span>🌟</span></div>
+<span class="tag tag-new">VIDEOCLIP OFICIAL</span>
+<h3 class="title">La Noche Brilla</h3>
+<a href="https://youtu.be/B9N1HSqxA-4?is=WJ2iK8MaWN29FGvV" target="_blank" class="btn-youtube-clip">
+<i class="fa-brands fa-youtube"></i> VER VIDEO
+</a>
 </div>
-</section>
+
+</div>
+</div>
 
 <!-- SECCIÓN REDES SOCIALES -->
-<section id="redes">
+<div id="redes" class="content-section">
 <h2 class="section-title">SÍGUEME</h2>
 <div class="social-container">
 <a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-social btn-instagram">
@@ -398,10 +421,10 @@ font-weight: bold;
 <i class="fa-brands fa-youtube"></i> YouTube
 </a>
 </div>
-</section>
+</div>
 
 <!-- SECCIÓN SOBRE MÍ -->
-<section id="sobre-mi">
+<div id="sobre-mi" class="content-section">
 <h2 class="section-title">SOBRE MÍ</h2>
 <div class="about-container">
 <p>Soy de <span class="about-highlight">Manzanares (Ciudad Real, España)</span> y llevo unos 7 años haciendo música. Exploro casi todos los estilos, excepto el rock y el pop.</p>
@@ -410,7 +433,29 @@ font-weight: bold;
 <p>Si te gusta mi contenido, suscríbete al canal y forma parte de la <span class="about-highlight">familia X-GANG</span>. Tu apoyo significa mucho para mí y me ayuda a seguir creciendo y creando nueva música.</p>
 <p class="gang-welcome">¡Bienvenido a la familia X-GANG! 💙</p>
 </div>
-</section>
+</div>
+
+<!-- SCRIPT QUE CONTROLA LOS APARTADOS -->
+<script>
+function switchTab(sectionId, element) {
+    // 1. Ocultar todas las secciones
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(sec => sec.classList.remove('active-section'));
+    
+    // 2. Mostrar únicamente la sección seleccionada
+    document.getElementById(sectionId).classList.add('active-section');
+    
+    // 3. Quitar el color activo de todos los botones del menú
+    const links = document.querySelectorAll('.navbar a');
+    links.forEach(link => link.classList.remove('active-link'));
+    
+    // 4. Marcar el botón pulsado como activo
+    element.classList.add('active-link');
+    
+    // 5. Subir la pantalla suavemente arriba del todo
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 
 </body>
 </html>
