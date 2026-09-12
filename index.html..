@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pablox - Sitio Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: linear-gradient(rgba(11, 12, 16, 0.90), rgba(11, 12, 16, 0.90)), url('1000012163.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-bottom: 50px; scroll-behavior: smooth;
+        }
+        .navbar {
+            display: flex; justify-content: flex-start; align-items: center; gap: 25px;
+            padding: 15px 20px; background-color: rgba(13, 17, 23, 0.9);
+            border-bottom: 2px solid #3b82f6; position: sticky; top: 0; z-index: 1000;
+            overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        }
+        .navbar::-webkit-scrollbar { display: none; }
+        .navbar a { color: #ffffff; text-decoration: none; font-weight: bold; font-size: 14px; letter-spacing: 1px; flex-shrink: 0; transition: color 0.2s ease; }
+        .navbar a:hover, .navbar a.active { color: #ffcc00; }
+        .header { text-align: center; padding: 50px 0 20px 0; }
+        .header h1 { color: #ffcc00; font-size: 48px; text-transform: lowercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .header p { color: #94a3b8; font-size: 18px; letter-spacing: 1px; }
+        .section-title { text-align: center; color: #ffffff; font-size: 28px; text-transform: uppercase; letter-spacing: 3px; margin: 40px 0 20px 0; }
+        .releases-container, .social-container, .about-container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        .releases-container { display: flex; flex-direction: column; gap: 20px; }
+        .release-card {
+            background-color: rgba(13, 17, 23, 0.9); border: 2px solid #3b82f6; border-radius: 12px;
+            padding: 20px; display: flex; flex-direction: column; gap: 10px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .release-card:hover { transform: scale(1.02); border-color: #ffcc00; }
+        .release-card h3 { color: #ffcc00; font-size: 22px; text-transform: uppercase; }
+        .release-card p { color: #cbd5e1; font-size: 14px; }
+        .social-container { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 400px; }
+        .btn-social {
+            background-color: rgba(13, 17, 23, 0.9); border: 2px solid #3b82f6; color: #ffffff;
+            text-decoration: none; font-weight: bold; font-size: 16px; padding: 16px 24px;
+            border-radius: 30px; display: flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .btn-social:hover { transform: scale(1.05); background-color: #3b82f6; border-color: #ffcc00; color: #ffcc00; }
+        .about-box {
+            max-width: 600px; margin: 0 auto; padding: 30px;
+            background-color: rgba(13, 17, 23, 0.9); border: 2px solid #3b82f6; border-radius: 12px;
+            line-height: 1.6; color: #cbd5e1;
+        }
+        .about-box h3 { color: #ffcc00; font-size: 22px; margin-bottom: 15px; text-transform: uppercase; }
+        .about-box p { margin-bottom: 15px; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#inicio" class="active">INICIO</a>
+        <a href="#lanzamientos">LANZAMIENTOS</a>
+        <a href="#redes">REDES</a>
+        <a href="#sobre-mi">SOBRE MÍ</a>
+    </nav>
+
+    <header id="inicio" class="header">
+        <h1>pablox</h1>
+        <p>Urban Music Artist | Reggaeton & Trap</p>
+    </header>
+
+    <section id="lanzamientos">
+        <h2 class="section-title">Últimos Lanzamientos</h2>
+        <div class="releases-container">
+            <div class="release-card">
+                <h3>Eclipse (Nuevo Single)</h3>
+                <p>Fecha de lanzamiento en plataformas: 15 de septiembre de 2026. ¡Ya disponible para disfrutar del nuevo sonido urbano!</p>
+            </div>
+            <div class="release-card">
+                <h3>Feria</h3>
+                <p>Uno de los temas más sonados del proyecto, rompiendo récords en reproducciones en Spotify.</p>
+            </div>
+            <div class="release-card">
+                <h3>Estrella</h3>
+                <p>Disponible con videoclip oficial y todo el flow de LA X-GANG.</p>
+            </div>
+            <div class="release-card">
+                <h3>Desde Cero</h3>
+                <p>El single que marcó un antes y un después en la constancia de los lanzamientos de este año.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="redes">
+        <h2 class="section-title">Redes Sociales</h2>
+        <div class="social-container">
+            <a href="https://www.instagram.com/pablox_oficial" target="_blank" class="btn-social">
+                <i class="fa-brands fa-instagram" style="font-size: 20px;"></i> Instagram
+            </a>
+            <a href="https://www.tiktok.com/@oficial_pablox" target="_blank" class="btn-social">
+                <i class="fa-brands fa-tiktok" style="font-size: 20px;"></i> TikTok
+            </a>
+            <a href="https://www.youtube.com/@pablox25" target="_blank" class="btn-social">
+                <i class="fa-brands fa-youtube" style="font-size: 20px; color: #ff0000;"></i> YouTube
+            </a>
+            <a href="https://open.spotify.com/artist/pablox" target="_blank" class="btn-social">
+                <i class="fa-brands fa-spotify" style="font-size: 20px; color: #1DB954;"></i> Spotify
+            </a>
+        </div>
+    </section>
+
+    <section id="sobre-mi">
+        <h2 class="section-title">Sobre Mí</h2>
+        <div class="about-box">
+            <h3>El Proyecto de LA X-GANG</h3>
+            <p>Soy Pablo Acebedo, conocido artísticamente como <strong>pablox</strong>, un artista, compositor y productor de música urbana centrado principalmente en los géneros de reggaeton y trap.</p>
+            <p>Desde Manzanares (Ciudad Real), compagino mis estudios y el desarrollo informático con la creación independiente de cada uno de mis temas, desde la composición y grabación de vocales hasta la mezcla y masterización con herramientas digitales.</p>
+            <p>Todo este movimiento forma parte de <strong>LA X-GANG</strong>, la comunidad y marca oficial con la que compartimos cada lanzamiento, evolución artística y nuevos proyectos musicales como el reciente single <em>Eclipse</em>.</p>
+        </div>
+    </section>
+
+</body>
+</html>
