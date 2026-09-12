@@ -76,7 +76,7 @@
             </div>
             <div class="release-card">
                 <h3>Feria</h3>
-                <p>Uno de los temas más sonados del proyecto, rompiendo récords en reproducciones en Spotify.</p>
+                <p>Uno de los temas más sonados del proyecto, rompiendo récords en reproducciones.</p>
             </div>
             <div class="release-card">
                 <h3>Estrella</h3>
@@ -93,16 +93,16 @@
         <h2 class="section-title">Redes Sociales</h2>
         <div class="social-container">
             <a href="https://www.instagram.com/pablox_oficial" target="_blank" class="btn-social">
-                <i class="fa-brands fa-instagram" style="font-size: 20px;"></i> Instagram
+                <i class="fa-brands fa-instagram" style="font-size: 20px; color: #e1306c;"></i> Instagram: @pablox_oficial
             </a>
             <a href="https://www.tiktok.com/@oficial_pablox" target="_blank" class="btn-social">
-                <i class="fa-brands fa-tiktok" style="font-size: 20px;"></i> TikTok
+                <i class="fa-brands fa-tiktok" style="font-size: 20px; color: #ffffff;"></i> TikTok: @oficial_pablox
             </a>
             <a href="https://www.youtube.com/@pablox25" target="_blank" class="btn-social">
-                <i class="fa-brands fa-youtube" style="font-size: 20px; color: #ff0000;"></i> YouTube
+                <i class="fa-brands fa-youtube" style="font-size: 20px; color: #ff0000;"></i> YouTube: pablox25
             </a>
             <a href="https://open.spotify.com/artist/pablox" target="_blank" class="btn-social">
-                <i class="fa-brands fa-spotify" style="font-size: 20px; color: #1DB954;"></i> Spotify
+                <i class="fa-brands fa-spotify" style="font-size: 20px; color: #1DB954;"></i> Spotify: pablox
             </a>
         </div>
     </section>
