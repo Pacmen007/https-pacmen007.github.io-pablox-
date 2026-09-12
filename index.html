@@ -3,346 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pablox - Sitio Oficial</title>
-    <!-- Importar FontAwesome para el logo de Spotify -->
+    <title>pabloxpersonal - Entrenador Personal</title>
+    
+    <!-- Configuración PWA / App Móvil -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            /* Fondo con tu logo cubriendo toda la página y capa oscura translúcida */
-            background: linear-gradient(rgba(11, 12, 16, 0.90), rgba(11, 12, 16, 0.90)), url('1000012163.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-bottom: 50px;
-            scroll-behavior: smooth;
+            background: linear-gradient(rgba(11, 12, 16, 0.92), rgba(11, 12, 16, 0.92)), url('1000012163.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-bottom: 50px; scroll-behavior: smooth;
         }
-        /* Barra de Navegación Deslizable Horizontalmente */
         .navbar {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 25px;
-            padding: 15px 20px;
-            background-color: rgba(13, 17, 23, 0.9);
-            border-bottom: 2px solid #3b82f6;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Ocultar barra en Firefox */
+            display: flex; justify-content: flex-start; align-items: center; gap: 25px;
+            padding: 15px 20px; background-color: rgba(13, 17, 23, 0.95);
+            border-bottom: 2px solid #3b82f6; position: sticky; top: 0; z-index: 1000;
+            overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none;
         }
-        .navbar::-webkit-scrollbar {
-            display: none; /* Ocultar barra en Chrome, Safari y Opera */
+        .navbar::-webkit-scrollbar { display: none; }
+        .navbar a { color: #ffffff; text-decoration: none; font-weight: bold; font-size: 14px; letter-spacing: 1px; flex-shrink: 0; transition: color 0.2s ease; cursor: pointer; }
+        .navbar a:hover, .navbar a.active { color: #ffcc00; }
+        
+        .header { text-align: center; padding: 50px 20px 20px 20px; }
+        .header h1 { color: #ffcc00; font-size: 48px; text-transform: lowercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .header p { color: #94a3b8; font-size: 18px; letter-spacing: 1px; }
+        
+        .section-title { text-align: center; color: #ffffff; font-size: 28px; text-transform: uppercase; letter-spacing: 3px; margin: 40px 0 20px 0; }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Pantallas de Acceso y App */
+        .card-box {
+            background-color: rgba(13, 17, 23, 0.95); border: 2px solid #3b82f6; border-radius: 12px;
+            padding: 30px; margin-bottom: 30px; text-align: center;
         }
-        .navbar a {
+        .card-box h3 { color: #ffcc00; font-size: 24px; margin-bottom: 15px; text-transform: uppercase; }
+        .card-box p { color: #cbd5e1; font-size: 15px; margin-bottom: 20px; }
+        
+        input[type="text"], input[type="password"], textarea {
+            width: 100%; padding: 14px; margin-bottom: 15px; background-color: #0b0c10;
+            border: 2px solid #3b82f6; border-radius: 8px; color: #ffffff; font-size: 16px;
+        }
+        input:focus, textarea:focus { outline: none; border-color: #ffcc00; }
+
+        .btn-main {
+            background-color: #3b82f6; color: #ffffff; border: none; padding: 14px 24px;
+            font-size: 16px; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%;
+            transition: background-color 0.2s ease, transform 0.2s ease; text-transform: uppercase;
+        }
+        .btn-main:hover { background-color: #2563eb; transform: scale(1.02); }
+
+        .btn-danger {
+            background-color: #ef4444; margin-top: 10px;
+        }
+        .btn-danger:hover { background-color: #dc2626; }
+
+        /* Estilos para los botones grandes de redes sociales */
+        .social-container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 20px; 
+            max-width: 500px; 
+            margin: 0 auto; 
+        }
+
+        .btn-social {
+            background-color: rgba(13, 17, 23, 0.95); 
+            border: 2px solid #3b82f6; 
             color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            letter-spacing: 1px;
-            flex-shrink: 0;
-            transition: color 0.2s ease;
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 16px; 
+            padding: 18px 24px;
+            border-radius: 35px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 15px;
+            width: 100%; 
+            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
         }
-        .navbar a:hover {
-            color: #ffcc00;
+
+        .btn-social:hover { 
+            transform: scale(1.03); 
+            background-color: #1e293b; 
+            border-color: #ffcc00; 
+            color: #ffcc00; 
         }
-        .header {
-            text-align: center;
-            padding: 40px 0 10px 0;
+
+        .routine-display {
+            background: #0b0c10; border: 1px solid #3b82f6; border-radius: 8px; padding: 15px;
+            text-align: left; margin-top: 15px; white-space: pre-wrap; color: #cbd5e1; word-break: break-word;
         }
-        .header h1 {
-            color: #ffcc00;
-            font-size: 48px;
-            text-transform: lowercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        .section-title {
-            text-align: center;
-            color: #ffffff;
-            font-size: 28px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 60px 0 20px 0;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            justify-items: center;
-            padding: 0 20px;
-        }
-        .card {
-            width: 100%;
-            max-width: 220px;
-            background-color: rgba(13, 17, 23, 0.9);
-            border: 2px solid #3b82f6;
-            border-radius: 16px;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .card-cover {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #7000ff 0%, #ff4b72 100%);
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .card-cover span {
-            color: white;
-            font-size: 32px;
-        }
-        .tag {
-            background-color: #ff3b30;
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 8px;
-        }
-        .title {
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: bold;
-            margin: 5px 0 15px 0;
-        }
-        .btn-listen {
-            background-color: #1DB954; /* Verde Spotify */
-            color: #ffffff; 
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 13px;
-            padding: 10px 0;
-            border-radius: 25px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-        .btn-listen:hover {
-            transform: scale(1.03);
-            background-color: #1ed760;
-        }
-        /* Estilos para la sección Sobre Mí */
-        .about-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: rgba(13, 17, 23, 0.9);
-            border: 2px solid #3b82f6;
-            border-radius: 16px;
-            text-align: center;
-            line-height: 1.6;
-            font-size: 16px;
-            color: #dddddd;
-        }
-        .about-container p {
-            margin-bottom: 15px;
-        }
-        .about-highlight {
-            color: #ffcc00;
-            font-weight: bold;
-        }
-        .gang-welcome {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #3b82f6;
-            font-weight: bold;
-        }
+
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <!-- MENÚ DE NAVEGACIÓN DESLIZABLE -->
-    <nav class="navbar">
-        <a href="#inicio">INICIO</a>
-        <a href="#lanzamientos">LANZAMIENTOS</a>
-        <a href="#videoclips">VIDEOCLIPS</a>
-        <a href="#sobre-mi">SOBRE MÍ</a>
+    <!-- MENÚ DE NAVEGACIÓN SUPERIOR -->
+    <nav id="navbar" class="navbar hidden">
+        <a onclick="showSection('inicio')" class="active" id="nav-inicio">INICIO</a>
+        <a onclick="showSection('crear')" id="nav-crear">CREAR RUTINA</a>
+        <a onclick="showSection('ver')" id="nav-ver">MI RUTINA GYM</a>
+        <a onclick="showSection('redes')" id="nav-redes">REDES</a>
+        <a onclick="showSection('sobre-mi')" id="nav-sobre-mi">SOBRE MÍ</a>
     </nav>
 
-    <!-- INICIO / ENCABEZADO -->
-    <header id="inicio" class="header">
-        <h1>pablox</h1>
-    </header>
-
-    <!-- SECCIÓN LANZAMIENTOS -->
-    <h2 id="lanzamientos" class="section-title">LANZAMIENTOS</h2>
-
-    <main class="grid-container">
-
-        <!-- 1. Mi Presencia -->
-        <div class="card">
-            <div class="card-cover"><span>👑</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Mi Presencia</h3>
-            <a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 2. Prueba -->
-        <div class="card">
-            <div class="card-cover"><span>🔥</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Prueba</h3>
-            <a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 3. La roja en del Mundial -->
-        <div class="card">
-            <div class="card-cover"><span>⚽</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">La roja en del Mundial</h3>
-            <a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 4. Tiempo atrás -->
-        <div class="card">
-            <div class="card-cover"><span>⏳</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Tiempo atrás</h3>
-            <a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 5. Triste -->
-        <div class="card">
-            <div class="card-cover"><span>🖤</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Triste</h3>
-            <a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 6. La Feria (Versión Cumbia) -->
-        <div class="card">
-            <div class="card-cover"><span>🪗</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">La Feria (Versión Cumbia)</h3>
-            <a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 7. Fin del Verano -->
-        <div class="card">
-            <div class="card-cover"><span>🌅</span></div>
-            <span class="tag">EP</span>
-            <h3 class="title">Fin del Verano</h3>
-            <a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 8. Destino -->
-        <div class="card">
-            <div class="card-cover"><span>✨</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Destino</h3>
-            <a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 9. La noche Brilla -->
-        <div class="card">
-            <div class="card-cover"><span>🌟</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">La noche Brilla</h3>
-            <a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 10. Bellakeo -->
-        <div class="card">
-            <div class="card-cover"><span>🌙</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Bellakeo</h3>
-            <a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 11. Feria -->
-        <div class="card">
-            <div class="card-cover"><span>🎡</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Feria</h3>
-            <a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 12. Luminoche -->
-        <div class="card">
-            <div class="card-cover"><span>💿</span></div>
-            <span class="tag">ÁLBUM</span>
-            <h3 class="title">Luminoche</h3>
-            <a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-        <!-- 13. Desde Cero -->
-        <div class="card">
-            <div class="card-cover"><span>🚀</span></div>
-            <span class="tag">SENCILLO</span>
-            <h3 class="title">Desde Cero</h3>
-            <a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen">
-                <i class="fa-brands fa-spotify"></i> ESCUCHAR
-            </a>
-        </div>
-
-    </main>
-
-    <!-- SECCIÓN VIDEOCLIPS -->
-    <section id="videoclips">
-        <h2 class="section-title">VIDEOCLIPS</h2>
-        <div class="grid-container">
-            <!-- Aquí irán tus videoclips -->
+    <!-- PANTALLA DE ACCESO / PIN (3 DÍGITOS) -->
+    <section id="auth-screen" class="container" style="padding-top: 80px;">
+        <div class="card-box">
+            <h1>pabloxpersonal</h1>
+            <p>Introduce tu nombre y un PIN de 3 dígitos para acceder o crear tu cuenta de gimnasio.</p>
+            
+            <input type="text" id="username-input" placeholder="Tu Nombre" maxlength="20">
+            <input type="password" id="pin-input" placeholder="PIN de 3 dígitos (ej: 123)" maxlength="3" pattern="[0-9]*" inputmode="numeric">
+            
+            <button class="btn-main" onclick="handleLogin()">Entrar / Registrarse</button>
+            <p id="auth-error" style="color: #ef4444; margin-top: 10px; font-size: 14px;"></p>
         </div>
     </section>
 
-    <!-- SECCIÓN SOBRE MÍ -->
-    <section id="sobre-mi">
-        <h2 class="section-title">SOBRE MÍ</h2>
-        <div class="about-container">
-            <p>Soy de <span class="about-highlight">Manzanares (Ciudad Real, España)</span> y llevo unos 7 años haciendo música. Exploro casi todos los estilos, excepto el rock y el pop.</p>
-            <p>Mis canciones hablan de <span class="about-highlight">historias reales y de lo que siento</span>. Escribo mis propios temas, participo en la producción y también me encargo de hacer mis videoclips.</p>
-            <p>Mi objetivo es <span class="about-highlight">llegar a ser un gran artista y conectar con personas de todo el mundo</span> a través de mi música.</p>
-            <p>Si te gusta mi contenido, suscríbete al canal y forma parte de la <span class="about-highlight">familia X-GANG</span>. Tu apoyo significa mucho para mí y me ayuda a seguir creciendo y creando nueva música.</p>
-            <p class="gang-welcome">¡Bienvenido a la familia X-GANG! 💙</p>
-        </div>
-    </section>
+    <!-- CONTENIDO PRINCIPAL DE LA WEB / APP -->
+    <div id="app-content" class="hidden">
+        
+        <header class="header">
+            <h1>pabloxpersonal</h1>
+            <p>Entrenamiento de Gimnasio e Hipertrofia</p>
+        </header>
 
+        <!-- SECCIÓN INICIO -->
+        <section id="sec-inicio" class="container">
+            <div class="card-box">
+                <h3>Bienvenido a tu panel de Gym</h3>
+                <p>Planes de entrenamiento a medida según tus objetivos, nivel actual y disponibilidad para transformar tu físico.</p>
+                <button class="btn-main" onclick="showSection('crear')">Crear mi rutina ahora</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CREAR RUTINA DE GYM -->
+        <section id="sec-crear" class="container hidden">
+            <h2 class="section-title">Diseña tu Rutina de Gym</h2>
+            <div class="card-box">
+                <p>Apunta tus ejercicios, series, repeticiones y pesos para tus días de gimnasio.</p>
+                <textarea id="routine-text-input" rows="6" placeholder="Ejemplo:
+Lunes - Pecho / Tríceps
+1. Press de Banca: 4 series x 8-10 reps (60kg)
+2. Aperturas en polea: 3 series x 12 reps
+3. Press francés: 3 series x 10 reps..."></textarea>
+                <button class="btn-main" onclick="saveRoutine()">Guardar Rutina</button>
+                <p id="save-msg" style="color: #10b981; margin-top: 10px; font-size: 14px;"></p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN VER MI RUTINA DE GYM -->
+        <section id="sec-ver" class="container hidden">
+            <h2 class="section-title">Tu Rutina Guardada</h2>
+            <div class="card-box">
+                <p>Tu planificación actual de gimnasio:</p>
+                <div id="routine-output" class="routine-display">No hay ninguna rutina guardada todavía. ¡Crea una en la sección de crear rutina!</div>
+                <button class="btn-main btn-danger" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN REDES SOCIALES -->
+        <section id="sec-redes" class="container hidden">
+            <h2 class="section-title">Redes Sociales</h2>
+            <div class="social-container">
+                <a href="https://www.instagram.com/pablox_oficial" target="_blank" class="btn-social">
+                    <i class="fa-brands fa-instagram" style="font-size: 22px; color: #e1306c;"></i> Instagram: @pablox_oficial
+                </a>
+                <a href="https://www.tiktok.com/@oficial_pablox" target="_blank" class="btn-social">
+                    <i class="fa-brands fa-tiktok" style="font-size: 22px; color: #ffffff;"></i> TikTok: @oficial_pablox
+                </a>
+                <a href="https://www.youtube.com/@pablox25" target="_blank" class="btn-social">
+                    <i class="fa-brands fa-youtube" style="font-size: 22px; color: #ff0000;"></i> YouTube: pablox25
+                </a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SOBRE MÍ -->
+        <section id="sec-sobre-mi" class="container hidden">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="card-box" style="text-align: left;">
+                <h3 style="text-align: center;">Tu Entrenador</h3>
+                <p>Soy Pablo Acebedo, conocido como <strong>pabloxpersonal</strong>. Especialista en entrenamiento de hipertrofia y fuerza en el gimnasio.</p>
+                <p>Desde Manzanares (Ciudad Real), te ofrezco esta plataforma para que gestiones y registres tus propias rutinas de musculación con total autonomía.</p>
+                <p>Constancia, técnica y cargas progresivas para maximizar tus resultados.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script de lógica de usuarios, PIN de 3 dígitos y PWA -->
+    <script>
+        let currentUser = null;
+
+        function handleLogin() {
+            const username = document.getElementById('username-input').value.trim();
+            const pin = document.getElementById('pin-input').value.trim();
+            const errorEl = document.getElementById('auth-error');
+
+            if (!username) {
+                errorEl.textContent = "Por favor, introduce tu nombre.";
+                return;
+            }
+            if (pin.length !== 3 || isNaN(pin)) {
+                errorEl.textContent = "El PIN debe ser exactamente de 3 dígitos numéricos.";
+                return;
+            }
+
+            errorEl.textContent = "";
+            currentUser = username;
+
+            loadUserRoutineData();
+
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('navbar').classList.remove('hidden');
+            document.getElementById('app-content').classList.remove('hidden');
+            showSection('inicio');
+        }
+
+        function saveRoutine() {
+            if (!currentUser) return;
+            const text = document.getElementById('routine-text-input').value;
+            const pin = document.getElementById('pin-input').value.trim();
+            
+            localStorage.setItem('gym_routine_' + currentUser + '_' + pin, text);
+            document.getElementById('routine-output').textContent = text || "Rutina vacía.";
+            
+            const msg = document.getElementById('save-msg');
+            msg.textContent = "¡Rutina de gimnasio guardada con éxito!";
+            setTimeout(() => { msg.textContent = ""; }, 3000);
+        }
+
+        function loadUserRoutineData() {
+            const pin = document.getElementById('pin-input').value.trim();
+            const savedRoutine = localStorage.getItem('gym_routine_' + currentUser + '_' + pin);
+            
+            if (savedRoutine) {
+                document.getElementById('routine-text-input').value = savedRoutine;
+                document.getElementById('routine-output').textContent = savedRoutine;
+            } else {
+                document.getElementById('routine-text-input').value = "";
+                document.getElementById('routine-output').textContent = "No hay ninguna rutina guardada todavía. ¡Crea una!";
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('pin-input').value = "";
+            document.getElementById('username-input').value = "";
+            document.getElementById('auth-screen').classList.remove('hidden');
+            document.getElementById('navbar').classList.add('hidden');
+            document.getElementById('app-content').classList.add('hidden');
+        }
+
+        function showSection(sectionId) {
+            const sections = ['inicio', 'crear', 'ver', 'redes', 'sobre-mi'];
+            sections.forEach(sec => {
+                const el = document.getElementById('sec-' + sec);
+                const nav = document.getElementById('nav-' + sec);
+                if (sec === sectionId) {
+                    if (el) el.classList.remove('hidden');
+                    if (nav) nav.classList.add('active');
+                } else {
+                    if (el) el.classList.add('hidden');
+                    if (nav) nav.classList.remove('active');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/pablox/sw.js');
+        }
+    </script>
 </body>
 </html>
