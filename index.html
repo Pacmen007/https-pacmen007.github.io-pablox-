@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>pablox - Sitio Oficial</title>
+
+<!-- Importar FontAwesome para el logo de Spotify -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+* {
+
+box-sizing: border-box;
+
+margin: 0;
+
+padding: 0;
+
+}
+
+body {
+
+/* Fondo con tu logo cubriendo toda la página y capa oscura translúcida */
+
+background: linear-gradient(rgba(11, 12, 16, 0.90), rgba(11, 12, 16, 0.90)), url('1000012163.jpg');
+
+background-size: cover;
+
+background-position: center;
+
+background-attachment: fixed;
+
+color: #ffffff;
+
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+padding-bottom: 50px;
+
+scroll-behavior: smooth;
+
+}
+
+/* Barra de Navegación Deslizable Horizontalmente */
+
+.navbar {
+
+display: flex;
+
+justify-content: flex-start;
+
+align-items: center;
+
+gap: 25px;
+
+padding: 15px 20px;
+
+background-color: rgba(13, 17, 23, 0.9);
+
+border-bottom: 2px solid #3b82f6;
+
+position: sticky;
+
+top: 0;
+
+z-index: 1000;
+
+overflow-x: auto;
+
+white-space: nowrap;
+
+-webkit-overflow-scrolling: touch;
+
+scrollbar-width: none; /* Ocultar barra en Firefox */
+
+}
+
+.navbar::-webkit-scrollbar {
+
+display: none; /* Ocultar barra en Chrome, Safari y Opera */
+
+}
+
+.navbar a {
+
+color: #ffffff;
+
+text-decoration: none;
+
+font-weight: bold;
+
+font-size: 14px;
+
+letter-spacing: 1px;
+
+flex-shrink: 0;
+
+transition: color 0.2s ease;
+
+}
+
+.navbar a:hover {
+
+color: #ffcc00;
+
+}
+
+.header {
+
+text-align: center;
+
+padding: 40px 0 10px 0;
+
+}
+
+.header h1 {
+
+color: #ffcc00;
+
+font-size: 48px;
+
+text-transform: lowercase;
+
+letter-spacing: 2px;
+
+margin-bottom: 10px;
+
+}
+
+.section-title {
+
+text-align: center;
+
+color: #ffffff;
+
+font-size: 28px;
+
+text-transform: uppercase;
+
+letter-spacing: 3px;
+
+margin: 60px 0 20px 0;
+
+}
+
+.grid-container {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+gap: 20px;
+
+max-width: 1200px;
+
+margin: 0 auto;
+
+justify-items: center;
+
+padding: 0 20px;
+
+}
+
+.card {
+
+width: 100%;
+
+max-width: 220px;
+
+background-color: rgba(13, 17, 23, 0.9);
+
+border: 2px solid #3b82f6;
+
+border-radius: 16px;
+
+padding: 15px;
+
+text-align: center;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+}
+
+.card-cover {
+
+width: 100%;
+
+height: 180px;
+
+background: linear-gradient(135deg, #7000ff 0%, #ff4b72 100%);
+
+border-radius: 12px;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+margin-bottom: 15px;
+
+}
+
+.card-cover span {
+
+color: white;
+
+font-size: 32px;
+
+}
+
+.tag {
+
+background-color: #ff3b30;
+
+color: #ffffff;
+
+font-size: 10px;
+
+font-weight: bold;
+
+text-transform: uppercase;
+
+padding: 4px 12px;
+
+border-radius: 20px;
+
+margin-bottom: 8px;
+
+}
+
+.title {
+
+color: #ffffff;
+
+font-size: 16px;
+
+font-weight: bold;
+
+margin: 5px 0 15px 0;
+
+}
+
+.btn-listen {
+
+background-color: #1DB954; /* Verde Spotify */
+
+color: #ffffff;
+
+text-decoration: none;
+
+font-weight: bold;
+
+font-size: 13px;
+
+padding: 10px 0;
+
+border-radius: 25px;
+
+width: 100%;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+gap: 8px;
+
+transition: transform 0.2s ease, background-color 0.2s ease;
+
+}
+
+.btn-listen:hover {
+
+transform: scale(1.03);
+
+background-color: #1ed760;
+
+}
+
+/* Estilos para la sección Sobre Mí */
+
+.about-container {
+
+max-width: 800px;
+
+margin: 0 auto;
+
+padding: 30px;
+
+background-color: rgba(13, 17, 23, 0.9);
+
+border: 2px solid #3b82f6;
+
+border-radius: 16px;
+
+text-align: center;
+
+line-height: 1.6;
+
+font-size: 16px;
+
+color: #dddddd;
+
+}
+
+.about-container p {
+
+margin-bottom: 15px;
+
+}
+
+.about-highlight {
+
+color: #ffcc00;
+
+font-weight: bold;
+
+}
+
+.gang-welcome {
+
+margin-top: 20px;
+
+font-size: 18px;
+
+color: #3b82f6;
+
+font-weight: bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- MENÚ DE NAVEGACIÓN DESLIZABLE -->
+
+<nav class="navbar">
+
+<a href="#inicio">INICIO</a>
+
+<a href="#lanzamientos">LANZAMIENTOS</a>
+
+<a href="#videoclips">VIDEOCLIPS</a>
+
+<a href="#sobre-mi">SOBRE MÍ</a>
+
+</nav>
+
+
+
+<!-- INICIO / ENCABEZADO -->
+
+<header id="inicio" class="header">
+
+<h1>pablox</h1>
+
+</header>
+
+
+
+<!-- SECCIÓN LANZAMIENTOS -->
+
+<h2 id="lanzamientos" class="section-title">LANZAMIENTOS</h2>
+
+
+
+<main class="grid-container">
+
+
+
+<!-- 1. Mi Presencia -->
+
+<div class="card">
+
+<div class="card-cover"><span>👑</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Mi Presencia</h3>
+
+<a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 2. Prueba -->
+
+<div class="card">
+
+<div class="card-cover"><span>🔥</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Prueba</h3>
+
+<a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 3. La roja en del Mundial -->
+
+<div class="card">
+
+<div class="card-cover"><span>⚽</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">La roja en del Mundial</h3>
+
+<a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 4. Tiempo atrás -->
+
+<div class="card">
+
+<div class="card-cover"><span>⏳</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Tiempo atrás</h3>
+
+<a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 5. Triste -->
+
+<div class="card">
+
+<div class="card-cover"><span>🖤</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Triste</h3>
+
+<a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 6. La Feria (Versión Cumbia) -->
+
+<div class="card">
+
+<div class="card-cover"><span>🪗</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">La Feria (Versión Cumbia)</h3>
+
+<a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 7. Fin del Verano -->
+
+<div class="card">
+
+<div class="card-cover"><span>🌅</span></div>
+
+<span class="tag">EP</span>
+
+<h3 class="title">Fin del Verano</h3>
+
+<a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 8. Destino -->
+
+<div class="card">
+
+<div class="card-cover"><span>✨</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Destino</h3>
+
+<a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 9. La noche Brilla -->
+
+<div class="card">
+
+<div class="card-cover"><span>🌟</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">La noche Brilla</h3>
+
+<a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 10. Bellakeo -->
+
+<div class="card">
+
+<div class="card-cover"><span>🌙</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Bellakeo</h3>
+
+<a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 11. Feria -->
+
+<div class="card">
+
+<div class="card-cover"><span>🎡</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Feria</h3>
+
+<a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 12. Luminoche -->
+
+<div class="card">
+
+<div class="card-cover"><span>💿</span></div>
+
+<span class="tag">ÁLBUM</span>
+
+<h3 class="title">Luminoche</h3>
+
+<a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+<!-- 13. Desde Cero -->
+
+<div class="card">
+
+<div class="card-cover"><span>🚀</span></div>
+
+<span class="tag">SENCILLO</span>
+
+<h3 class="title">Desde Cero</h3>
+
+<a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen">
+
+<i class="fa-brands fa-spotify"></i> ESCUCHAR
+
+</a>
+
+</div>
+
+
+
+</main>
+
+
+
+<!-- SECCIÓN VIDEOCLIPS -->
+
+<section id="videoclips">
+
+<h2 class="section-title">VIDEOCLIPS</h2>
+
+<div class="grid-container">
+
+<!-- Aquí irán tus videoclips -->
+
+</div>
+
+</section>
+
+
+
+<!-- SECCIÓN SOBRE MÍ -->
+
+<section id="sobre-mi">
+
+<h2 class="section-title">SOBRE MÍ</h2>
+
+<div class="about-container">
+
+<p>Soy de <span class="about-highlight">Manzanares (Ciudad Real, España)</span> y llevo unos 7 años haciendo música. Exploro casi todos los estilos, excepto el rock y el pop.</p>
+
+<p>Mis canciones hablan de <span class="about-highlight">historias reales y de lo que siento</span>. Escribo mis propios temas, participo en la producción y también me encargo de hacer mis videoclips.</p>
+
+<p>Mi objetivo es <span class="about-highlight">llegar a ser un gran artista y conectar con personas de todo el mundo</span> a través de mi música.</p>
+
+<p>Si te gusta mi contenido, suscríbete al canal y forma parte de la <span class="about-highlight">familia X-GANG</span>. Tu apoyo significa mucho para mí y me ayuda a seguir creciendo y creando nueva música.</p>
+
+<p class="gang-welcome">¡Bienvenido a la familia X-GANG! 💙</p>
+
+</div>
+
+</section>
+
+
+
+</body>
+
+</html> 
+
