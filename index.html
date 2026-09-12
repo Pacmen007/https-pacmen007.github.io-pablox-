@@ -63,6 +63,8 @@ border: 2px solid #3b82f6; border-radius: 16px; text-align: center; line-height:
 .about-container p { margin-bottom: 15px; }
 .about-highlight { color: #ffcc00; font-weight: bold; }
 .gang-welcome { margin-top: 20px; font-size: 18px; color: #3b82f6; font-weight: bold; }
+
+/* Control de secciones */
 .content-section { display: none; }
 .content-section.active-section { display: block; }
 </style>
@@ -216,10 +218,19 @@ border: 2px solid #3b82f6; border-radius: 16px; text-align: center; line-height:
 
 <script>
 function switchTab(sectionId, element) {
-    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active-section'));
+    // Ocultar todas las secciones
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(sec => sec.classList.remove('active-section'));
+    
+    // Mostrar solo la seleccionada
     document.getElementById(sectionId).classList.add('active-section');
-    document.querySelectorAll('.navbar a').forEach(link => link.classList.remove('active-link'));
+    
+    // Cambiar el enlace activo del menú
+    const links = document.querySelectorAll('.navbar a');
+    links.forEach(link => link.classList.remove('active-link'));
     element.classList.add('active-link');
+    
+    // Subir arriba del todo suavemente
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
