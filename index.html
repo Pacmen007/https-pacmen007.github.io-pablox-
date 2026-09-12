@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pablox - Redes Sociales</title>
-    <!-- Importar FontAwesome para los logos de las redes sociales -->
+    <title>pablox - Lanzamientos</title>
+    <!-- Importar FontAwesome para el logo de Spotify -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -23,7 +23,7 @@
             padding-bottom: 50px;
             scroll-behavior: smooth;
         }
-        /* Barra de Navegación */
+        /* Barra de Navegación Deslizable Horizontalmente */
         .navbar {
             display: flex;
             justify-content: flex-start;
@@ -38,10 +38,10 @@
             overflow-x: auto;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
+            scrollbar-width: none; /* Ocultar barra en Firefox */
         }
         .navbar::-webkit-scrollbar {
-            display: none;
+            display: none; /* Ocultar barra en Chrome, Safari y Opera */
         }
         .navbar a {
             color: #ffffff;
@@ -74,47 +74,85 @@
             letter-spacing: 3px;
             margin: 40px 0 20px 0;
         }
-        /* Contenedor de Botones de Redes Sociales */
-        .social-container {
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-items: center;
+            padding: 0 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 220px;
+            background-color: rgba(13, 17, 23, 0.9);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
-        .btn-social {
-            background-color: rgba(13, 17, 23, 0.9);
-            border: 2px solid #3b82f6;
+        .card-cover {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #7000ff 0%, #ff4b72 100%);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .card-cover span {
+            color: white;
+            font-size: 32px;
+        }
+        .tag {
+            background-color: #ff3b30;
             color: #ffffff;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+        .title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px 0 15px 0;
+        }
+        .btn-listen {
+            background-color: #1DB954; /* Verde Spotify */
+            color: #ffffff; 
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
-            padding: 16px 24px;
-            border-radius: 30px;
+            font-size: 13px;
+            padding: 10px 0;
+            border-radius: 25px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            width: 100%;
-            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+            gap: 8px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
-        .btn-social:hover {
-            transform: scale(1.05);
-            background-color: #3b82f6;
-            border-color: #ffcc00;
-            color: #ffcc00;
+        .btn-listen:hover {
+            transform: scale(1.03);
+            background-color: #1ed760;
         }
     </style>
 </head>
 <body>
 
-    <!-- MENÚ DE NAVEGACIÓN -->
+    <!-- MENÚ DE NAVEGACIÓN (ENLACES A SUBPÁGINAS) -->
     <nav class="navbar">
         <a href="index.html">INICIO</a>
-        <a href="lanzamientos.html">LANZAMIENTOS</a>
-        <a href="redes.html" class="active">REDES</a>
+        <a href="lanzamientos.html" class="active">LANZAMIENTOS</a>
+        <a href="redes.html">REDES</a>
         <a href="sobre-mi.html">SOBRE MÍ</a>
     </nav>
 
@@ -123,23 +161,142 @@
         <h1>pablox</h1>
     </header>
 
-    <!-- SECCIÓN REDES SOCIALES -->
-    <h2 class="section-title">REDES SOCIALES</h2>
+    <!-- SECCIÓN LANZAMIENTOS -->
+    <h2 class="section-title">LANZAMIENTOS</h2>
 
-    <div class="social-container">
-        <a href="https://www.instagram.com/pablox_oficial" target="_blank" class="btn-social">
-            <i class="fa-brands fa-instagram" style="font-size: 20px;"></i> Instagram
-        </a>
-        <a href="https://www.tiktok.com/@oficial_pablox" target="_blank" class="btn-social">
-            <i class="fa-brands fa-tiktok" style="font-size: 20px;"></i> TikTok
-        </a>
-        <a href="https://www.youtube.com/@pablox25" target="_blank" class="btn-social">
-            <i class="fa-brands fa-youtube" style="font-size: 20px; color: #ff0000;"></i> YouTube
-        </a>
-        <a href="https://open.spotify.com/artist/pablox" target="_blank" class="btn-social">
-            <i class="fa-brands fa-spotify" style="font-size: 20px; color: #1DB954;"></i> Spotify
-        </a>
-    </div>
+    <main class="grid-container">
+
+        <!-- 1. Mi Presencia -->
+        <div class="card">
+            <div class="card-cover"><span>👑</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Mi Presencia</h3>
+            <a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 2. Prueba -->
+        <div class="card">
+            <div class="card-cover"><span>🔥</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Prueba</h3>
+            <a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 3. La roja en del Mundial -->
+        <div class="card">
+            <div class="card-cover"><span>⚽</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">La roja en del Mundial</h3>
+            <a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 4. Tiempo atrás -->
+        <div class="card">
+            <div class="card-cover"><span>⏳</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Tiempo atrás</h3>
+            <a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 5. Triste -->
+        <div class="card">
+            <div class="card-cover"><span>🖤</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Triste</h3>
+            <a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 6. La Feria (Versión Cumbia) -->
+        <div class="card">
+            <div class="card-cover"><span>🪗</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">La Feria (Versión Cumbia)</h3>
+            <a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 7. Fin del Verano -->
+        <div class="card">
+            <div class="card-cover"><span>🌅</span></div>
+            <span class="tag">EP</span>
+            <h3 class="title">Fin del Verano</h3>
+            <a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 8. Destino -->
+        <div class="card">
+            <div class="card-cover"><span>✨</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Destino</h3>
+            <a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 9. La noche Brilla -->
+        <div class="card">
+            <div class="card-cover"><span>🌟</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">La noche Brilla</h3>
+            <a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 10. Bellakeo -->
+        <div class="card">
+            <div class="card-cover"><span>🌙</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Bellakeo</h3>
+            <a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 11. Feria -->
+        <div class="card">
+            <div class="card-cover"><span>🎡</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Feria</h3>
+            <a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 12. Luminoche -->
+        <div class="card">
+            <div class="card-cover"><span>💿</span></div>
+            <span class="tag">ÁLBUM</span>
+            <h3 class="title">Luminoche</h3>
+            <a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+        <!-- 13. Desde Cero -->
+        <div class="card">
+            <div class="card-cover"><span>🚀</span></div>
+            <span class="tag">SENCILLO</span>
+            <h3 class="title">Desde Cero</h3>
+            <a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen">
+                <i class="fa-brands fa-spotify"></i> ESCUCHAR
+            </a>
+        </div>
+
+    </main>
 
 </body>
 </html>
