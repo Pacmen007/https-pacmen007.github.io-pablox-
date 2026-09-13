@@ -213,6 +213,20 @@ transition: transform 0.2s ease, background-color 0.2s ease;
 transform: scale(1.03);
 background-color: #cc0000;
 }
+
+/* Estilos para el contador */
+.countdown-text {
+font-size: 12px;
+color: #ffcc00;
+font-weight: bold;
+margin-bottom: 10px;
+background: rgba(0, 0, 0, 0.3);
+padding: 6px;
+border-radius: 8px;
+width: 100%;
+letter-spacing: 0.5px;
+}
+
 .about-container {
 max-width: 800px;
 margin: 0 auto;
@@ -411,12 +425,16 @@ display: block;
 </a>
 </div>
 
+<!-- TARJETA DE VIDEOCLIP CON CUENTA ATRÁS -->
 <div class="card">
 <div class="card-cover" style="background: linear-gradient(135deg, #a855f7 0%, #ff3366 100%);"><span>⏳</span></div>
 <span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMAMENTE</span>
-<h3 class="title">Nuevo Videoclip</h3>
-<div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center;">
-<i class="fa-solid fa-clock"></i> MUY PRONTO
+<h3 class="title">Bellakeo (video oficial)</h3>
+<div id="countdown" class="countdown-text">Calculando...</div>
+<div id="video-btn-container">
+<div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 11px;">
+<i class="fa-solid fa-clock"></i> NO DISPONIBLE
+</div>
 </div>
 </div>
 
@@ -497,7 +515,7 @@ display: block;
 </div>
 </div>
 
-<!-- SCRIPT DE CAMBIO DE PESTAÑAS -->
+<!-- SCRIPTS DE NAVEGACIÓN Y CUENTA ATRÁS -->
 <script>
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
@@ -511,6 +529,35 @@ function switchTab(sectionId, element) {
     element.classList.add('active-link');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Cuenta atrás para el lunes a las 00:00 (14 de septiembre de 2026)
+const countdownDate = new Date(2026, 8, 14, 0, 0, 0).getTime();
+
+// Enlace de YouTube de Bellakeo
+const youtubeLink = "https://youtu.be/SzLa2j3Sc0Q?is=5JdBrGihAG77GXaS"; 
+
+const countdownTimer = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    if (distance < 0) {
+        clearInterval(countdownTimer);
+        document.getElementById("countdown").innerHTML = "¡YA DISPONIBLE!";
+        document.getElementById("video-btn-container").innerHTML = `
+            <a href="${youtubeLink}" target="_blank" class="btn-youtube-clip">
+                <i class="fa-brands fa-youtube"></i> VER VIDEO
+            </a>
+        `;
+    } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = 
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+}, 1000);
 </script>
 
 </body>
