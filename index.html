@@ -15,7 +15,6 @@ margin: 0;
 padding: 0;
 }
 body {
-/* Fondo degradado elegante: Azul oscuro, morado, toques sutiles de rojo y blanco */
 background: linear-gradient(135deg, #090a0f 0%, #1a0b2e 35%, #2b0d1a 70%, #0d0f18 100%);
 background-size: cover;
 background-attachment: fixed;
@@ -25,7 +24,7 @@ padding-bottom: 50px;
 min-height: 100vh;
 }
 
-/* Barra de Navegación Deslizable Horizontalmente */
+/* Barra de Navegación */
 .navbar {
 display: flex;
 justify-content: flex-start;
@@ -87,8 +86,6 @@ margin: 40px 0 20px 0;
 text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);
 font-weight: 900;
 }
-
-/* ESTILO ESPECÍFICO Y ELEGANTE PARA EL TÍTULO SÍGUEME */
 .elegant-title {
 font-family: 'Playfair Display', serif !important;
 font-style: italic;
@@ -102,7 +99,6 @@ text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
 letter-spacing: 1px !important;
 }
 
-/* DISEÑO RESPONSIVO PERFECTO PARA ORDENADOR, TABLET Y MÓVIL */
 .grid-container {
 display: grid;
 grid-template-columns: repeat(3, 220px);
@@ -113,7 +109,6 @@ justify-content: center;
 padding: 10px 20px 25px 20px;
 }
 
-/* Para pantallas de móviles estrechos (menos de 740px) */
 @media (max-width: 740px) {
 .grid-container {
 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -175,8 +170,7 @@ font-size: 16px;
 font-weight: bold;
 margin: 5px 0 15px 0;
 }
-.btn-listen {
-background-color: #1DB954;
+.btn-listen, .btn-youtube-clip {
 color: #ffffff;
 text-decoration: none;
 font-weight: bold;
@@ -189,6 +183,9 @@ align-items: center;
 justify-content: center;
 gap: 8px;
 transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.btn-listen {
+background-color: #1DB954;
 }
 .btn-listen:hover {
 transform: scale(1.03);
@@ -196,25 +193,11 @@ background-color: #1ed760;
 }
 .btn-youtube-clip {
 background-color: #FF0000;
-color: #ffffff;
-text-decoration: none;
-font-weight: bold;
-font-size: 13px;
-padding: 10px 0;
-border-radius: 25px;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 8px;
-transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .btn-youtube-clip:hover {
 transform: scale(1.03);
 background-color: #cc0000;
 }
-
-/* Estilos para el contador */
 .countdown-text {
 font-size: 12px;
 color: #ffcc00;
@@ -226,7 +209,6 @@ border-radius: 8px;
 width: 100%;
 letter-spacing: 0.5px;
 }
-
 .about-container {
 max-width: 800px;
 margin: 0 auto;
@@ -241,21 +223,11 @@ font-size: 16px;
 color: #e2e8f0;
 box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
-.about-container p {
-margin-bottom: 15px;
-}
-.about-highlight {
-color: #ff3366;
-font-weight: bold;
-}
+.about-container p { margin-bottom: 15px; }
+.about-highlight { color: #ff3366; font-weight: bold; }
 
-/* SISTEMA DE OCULTAR/MOSTRAR APARTADOS */
-.content-section {
-display: none;
-}
-.content-section.active-section {
-display: block;
-}
+.content-section { display: none; }
+.content-section.active-section { display: block; }
 </style>
 </head>
 <body>
@@ -286,126 +258,98 @@ display: block;
 <div class="card-cover"><span>🌙</span></div>
 <span class="tag tag-new">ÚLTIMO LANZAMIENTO</span>
 <h3 class="title">Eclipse</h3>
-<a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🔥</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Bellakeo</h3>
-<a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>👑</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Mi Presencia</h3>
-<a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🔥</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Prueba</h3>
-<a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>⚽</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">La roja en del Mundial</h3>
-<a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>⏳</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Tiempo atrás</h3>
-<a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🖤</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Triste</h3>
-<a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🪗</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">La Feria (Versión Cumbia)</h3>
-<a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🌅</span></div>
 <span class="tag">EP</span>
 <h3 class="title">Fin del Verano</h3>
-<a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>✨</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Destino</h3>
-<a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🌟</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">La noche Brilla</h3>
-<a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🎡</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Feria</h3>
-<a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>💿</span></div>
 <span class="tag">ÁLBUM</span>
 <h3 class="title">Luminoche</h3>
-<a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 <div class="card">
 <div class="card-cover"><span>🚀</span></div>
 <span class="tag">SENCILLO</span>
 <h3 class="title">Desde Cero</h3>
-<a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> ESCUCHAR
-</a>
+<a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
 </main>
@@ -425,7 +369,7 @@ display: block;
 </a>
 </div>
 
-<!-- TARJETA DE VIDEOCLIP CON CUENTA ATRÁS -->
+<!-- ESTA ES LA TARJETA CORRECTA QUE REEMPLAZA AL TEXTO "NUEVO VIDEOCLIP" DE LA FOTO -->
 <div class="card">
 <div class="card-cover" style="background: linear-gradient(135deg, #a855f7 0%, #ff3366 100%);"><span>⏳</span></div>
 <span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMAMENTE</span>
@@ -447,58 +391,38 @@ display: block;
 <main class="grid-container">
 
 <div class="card">
-<div class="card-cover" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
-<span style="font-size: 50px;"><i class="fa-brands fa-instagram"></i></span>
-</div>
+<div class="card-cover" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><span style="font-size: 50px;"><i class="fa-brands fa-instagram"></i></span></div>
 <span class="tag">INSTAGRAM</span>
 <h3 class="title">@pablox_oficial</h3>
-<a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
-<i class="fa-brands fa-instagram"></i> SEGUIR
-</a>
+<a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fa-brands fa-instagram"></i> SEGUIR</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #000000; border: 2px solid #fe2c55;">
-<span style="font-size: 50px;"><i class="fa-brands fa-tiktok"></i></span>
-</div>
+<div class="card-cover" style="background-color: #000000; border: 2px solid #fe2c55;"><span style="font-size: 50px;"><i class="fa-brands fa-tiktok"></i></span></div>
 <span class="tag">TIKTOK</span>
 <h3 class="title">@oficial_pablox</h3>
-<a href="https://tiktok.com/@oficial_pablox" target="_blank" class="btn-listen" style="background-color: #000000; border: 2px solid #fe2c55;">
-<i class="fa-brands fa-tiktok"></i> SEGUIR
-</a>
+<a href="https://tiktok.com/@oficial_pablox" target="_blank" class="btn-listen" style="background-color: #000000; border: 2px solid #fe2c55;"><i class="fa-brands fa-tiktok"></i> SEGUIR</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #FF0000;">
-<span style="font-size: 50px;"><i class="fa-brands fa-youtube"></i></span>
-</div>
+<div class="card-cover" style="background-color: #FF0000;"><span style="font-size: 50px;"><i class="fa-brands fa-youtube"></i></span></div>
 <span class="tag">YOUTUBE</span>
 <h3 class="title">pablox25</h3>
-<a href="https://youtube.com/@pablox25" target="_blank" class="btn-youtube-clip">
-<i class="fa-brands fa-youtube"></i> SUSCRIBIRME
-</a>
+<a href="https://youtube.com/@pablox25" target="_blank" class="btn-youtube-clip"><i class="fa-brands fa-youtube"></i> SUSCRIBIRME</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #1DB954;">
-<span style="font-size: 50px;"><i class="fa-brands fa-spotify"></i></span>
-</div>
+<div class="card-cover" style="background-color: #1DB954;"><span style="font-size: 50px;"><i class="fa-brands fa-spotify"></i></span></div>
 <span class="tag">SPOTIFY</span>
 <h3 class="title">pablox</h3>
-<a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen">
-<i class="fa-brands fa-spotify"></i> SEGUIR
-</a>
+<a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> SEGUIR</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #25D366;">
-<span style="font-size: 50px;"><i class="fa-brands fa-whatsapp"></i></span>
-</div>
+<div class="card-cover" style="background-color: #25D366;"><span style="font-size: 50px;"><i class="fa-brands fa-whatsapp"></i></span></div>
 <span class="tag" style="background-color: #25D366; color: #0b0c10;">WHATSAPP</span>
 <h3 class="title">Comunidad X-GANG</h3>
-<a href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn-listen" style="background-color: #25D366;">
-<i class="fa-brands fa-whatsapp"></i> UNIRME
-</a>
+<a href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn-listen" style="background-color: #25D366;"><i class="fa-brands fa-whatsapp"></i> UNIRME</a>
 </div>
 
 </main>
@@ -532,8 +456,6 @@ function switchTab(sectionId, element) {
 
 // Cuenta atrás para el lunes a las 00:00 (14 de septiembre de 2026)
 const countdownDate = new Date(2026, 8, 14, 0, 0, 0).getTime();
-
-// Enlace de YouTube de Bellakeo
 const youtubeLink = "https://youtu.be/SzLa2j3Sc0Q?is=5JdBrGihAG77GXaS"; 
 
 const countdownTimer = setInterval(function() {
