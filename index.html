@@ -6,6 +6,8 @@
 <title>pablox - Sitio Oficial</title>
 <!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Importar Google Fonts para una tipografía elegante -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
 box-sizing: border-box;
@@ -13,119 +15,14 @@ margin: 0;
 padding: 0;
 }
 body {
-background: linear-gradient(rgba(11, 12, 16, 0.85), rgba(11, 12, 16, 0.85)), url('1000012163.jpg');
+/* Fondo degradado elegante: Azul oscuro, morado, toques sutiles de rojo y blanco */
+background: linear-gradient(135deg, #090a0f 0%, #1a0b2e 35%, #2b0d1a 70%, #0d0f18 100%);
 background-size: cover;
-background-position: center;
 background-attachment: fixed;
 color: #ffffff;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 padding-bottom: 50px;
-}
-
-/* PANTALLA DE BLOQUEO ESTILO iPHONE */
-#lock-screen {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(11, 12, 16, 0.98);
-z-index: 9999;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-transition: opacity 0.4s ease;
-}
-.lock-container {
-background-color: rgba(13, 17, 23, 0.95);
-border: 2px solid #3b82f6;
-border-radius: 20px;
-padding: 30px;
-text-align: center;
-width: 100%;
-max-width: 320px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-.lock-container h2 {
-color: #ffcc00;
-font-size: 22px;
-margin-bottom: 10px;
-}
-.lock-container p {
-color: #aaa;
-font-size: 14px;
-margin-bottom: 20px;
-}
-.pin-dots {
-display: flex;
-justify-content: center;
-gap: 15px;
-margin-bottom: 25px;
-}
-.pin-dot {
-width: 16px;
-height: 16px;
-border: 2px solid #3b82f6;
-border-radius: 50%;
-background-color: transparent;
-transition: background-color 0.2s ease, transform 0.2s ease;
-}
-.pin-dot.filled {
-background-color: #3b82f6;
-transform: scale(1.1);
-}
-.keypad {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 15px;
-max-width: 240px;
-margin: 0 auto;
-}
-.key-btn {
-background-color: rgba(255, 255, 255, 0.08);
-color: #ffffff;
-border: none;
-border-radius: 50%;
-width: 65px;
-height: 65px;
-font-size: 22px;
-font-weight: bold;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 0 auto;
-transition: background-color 0.15s ease, transform 0.1s ease;
-}
-.key-btn:active {
-background-color: #3b82f6;
-transform: scale(0.92);
-}
-.key-btn.clear {
-font-size: 13px;
-background-color: rgba(255, 59, 48, 0.2);
-color: #ff3b30;
-}
-#error-msg {
-color: #ff3b30;
-font-size: 13px;
-margin-top: 15px;
-height: 18px;
-font-weight: bold;
-}
-.forgot-btn {
-background: none;
-border: none;
-color: #38bdf8;
-font-size: 12px;
-margin-top: 20px;
-cursor: pointer;
-text-decoration: underline;
-transition: color 0.2s ease;
-}
-.forgot-btn:hover {
-color: #ffcc00;
+min-height: 100vh;
 }
 
 /* Barra de Navegación Deslizable Horizontalmente */
@@ -135,8 +32,9 @@ justify-content: flex-start;
 align-items: center;
 gap: 25px;
 padding: 15px 20px;
-background-color: rgba(13, 17, 23, 0.9);
-border-bottom: 2px solid #3b82f6;
+background-color: rgba(13, 17, 23, 0.85);
+backdrop-filter: blur(10px);
+border-bottom: 2px solid #8b5cf6;
 position: sticky;
 top: 0;
 z-index: 1000;
@@ -159,21 +57,22 @@ cursor: pointer;
 transition: color 0.2s ease;
 }
 .navbar a:hover, .navbar a.active-link {
-color: #ffcc00;
+color: #ff3366;
 }
 .header {
 text-align: center;
 padding: 60px 20px 20px 20px;
 }
 .header h1 {
-color: #ffcc00;
+color: #ffffff;
 font-size: 48px;
 text-transform: lowercase;
 letter-spacing: 2px;
 margin-bottom: 15px;
+text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
 }
 .header p {
-color: #dddddd;
+color: #ffb3c6;
 font-size: 18px;
 font-weight: 500;
 letter-spacing: 1px;
@@ -185,8 +84,22 @@ font-size: 28px;
 text-transform: uppercase;
 letter-spacing: 3px;
 margin: 40px 0 20px 0;
-text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8), 0 0 35px rgba(37, 99, 235, 0.7);
+text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);
 font-weight: 900;
+}
+
+/* ESTILO ESPECÍFICO Y ELEGANTE PARA EL TÍTULO SÍGUEME */
+.elegant-title {
+font-family: 'Playfair Display', serif !important;
+font-style: italic;
+font-weight: 700;
+font-size: 36px !important;
+text-transform: capitalize !important;
+background: linear-gradient(90deg, #ff3366, #ffcc00, #a855f7);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
+letter-spacing: 1px !important;
 }
 
 /* DISEÑO RESPONSIVO PERFECTO PARA ORDENADOR, TABLET Y MÓVIL */
@@ -212,8 +125,9 @@ padding: 10px 15px 25px 15px;
 .card {
 width: 100%;
 max-width: 220px;
-background-color: rgba(13, 17, 23, 0.9);
-border: 2px solid #3b82f6;
+background-color: rgba(20, 15, 35, 0.85);
+backdrop-filter: blur(8px);
+border: 2px solid rgba(139, 92, 246, 0.4);
 border-radius: 16px;
 padding: 15px;
 text-align: center;
@@ -221,6 +135,11 @@ display: flex;
 flex-direction: column;
 align-items: center;
 margin: 0 auto;
+box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+transition: border-color 0.3s ease;
+}
+.card:hover {
+border-color: #ff3366;
 }
 .card-cover {
 width: 100%;
@@ -237,7 +156,7 @@ color: white;
 font-size: 32px;
 }
 .tag {
-background-color: #ff3b30;
+background-color: #ff3366;
 color: #ffffff;
 font-size: 10px;
 font-weight: bold;
@@ -298,19 +217,21 @@ background-color: #cc0000;
 max-width: 800px;
 margin: 0 auto;
 padding: 30px;
-background-color: rgba(13, 17, 23, 0.9);
-border: 2px solid #3b82f6;
+background-color: rgba(20, 15, 35, 0.85);
+backdrop-filter: blur(8px);
+border: 2px solid rgba(139, 92, 246, 0.4);
 border-radius: 16px;
 text-align: center;
 line-height: 1.6;
 font-size: 16px;
-color: #dddddd;
+color: #e2e8f0;
+box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 .about-container p {
 margin-bottom: 15px;
 }
 .about-highlight {
-color: #ffcc00;
+color: #ff3366;
 font-weight: bold;
 }
 
@@ -324,35 +245,6 @@ display: block;
 </style>
 </head>
 <body>
-
-<!-- PANTALLA DE BLOQUEO ESTILO iPHONE -->
-<div id="lock-screen">
-<div class="lock-container">
-<h2>pablox</h2>
-<p id="lock-text">Cargando...</p>
-<div class="pin-dots">
-<div class="pin-dot" id="dot-0"></div>
-<div class="pin-dot" id="dot-1"></div>
-<div class="pin-dot" id="dot-2"></div>
-</div>
-<div class="keypad">
-<button class="key-btn" ontouchstart="pressKey('1')" onclick="pressKey('1')">1</button>
-<button class="key-btn" ontouchstart="pressKey('2')" onclick="pressKey('2')">2</button>
-<button class="key-btn" ontouchstart="pressKey('3')" onclick="pressKey('3')">3</button>
-<button class="key-btn" ontouchstart="pressKey('4')" onclick="pressKey('4')">4</button>
-<button class="key-btn" ontouchstart="pressKey('5')" onclick="pressKey('5')">5</button>
-<button class="key-btn" ontouchstart="pressKey('6')" onclick="pressKey('6')">6</button>
-<button class="key-btn" ontouchstart="pressKey('7')" onclick="pressKey('7')">7</button>
-<button class="key-btn" ontouchstart="pressKey('8')" onclick="pressKey('8')">8</button>
-<button class="key-btn" ontouchstart="pressKey('9')" onclick="pressKey('9')">9</button>
-<button class="key-btn clear" ontouchstart="clearPin()" onclick="clearPin()">BORRAR</button>
-<button class="key-btn" ontouchstart="pressKey('0')" onclick="pressKey('0')">0</button>
-<div></div>
-</div>
-<div id="error-msg"></div>
-<button class="forgot-btn" onclick="resetPinPrompt()">¿No te acuerdas? Cambiar PIN</button>
-</div>
-</div>
 
 <!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
@@ -507,7 +399,7 @@ display: block;
 
 <!-- SECCIÓN VIDEOCLIPS -->
 <div id="videoclips" class="content-section">
-<h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8), 0 0 35px rgba(126, 34, 206, 0.7);">VIDEOCLIPS</h2>
+<h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8);">VIDEOCLIPS</h2>
 <main class="grid-container">
 
 <div class="card">
@@ -524,7 +416,7 @@ display: block;
 
 <!-- SECCIÓN REDES SOCIALES -->
 <div id="redes" class="content-section">
-<h2 class="section-title" style="color: #38bdf8 !important;">SÍGUEME</h2>
+<h2 class="section-title elegant-title">Sígueme en mis redes</h2>
 <main class="grid-container">
 
 <div class="card">
@@ -596,91 +488,8 @@ display: block;
 </div>
 </div>
 
-<!-- SCRIPT DE GESTIÓN DE PIN Y CAMBIO DE PIN -->
+<!-- SCRIPT DE CAMBIO DE PESTAÑAS -->
 <script>
-let enteredPin = "";
-let savedPin = localStorage.getItem("user_custom_pin");
-let isCreatingNewPin = false;
-
-const lockText = document.getElementById("lock-text");
-
-// Inicializar estado del texto de bloqueo
-if (!savedPin) {
-    lockText.innerText = "Crea tu PIN de 3 dígitos";
-} else {
-    lockText.innerText = "Introduce tu PIN de 3 dígitos";
-}
-
-function pressKey(digit) {
-    event.preventDefault();
-    if (enteredPin.length < 3) {
-        enteredPin += digit;
-        updateDots();
-        
-        if (enteredPin.length === 3) {
-            handlePinComplete();
-        }
-    }
-}
-
-function clearPin() {
-    event.preventDefault();
-    enteredPin = "";
-    updateDots();
-    document.getElementById("error-msg").innerText = "";
-}
-
-function updateDots() {
-    for (let i = 0; i < 3; i++) {
-        const dot = document.getElementById("dot-" + i);
-        if (i < enteredPin.length) {
-            dot.classList.add("filled");
-        } else {
-            dot.classList.remove("filled");
-        }
-    }
-}
-
-function handlePinComplete() {
-    if (!savedPin || isCreatingNewPin) {
-        // Guardar nuevo PIN (ya sea la primera vez o porque pulsó cambiar)
-        localStorage.setItem("user_custom_pin", enteredPin);
-        savedPin = enteredPin;
-        isCreatingNewPin = false;
-        unlockWeb();
-    } else {
-        // Validar PIN introducido
-        if (enteredPin === savedPin) {
-            unlockWeb();
-        } else {
-            document.getElementById("error-msg").innerText = "PIN incorrecto";
-            setTimeout(() => {
-                enteredPin = "";
-                updateDots();
-                document.getElementById("error-msg").innerText = "";
-            }, 800);
-        }
-    }
-}
-
-function resetPinPrompt() {
-    event.preventDefault();
-    isCreatingNewPin = true;
-    enteredPin = "";
-    updateDots();
-    document.getElementById("error-msg").innerText = "";
-    lockText.innerText = "Crea un nuevo PIN de 3 dígitos";
-}
-
-function unlockWeb() {
-    lockText.innerText = "Introduce tu PIN de 3 dígitos";
-    const lockScreen = document.getElementById("lock-screen");
-    lockScreen.style.opacity = "0";
-    setTimeout(() => {
-        lockScreen.style.display = "none";
-    }, 400);
-}
-
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(sec => sec.classList.remove('active-section'));
