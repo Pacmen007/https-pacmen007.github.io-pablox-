@@ -21,6 +21,113 @@ color: #ffffff;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 padding-bottom: 50px;
 }
+
+/* PANTALLA DE BLOQUEO ESTILO iPHONE */
+#lock-screen {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(11, 12, 16, 0.98);
+z-index: 9999;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+transition: opacity 0.4s ease;
+}
+.lock-container {
+background-color: rgba(13, 17, 23, 0.95);
+border: 2px solid #3b82f6;
+border-radius: 20px;
+padding: 30px;
+text-align: center;
+width: 100%;
+max-width: 320px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+.lock-container h2 {
+color: #ffcc00;
+font-size: 22px;
+margin-bottom: 10px;
+}
+.lock-container p {
+color: #aaa;
+font-size: 14px;
+margin-bottom: 20px;
+}
+.pin-dots {
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-bottom: 25px;
+}
+.pin-dot {
+width: 16px;
+height: 16px;
+border: 2px solid #3b82f6;
+border-radius: 50%;
+background-color: transparent;
+transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.pin-dot.filled {
+background-color: #3b82f6;
+transform: scale(1.1);
+}
+.keypad {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px;
+max-width: 240px;
+margin: 0 auto;
+}
+.key-btn {
+background-color: rgba(255, 255, 255, 0.08);
+color: #ffffff;
+border: none;
+border-radius: 50%;
+width: 65px;
+height: 65px;
+font-size: 22px;
+font-weight: bold;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.key-btn:active {
+background-color: #3b82f6;
+transform: scale(0.92);
+}
+.key-btn.clear {
+font-size: 13px;
+background-color: rgba(255, 59, 48, 0.2);
+color: #ff3b30;
+}
+#error-msg {
+color: #ff3b30;
+font-size: 13px;
+margin-top: 15px;
+height: 18px;
+font-weight: bold;
+}
+.forgot-btn {
+background: none;
+border: none;
+color: #38bdf8;
+font-size: 12px;
+margin-top: 20px;
+cursor: pointer;
+text-decoration: underline;
+transition: color 0.2s ease;
+}
+.forgot-btn:hover {
+color: #ffcc00;
+}
+
 /* Barra de Navegación Deslizable Horizontalmente */
 .navbar {
 display: flex;
@@ -217,6 +324,35 @@ display: block;
 </style>
 </head>
 <body>
+
+<!-- PANTALLA DE BLOQUEO ESTILO iPHONE -->
+<div id="lock-screen">
+<div class="lock-container">
+<h2>pablox</h2>
+<p id="lock-text">Cargando...</p>
+<div class="pin-dots">
+<div class="pin-dot" id="dot-0"></div>
+<div class="pin-dot" id="dot-1"></div>
+<div class="pin-dot" id="dot-2"></div>
+</div>
+<div class="keypad">
+<button class="key-btn" ontouchstart="pressKey('1')" onclick="pressKey('1')">1</button>
+<button class="key-btn" ontouchstart="pressKey('2')" onclick="pressKey('2')">2</button>
+<button class="key-btn" ontouchstart="pressKey('3')" onclick="pressKey('3')">3</button>
+<button class="key-btn" ontouchstart="pressKey('4')" onclick="pressKey('4')">4</button>
+<button class="key-btn" ontouchstart="pressKey('5')" onclick="pressKey('5')">5</button>
+<button class="key-btn" ontouchstart="pressKey('6')" onclick="pressKey('6')">6</button>
+<button class="key-btn" ontouchstart="pressKey('7')" onclick="pressKey('7')">7</button>
+<button class="key-btn" ontouchstart="pressKey('8')" onclick="pressKey('8')">8</button>
+<button class="key-btn" ontouchstart="pressKey('9')" onclick="pressKey('9')">9</button>
+<button class="key-btn clear" ontouchstart="clearPin()" onclick="clearPin()">BORRAR</button>
+<button class="key-btn" ontouchstart="pressKey('0')" onclick="pressKey('0')">0</button>
+<div></div>
+</div>
+<div id="error-msg"></div>
+<button class="forgot-btn" onclick="resetPinPrompt()">¿No te acuerdas? Cambiar PIN</button>
+</div>
+</div>
 
 <!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
@@ -455,29 +591,106 @@ display: block;
 <div class="about-container">
 <p>Soy de <span class="about-highlight">Manzanares (Ciudad Real, España)</span> y llevo unos 7 años haciendo música. Exploro casi todos los estilos, excepto el rock y el pop.</p>
 <p>Mis canciones hablan de <span class="about-highlight">historias reales y de lo que siento</span>. Escribo mis propios temas, participo en la producción y también me encargo de hacer mis videoclips.</p>
-<p>Mi objetivo es <span class="about-highlight">llegar a ser un gran artista y conectar con personas de todo el mundo</span> a través de mi música.</p>
+<p>Mi objetivo es <span class="about-highlight">llegar a ser un grandísimo artista y conectar con personas de todo el mundo</span> a través de su música.</p>
 <p>Producido por la <span class="about-highlight">familia X-GANG</span>. ¡Gracias por apoyar mi carrera!</p>
 </div>
 </div>
 
-<!-- SCRIPT QUE CONTROLA LOS APARTADOS -->
+<!-- SCRIPT DE GESTIÓN DE PIN Y CAMBIO DE PIN -->
 <script>
+let enteredPin = "";
+let savedPin = localStorage.getItem("user_custom_pin");
+let isCreatingNewPin = false;
+
+const lockText = document.getElementById("lock-text");
+
+// Inicializar estado del texto de bloqueo
+if (!savedPin) {
+    lockText.innerText = "Crea tu PIN de 3 dígitos";
+} else {
+    lockText.innerText = "Introduce tu PIN de 3 dígitos";
+}
+
+function pressKey(digit) {
+    event.preventDefault();
+    if (enteredPin.length < 3) {
+        enteredPin += digit;
+        updateDots();
+        
+        if (enteredPin.length === 3) {
+            handlePinComplete();
+        }
+    }
+}
+
+function clearPin() {
+    event.preventDefault();
+    enteredPin = "";
+    updateDots();
+    document.getElementById("error-msg").innerText = "";
+}
+
+function updateDots() {
+    for (let i = 0; i < 3; i++) {
+        const dot = document.getElementById("dot-" + i);
+        if (i < enteredPin.length) {
+            dot.classList.add("filled");
+        } else {
+            dot.classList.remove("filled");
+        }
+    }
+}
+
+function handlePinComplete() {
+    if (!savedPin || isCreatingNewPin) {
+        // Guardar nuevo PIN (ya sea la primera vez o porque pulsó cambiar)
+        localStorage.setItem("user_custom_pin", enteredPin);
+        savedPin = enteredPin;
+        isCreatingNewPin = false;
+        unlockWeb();
+    } else {
+        // Validar PIN introducido
+        if (enteredPin === savedPin) {
+            unlockWeb();
+        } else {
+            document.getElementById("error-msg").innerText = "PIN incorrecto";
+            setTimeout(() => {
+                enteredPin = "";
+                updateDots();
+                document.getElementById("error-msg").innerText = "";
+            }, 800);
+        }
+    }
+}
+
+function resetPinPrompt() {
+    event.preventDefault();
+    isCreatingNewPin = true;
+    enteredPin = "";
+    updateDots();
+    document.getElementById("error-msg").innerText = "";
+    lockText.innerText = "Crea un nuevo PIN de 3 dígitos";
+}
+
+function unlockWeb() {
+    lockText.innerText = "Introduce tu PIN de 3 dígitos";
+    const lockScreen = document.getElementById("lock-screen");
+    lockScreen.style.opacity = "0";
+    setTimeout(() => {
+        lockScreen.style.display = "none";
+    }, 400);
+}
+
 function switchTab(sectionId, element) {
-    // 1. Ocultar todas las secciones
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(sec => sec.classList.remove('active-section'));
     
-    // 2. Mostrar únicamente la sección seleccionada
     document.getElementById(sectionId).classList.add('active-section');
     
-    // 3. Quitar el color activo de todos los botones del menú
     const links = document.querySelectorAll('.navbar a');
     links.forEach(link => link.classList.remove('active-link'));
     
-    // 4. Marcar el botón pulsado como activo
     element.classList.add('active-link');
-    
-    // 5. Subir la pantalla suavemente arriba del todo
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
