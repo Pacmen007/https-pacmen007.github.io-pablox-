@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>pablox - Sitio Oficial</title>
+<!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Importar Google Fonts para una tipografía elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
@@ -99,7 +101,7 @@ body {
   letter-spacing: 1px !important;
 }
 
-/* Rejilla general adaptable para Lanzamientos, Videoclips y Redes */
+/* Rejilla general adaptable */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -199,12 +201,12 @@ body {
   background-color: #cc0000;
 }
 
-/* 4 TARJETAS DE LA SECCIÓN DE INICIO (ADAPTABLES A MÓVIL, TABLET Y PC) */
+/* TARJETAS DE LA SECCIÓN DE INICIO (5 TARJETAS) */
 .home-cards-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 25px auto 0 auto;
   padding: 0 15px;
 }
@@ -217,7 +219,13 @@ body {
 
 @media (min-width: 900px) {
   .home-cards-container {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1150px) {
+  .home-cards-container {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
@@ -269,6 +277,62 @@ body {
   flex-grow: 1;
 }
 
+/* ESTILOS PARA LA SECCIÓN JUEGO */
+.game-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(20, 15, 35, 0.9);
+  backdrop-filter: blur(8px);
+  border: 2px solid #10b981;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.game-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 3px solid #38bdf8;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  background: linear-gradient(135deg, #090a0f 0%, #1e1b4b 100%);
+}
+
+canvas {
+  display: block;
+  background: #111;
+  width: 100%;
+  height: auto;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.game-btn {
+  background: #10b981;
+  color: #090a0f;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+.game-btn:active {
+  transform: scale(0.95);
+  background: #059669;
+}
+
 .about-container {
   max-width: 800px;
   margin: 0 auto;
@@ -292,14 +356,17 @@ body {
 </head>
 <body>
 
+<!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
   <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
   <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
   <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
   <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
+  <a onclick="switchTab('juego', this)" id="link-juego">JUEGO</a>
   <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
 </nav>
 
+<!-- SECCIÓN INICIO -->
 <div id="inicio" class="content-section active-section">
   <header class="header">
     <h1>pablox</h1>
@@ -307,6 +374,7 @@ body {
   </header>
 
   <div class="home-cards-container">
+    <!-- Tarjeta 1: Lanzamientos -->
     <div class="home-card">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #38bdf8, #2563eb);"><i class="fa-solid fa-compact-disc"></i></div>
       <h3>Lanzamientos</h3>
@@ -316,6 +384,7 @@ body {
       </button>
     </div>
 
+    <!-- Tarjeta 2: Videoclips -->
     <div class="home-card">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #ff3366, #e11d48);"><i class="fa-solid fa-video"></i></div>
       <h3>Videoclips</h3>
@@ -325,6 +394,7 @@ body {
       </button>
     </div>
 
+    <!-- Tarjeta 3: Redes Sociales -->
     <div class="home-card">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);"><i class="fa-solid fa-share-nodes"></i></div>
       <h3>Redes Sociales</h3>
@@ -334,6 +404,17 @@ body {
       </button>
     </div>
 
+    <!-- Tarjeta 4: Juego -->
+    <div class="home-card">
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #10b981, #047857);"><i class="fa-solid fa-gamepad"></i></div>
+      <h3>Juego</h3>
+      <p>Juega al plataformas estilo arcade de pablox.</p>
+      <button onclick="switchTab('juego', document.getElementById('link-juego'))" class="btn-home-nav" style="background: linear-gradient(135deg, #10b981, #047857); padding: 8px 0; border-radius: 20px; width: 100%;">
+        <i class="fa-solid fa-arrow-right"></i> JUGAR
+      </button>
+    </div>
+
+    <!-- Tarjeta 5: Sobre Mí -->
     <div class="home-card">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #ffcc00, #f59e0b);"><i class="fa-solid fa-user"></i></div>
       <h3>Sobre Mí</h3>
@@ -345,6 +426,7 @@ body {
   </div>
 </div>
 
+<!-- SECCIÓN LANZAMIENTOS -->
 <div id="lanzamientos" class="content-section">
   <h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
   <main class="grid-container">
@@ -450,6 +532,7 @@ body {
   </main>
 </div>
 
+<!-- SECCIÓN VIDEOCLIPS -->
 <div id="videoclips" class="content-section">
   <h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8);">VIDEOCLIPS</h2>
   <main class="grid-container">
@@ -475,6 +558,7 @@ body {
   </main>
 </div>
 
+<!-- SECCIÓN REDES SOCIALES -->
 <div id="redes" class="content-section">
   <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
   <main class="grid-container">
@@ -517,6 +601,22 @@ body {
   </main>
 </div>
 
+<!-- SECCIÓN JUEGO -->
+<div id="juego" class="content-section">
+  <h2 class="section-title" style="color: #10b981 !important; text-shadow: 0 0 12px rgba(16, 185, 129, 0.9);">PABLOX WORLD</h2>
+  <div class="game-container">
+    <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 15px;">¡Salta los obstáculos y consigue la mayor puntuación con la X-GANG!</p>
+    <div class="game-canvas-wrapper">
+      <canvas id="gameCanvas" width="600" height="300"></canvas>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn" onclick="jump()"><i class="fa-solid fa-arrow-up"></i> SALTAR</button>
+      <button class="game-btn" onclick="resetGame()" style="background: #38bdf8;"><i class="fa-solid fa-rotate-right"></i> REINICIAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN SOBRE MÍ -->
 <div id="sobre-mi" class="content-section">
   <h2 class="section-title" style="color: #38bdf8 !important;">SOBRE MÍ</h2>
   <div class="about-container">
@@ -527,6 +627,7 @@ body {
   </div>
 </div>
 
+<!-- SCRIPT DE NAVEGACIÓN Y JUEGO -->
 <script>
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
@@ -548,6 +649,150 @@ function switchTab(sectionId, element) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+/* LÓGICA DEL JUEGO ARCADE ESTILO PLATAFORMAS */
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let pablox = {
+    x: 50,
+    y: 210,
+    width: 30,
+    height: 40,
+    dy: 0,
+    jumpPower: -10,
+    gravity: 0.6,
+    grounded: true,
+    color: "#ff3366"
+};
+
+let obstacle = {
+    x: 600,
+    y: 220,
+    width: 25,
+    height: 30,
+    speed: 5,
+    color: "#38bdf8"
+};
+
+let score = 0;
+let highScore = 0;
+let isGameOver = false;
+
+function jump() {
+    if (pablox.grounded && !isGameOver) {
+        pablox.dy = pablox.jumpPower;
+        pablox.grounded = false;
+    } else if (isGameOver) {
+        resetGame();
+    }
+}
+
+// Control por teclado (Barra espaciadora o flecha arriba)
+document.addEventListener("keydown", function(e) {
+    if (e.code === "Space" || e.code === "ArrowUp") {
+        e.preventDefault();
+        jump();
+    }
+});
+
+function resetGame() {
+    pablox.y = 210;
+    pablox.dy = 0;
+    pablox.grounded = true;
+    obstacle.x = 600;
+    obstacle.speed = 5;
+    score = 0;
+    isGameOver = false;
+}
+
+function update() {
+    if (isGameOver) return;
+
+    // Gravedad y salto
+    pablox.dy += pablox.gravity;
+    pablox.y += pablox.dy;
+
+    if (pablox.y > 210) {
+        pablox.y = 210;
+        pablox.dy = 0;
+        pablox.grounded = true;
+    }
+
+    // Movimiento de obstáculos
+    obstacle.x -= obstacle.speed;
+    if (obstacle.x < -30) {
+        obstacle.x = 600 + Math.random() * 100;
+        score += 10;
+        // Aumentar velocidad progresivamente
+        obstacle.speed = 5 + Math.floor(score / 50);
+    }
+
+    // Colisiones (Game Over)
+    if (
+        pablox.x < obstacle.x + obstacle.width &&
+        pablox.x + pablox.width > obstacle.x &&
+        pablox.y < obstacle.y + obstacle.height &&
+        pablox.y + pablox.height > obstacle.y
+    ) {
+        isGameOver = true;
+        if (score > highScore) {
+            highScore = score;
+        }
+    }
+}
+
+function draw() {
+    // Limpiar pantalla
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar suelo
+    ctx.fillStyle = "#8b5cf6";
+    ctx.fillRect(0, 250, canvas.width, 50);
+
+    // Dibujar jugador (pablox)
+    ctx.fillStyle = pablox.color;
+    ctx.fillRect(pablox.x, pablox.y, pablox.width, pablox.height);
+    // Detalles del personaje (gorra/estética)
+    ctx.fillStyle = "#ffcc00";
+    ctx.fillRect(pablox.x + 5, pablox.y, 20, 8);
+
+    // Dibujar obstáculo (tipo bloque de nivel)
+    ctx.fillStyle = obstacle.color;
+    ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+
+    // Mostrar Puntuación
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 16px 'Segoe UI'";
+    ctx.fillText("PUNTOS: " + score, 20, 30);
+    ctx.fillText("RÉCORD: " + highScore, 450, 30);
+
+    // Pantalla de Game Over
+    if (isGameOver) {
+        ctx.fillStyle = "rgba(9, 10, 15, 0.85)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#ff3366";
+        ctx.font = "bold 24px 'Segoe UI'";
+        ctx.textAlign = "center";
+        ctx.fillText("¡FIN DEL JUEGO!", canvas.width / 2, 120);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "16px 'Segoe UI'";
+        ctx.fillText("Puntuación final: " + score, canvas.width / 2, 160);
+        ctx.fillText("Pulsa ESPACIO o SALTAR para repetir", canvas.width / 2, 190);
+        ctx.textAlign = "left";
+    }
+}
+
+function gameLoop() {
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+}
+
+// Iniciar bucle del juego
+gameLoop();
 </script>
 
 </body>
