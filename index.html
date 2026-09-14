@@ -99,14 +99,20 @@ body {
   letter-spacing: 1px !important;
 }
 
-/* 3 COLUMNAS FORZADAS EN TODOS LOS DISPOSITIVOS */
+/* DISEÑO ADAPTABLE (RESPONSIVE) PARA MÓVIL, TABLET Y PC */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
   max-width: 900px;
   margin: 0 auto;
-  padding: 10px 10px 25px 10px;
+  padding: 10px 15px 25px 15px;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
@@ -354,7 +360,7 @@ body {
       <div class="card-cover" style="background: linear-gradient(135deg, #ff3366 100%, #ffcc00 0%);"><span>🔥</span></div>
       <span class="tag tag-new">VIDEOCLIP</span>
       <h3 class="title">Bellakeo</h3>
-      <a href="https://youtu.be/TU_ENLACE_DE_BELLAKEO" target="_blank" class="btn-youtube-clip">
+      <a href="https://youtu.be/SzLa2j3Sc0Q?is=18RD0oJE0DL-mQtK" target="_blank" class="btn-youtube-clip">
         <i class="fa-brands fa-youtube"></i> VER
       </a>
     </div>
