@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>pablox - Sitio Oficial</title>
-<!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Importar Google Fonts para una tipografía elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
@@ -99,38 +97,29 @@ text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
 letter-spacing: 1px !important;
 }
 
+/* 3 COLUMNAS FORZADAS EN TODOS LOS DISPOSITIVOS */
 .grid-container {
 display: grid;
-grid-template-columns: repeat(3, 220px);
-gap: 20px;
-max-width: 740px;
+grid-template-columns: repeat(3, 1fr);
+gap: 10px;
+max-width: 900px;
 margin: 0 auto;
-justify-content: center;
-padding: 10px 20px 25px 20px;
-}
-
-@media (max-width: 740px) {
-.grid-container {
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-max-width: 100%;
-padding: 10px 15px 25px 15px;
-}
+padding: 10px 10px 25px 10px;
 }
 
 .card {
 width: 100%;
-max-width: 220px;
 background-color: rgba(20, 15, 35, 0.85);
 backdrop-filter: blur(8px);
 border: 2px solid rgba(139, 92, 246, 0.4);
-border-radius: 16px;
-padding: 15px;
+border-radius: 12px;
+padding: 10px;
 text-align: center;
 display: flex;
 flex-direction: column;
 align-items: center;
 margin: 0 auto;
-box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 transition: border-color 0.3s ease;
 }
 .card:hover {
@@ -138,27 +127,27 @@ border-color: #ff3366;
 }
 .card-cover {
 width: 100%;
-height: 180px;
+height: 110px;
 background: linear-gradient(135deg, #7000ff 0%, #ff4b72 100%);
-border-radius: 12px;
+border-radius: 8px;
 display: flex;
 justify-content: center;
 align-items: center;
-margin-bottom: 15px;
+margin-bottom: 10px;
 }
 .card-cover span {
 color: white;
-font-size: 32px;
+font-size: 24px;
 }
 .tag {
 background-color: #ff3366;
 color: #ffffff;
-font-size: 10px;
+font-size: 8px;
 font-weight: bold;
 text-transform: uppercase;
-padding: 4px 12px;
+padding: 3px 8px;
 border-radius: 20px;
-margin-bottom: 8px;
+margin-bottom: 6px;
 }
 .tag-new {
 background-color: #ffcc00;
@@ -166,22 +155,23 @@ color: #0b0c10;
 }
 .title {
 color: #ffffff;
-font-size: 16px;
+font-size: 12px;
 font-weight: bold;
-margin: 5px 0 15px 0;
+margin: 2px 0 10px 0;
+line-height: 1.2;
 }
 .btn-listen, .btn-youtube-clip {
 color: #ffffff;
 text-decoration: none;
 font-weight: bold;
-font-size: 13px;
-padding: 10px 0;
-border-radius: 25px;
+font-size: 10px;
+padding: 6px 0;
+border-radius: 20px;
 width: 100%;
 display: flex;
 align-items: center;
 justify-content: center;
-gap: 8px;
+gap: 5px;
 transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .btn-listen {
@@ -199,13 +189,13 @@ transform: scale(1.03);
 background-color: #cc0000;
 }
 .countdown-text {
-font-size: 12px;
+font-size: 10px;
 color: #ffcc00;
 font-weight: bold;
-margin-bottom: 10px;
+margin-bottom: 6px;
 background: rgba(0, 0, 0, 0.3);
-padding: 6px;
-border-radius: 8px;
+padding: 4px;
+border-radius: 6px;
 width: 100%;
 letter-spacing: 0.5px;
 }
@@ -232,7 +222,6 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 </head>
 <body>
 
-<!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
 <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
 <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
@@ -241,7 +230,6 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
 </nav>
 
-<!-- SECCIÓN INICIO -->
 <div id="inicio" class="content-section active-section">
 <header class="header">
 <h1>pablox</h1>
@@ -249,14 +237,13 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 </header>
 </div>
 
-<!-- SECCIÓN LANZAMIENTOS -->
 <div id="lanzamientos" class="content-section">
 <h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
 <main class="grid-container">
 
 <div class="card">
 <div class="card-cover"><span>🌙</span></div>
-<span class="tag tag-new">ÚLTIMO LANZAMIENTO</span>
+<span class="tag tag-new">ÚLTIMO</span>
 <h3 class="title">Eclipse</h3>
 <a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
@@ -306,7 +293,7 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 <div class="card">
 <div class="card-cover"><span>🪗</span></div>
 <span class="tag">SENCILLO</span>
-<h3 class="title">La Feria (Versión Cumbia)</h3>
+<h3 class="title">La Feria (Cumbia)</h3>
 <a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
 </div>
 
@@ -355,7 +342,6 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 </main>
 </div>
 
-<!-- SECCIÓN VIDEOCLIPS -->
 <div id="videoclips" class="content-section">
 <h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8);">VIDEOCLIPS</h2>
 <main class="grid-container">
@@ -363,21 +349,32 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 <div class="card">
 <div class="card-cover"><span>🎥</span></div>
 <span class="tag tag-new">VIDEOCLIP</span>
-<h3 class="title">Eclipse (video oficial)</h3>
+<h3 class="title">Eclipse (oficial)</h3>
 <a href="https://youtu.be/Jn6LCf2BHMA?is=kEjFthzcIHttZxjx" target="_blank" class="btn-youtube-clip">
-<i class="fa-brands fa-youtube"></i> VER VIDEO
+<i class="fa-brands fa-youtube"></i> VER
 </a>
 </div>
 
-<!-- ESTA ES LA TARJETA CORRECTA QUE REEMPLAZA AL TEXTO "NUEVO VIDEOCLIP" DE LA FOTO -->
 <div class="card">
 <div class="card-cover" style="background: linear-gradient(135deg, #a855f7 0%, #ff3366 100%);"><span>⏳</span></div>
-<span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMAMENTE</span>
-<h3 class="title">Bellakeo (video oficial)</h3>
+<span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMO</span>
+<h3 class="title">Tiempo atrás</h3>
 <div id="countdown" class="countdown-text">Calculando...</div>
 <div id="video-btn-container">
-<div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 11px;">
-<i class="fa-solid fa-clock"></i> NO DISPONIBLE
+<div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
+<i class="fa-solid fa-clock"></i> BLOQUEADO
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-cover" style="background: linear-gradient(135deg, #ff3366 100%, #ffcc00 0%);"><span>⏳</span></div>
+<span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMO</span>
+<h3 class="title">Bellakeo</h3>
+<div id="countdown-bellakeo" class="countdown-text">Calculando...</div>
+<div id="video-btn-container-bellakeo">
+<div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
+<i class="fa-solid fa-clock"></i> BLOQUEADO
 </div>
 </div>
 </div>
@@ -385,50 +382,48 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 </main>
 </div>
 
-<!-- SECCIÓN REDES SOCIALES -->
 <div id="redes" class="content-section">
 <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
 <main class="grid-container">
 
 <div class="card">
-<div class="card-cover" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><span style="font-size: 50px;"><i class="fa-brands fa-instagram"></i></span></div>
+<div class="card-cover" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><span style="font-size: 30px;"><i class="fa-brands fa-instagram"></i></span></div>
 <span class="tag">INSTAGRAM</span>
 <h3 class="title">@pablox_oficial</h3>
 <a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fa-brands fa-instagram"></i> SEGUIR</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #000000; border: 2px solid #fe2c55;"><span style="font-size: 50px;"><i class="fa-brands fa-tiktok"></i></span></div>
+<div class="card-cover" style="background-color: #000000; border: 2px solid #fe2c55;"><span style="font-size: 30px;"><i class="fa-brands fa-tiktok"></i></span></div>
 <span class="tag">TIKTOK</span>
 <h3 class="title">@oficial_pablox</h3>
 <a href="https://tiktok.com/@oficial_pablox" target="_blank" class="btn-listen" style="background-color: #000000; border: 2px solid #fe2c55;"><i class="fa-brands fa-tiktok"></i> SEGUIR</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #FF0000;"><span style="font-size: 50px;"><i class="fa-brands fa-youtube"></i></span></div>
+<div class="card-cover" style="background-color: #FF0000;"><span style="font-size: 30px;"><i class="fa-brands fa-youtube"></i></span></div>
 <span class="tag">YOUTUBE</span>
 <h3 class="title">pablox25</h3>
 <a href="https://youtube.com/@pablox25" target="_blank" class="btn-youtube-clip"><i class="fa-brands fa-youtube"></i> SUSCRIBIRME</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #1DB954;"><span style="font-size: 50px;"><i class="fa-brands fa-spotify"></i></span></div>
+<div class="card-cover" style="background-color: #1DB954;"><span style="font-size: 30px;"><i class="fa-brands fa-spotify"></i></span></div>
 <span class="tag">SPOTIFY</span>
 <h3 class="title">pablox</h3>
 <a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> SEGUIR</a>
 </div>
 
 <div class="card">
-<div class="card-cover" style="background-color: #25D366;"><span style="font-size: 50px;"><i class="fa-brands fa-whatsapp"></i></span></div>
+<div class="card-cover" style="background-color: #25D366;"><span style="font-size: 30px;"><i class="fa-brands fa-whatsapp"></i></span></div>
 <span class="tag" style="background-color: #25D366; color: #0b0c10;">WHATSAPP</span>
-<h3 class="title">Comunidad X-GANG</h3>
+<h3 class="title">X-GANG</h3>
 <a href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn-listen" style="background-color: #25D366;"><i class="fa-brands fa-whatsapp"></i> UNIRME</a>
 </div>
 
 </main>
 </div>
 
-<!-- SECCIÓN SOBRE MÍ -->
 <div id="sobre-mi" class="content-section">
 <h2 class="section-title" style="color: #38bdf8 !important;">SOBRE MÍ</h2>
 <div class="about-container">
@@ -439,7 +434,6 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 </div>
 </div>
 
-<!-- SCRIPTS DE NAVEGACIÓN Y CUENTA ATRÁS -->
 <script>
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
@@ -454,16 +448,20 @@ function switchTab(sectionId, element) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Cuenta atrás para el lunes a las 00:00 (14 de septiembre de 2026)
-const countdownDate = new Date(2026, 8, 14, 0, 0, 0).getTime();
-const youtubeLink = "https://youtu.be/SzLa2j3Sc0Q?is=5JdBrGihAG77GXaS"; 
+// 1. Cuenta atrás para "Tiempo atrás"
+const countdownDate = new Date(2026, 8, 20, 0, 0, 0).getTime();
+const youtubeLink = "https://youtu.be/Jn6LCf2BHMA?is=kEjFthzcIHttZxjx"; 
+
+// 2. Cuenta atrás para "Bellakeo" (Puedes cambiar la fecha aquí cuando quieras)
+const countdownDateBellakeo = new Date(2026, 9, 1, 0, 0, 0).getTime();
+const youtubeLinkBellakeo = "https://youtu.be/TU_ENLACE_DE_BELLAKEO"; 
 
 const countdownTimer = setInterval(function() {
     const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    if (distance < 0) {
-        clearInterval(countdownTimer);
+    
+    // Cronómetro Tiempo atrás
+    const distance1 = countdownDate - now;
+    if (distance1 < 0) {
         document.getElementById("countdown").innerHTML = "¡YA DISPONIBLE!";
         document.getElementById("video-btn-container").innerHTML = `
             <a href="${youtubeLink}" target="_blank" class="btn-youtube-clip">
@@ -471,13 +469,28 @@ const countdownTimer = setInterval(function() {
             </a>
         `;
     } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days = Math.floor(distance1 / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance1 % (1000 * 60)) / 1000);
+        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
 
-        document.getElementById("countdown").innerHTML = 
-            days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    // Cronómetro Bellakeo
+    const distance2 = countdownDateBellakeo - now;
+    if (distance2 < 0) {
+        document.getElementById("countdown-bellakeo").innerHTML = "¡YA DISPONIBLE!";
+        document.getElementById("video-btn-container-bellakeo").innerHTML = `
+            <a href="${youtubeLinkBellakeo}" target="_blank" class="btn-youtube-clip">
+                <i class="fa-brands fa-youtube"></i> VER VIDEO
+            </a>
+        `;
+    } else {
+        const days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+        const hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+        document.getElementById("countdown-bellakeo").innerHTML = days2 + "d " + hours2 + "h " + minutes2 + "m " + seconds2 + "s";
     }
 }, 1000);
 </script>
