@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>pablox - Sitio Oficial</title>
+<!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Importar Google Fonts para una tipografía elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
@@ -188,17 +190,6 @@ body {
   transform: scale(1.03);
   background-color: #cc0000;
 }
-.countdown-text {
-  font-size: 10px;
-  color: #ffcc00;
-  font-weight: bold;
-  margin-bottom: 6px;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 4px;
-  border-radius: 6px;
-  width: 100%;
-  letter-spacing: 0.5px;
-}
 .about-container {
   max-width: 800px;
   margin: 0 auto;
@@ -222,6 +213,7 @@ body {
 </head>
 <body>
 
+<!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
   <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
   <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
@@ -230,6 +222,7 @@ body {
   <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
 </nav>
 
+<!-- SECCIÓN INICIO -->
 <div id="inicio" class="content-section active-section">
   <header class="header">
     <h1>pablox</h1>
@@ -237,6 +230,7 @@ body {
   </header>
 </div>
 
+<!-- SECCIÓN LANZAMIENTOS -->
 <div id="lanzamientos" class="content-section">
   <h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
   <main class="grid-container">
@@ -342,6 +336,7 @@ body {
   </main>
 </div>
 
+<!-- SECCIÓN VIDEOCLIPS -->
 <div id="videoclips" class="content-section">
   <h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8);">VIDEOCLIPS</h2>
   <main class="grid-container">
@@ -356,31 +351,18 @@ body {
     </div>
 
     <div class="card">
-      <div class="card-cover" style="background: linear-gradient(135deg, #a855f7 0%, #ff3366 100%);"><span>⏳</span></div>
-      <span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMO</span>
-      <h3 class="title">Tiempo atrás</h3>
-      <div id="countdown" class="countdown-text">Calculando...</div>
-      <div id="video-btn-container">
-        <div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
-          <i class="fa-solid fa-clock"></i> BLOQUEADO
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
       <div class="card-cover" style="background: linear-gradient(135deg, #ff3366 100%, #ffcc00 0%);"><span>🔥</span></div>
+      <span class="tag tag-new">VIDEOCLIP</span>
       <h3 class="title">Bellakeo</h3>
-      <div id="countdown-bellakeo" class="countdown-text">Calculando...</div>
-      <div id="video-btn-container-bellakeo">
-        <div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
-          <i class="fa-solid fa-clock"></i> BLOQUEADO
-        </div>
-      </div>
+      <a href="https://youtu.be/TU_ENLACE_DE_BELLAKEO" target="_blank" class="btn-youtube-clip">
+        <i class="fa-brands fa-youtube"></i> VER
+      </a>
     </div>
 
   </main>
 </div>
 
+<!-- SECCIÓN REDES SOCIALES -->
 <div id="redes" class="content-section">
   <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
   <main class="grid-container">
@@ -423,6 +405,7 @@ body {
   </main>
 </div>
 
+<!-- SECCIÓN SOBRE MÍ -->
 <div id="sobre-mi" class="content-section">
   <h2 class="section-title" style="color: #38bdf8 !important;">SOBRE MÍ</h2>
   <div class="about-container">
@@ -433,6 +416,7 @@ body {
   </div>
 </div>
 
+<!-- SCRIPT DE NAVEGACIÓN -->
 <script>
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
@@ -451,60 +435,6 @@ function switchTab(sectionId, element) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-// 1. Cuenta atrás para "Tiempo atrás"
-const countdownDate = new Date(2026, 8, 20, 0, 0, 0).getTime();
-const youtubeLink = "https://youtu.be/Jn6LCf2BHMA?is=kEjFthzcIHttZxjx"; 
-
-// 2. Cuenta atrás para "Bellakeo" (Modifica aquí la fecha de estreno cuando quieras)
-const countdownDateBellakeo = new Date(2026, 9, 1, 0, 0, 0).getTime();
-const youtubeLinkBellakeo = "https://youtu.be/TU_ENLACE_DE_BELLAKEO"; 
-
-const countdownTimer = setInterval(function() {
-    const now = new Date().getTime();
-    
-    // Cronómetro Tiempo atrás
-    const elCountdown = document.getElementById("countdown");
-    const elVideoContainer = document.getElementById("video-btn-container");
-    if (elCountdown && elVideoContainer) {
-        const distance1 = countdownDate - now;
-        if (distance1 < 0) {
-            elCountdown.innerHTML = "¡YA DISPONIBLE!";
-            elVideoContainer.innerHTML = `
-                <a href="${youtubeLink}" target="_blank" class="btn-youtube-clip">
-                    <i class="fa-brands fa-youtube"></i> VER VIDEO
-                </a>
-            `;
-        } else {
-            const days = Math.floor(distance1 / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance1 % (1000 * 60)) / 1000);
-            elCountdown.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-        }
-    }
-
-    // Cronómetro Bellakeo
-    const elCountdownBellakeo = document.getElementById("countdown-bellakeo");
-    const elVideoContainerBellakeo = document.getElementById("video-btn-container-bellakeo");
-    if (elCountdownBellakeo && elVideoContainerBellakeo) {
-        const distance2 = countdownDateBellakeo - now;
-        if (distance2 < 0) {
-            elCountdownBellakeo.innerHTML = "¡YA DISPONIBLE!";
-            elVideoContainerBellakeo.innerHTML = `
-                <a href="${youtubeLinkBellakeo}" target="_blank" class="btn-youtube-clip">
-                    <i class="fa-brands fa-youtube"></i> VER VIDEO
-                </a>
-            `;
-        } else {
-            const days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
-            const hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
-            elCountdownBellakeo.innerHTML = days2 + "d " + hours2 + "h " + minutes2 + "m " + seconds2 + "s";
-        }
-    }
-}, 1000);
 </script>
 
 </body>
