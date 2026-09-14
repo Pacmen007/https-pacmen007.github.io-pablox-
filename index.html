@@ -8,210 +8,210 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body {
-background: linear-gradient(135deg, #090a0f 0%, #1a0b2e 35%, #2b0d1a 70%, #0d0f18 100%);
-background-size: cover;
-background-attachment: fixed;
-color: #ffffff;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-padding-bottom: 50px;
-min-height: 100vh;
+  background: linear-gradient(135deg, #090a0f 0%, #1a0b2e 35%, #2b0d1a 70%, #0d0f18 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 50px;
+  min-height: 100vh;
 }
 
 /* Barra de Navegación */
 .navbar {
-display: flex;
-justify-content: flex-start;
-align-items: center;
-gap: 25px;
-padding: 15px 20px;
-background-color: rgba(13, 17, 23, 0.85);
-backdrop-filter: blur(10px);
-border-bottom: 2px solid #8b5cf6;
-position: sticky;
-top: 0;
-z-index: 1000;
-overflow-x: auto;
-white-space: nowrap;
--webkit-overflow-scrolling: touch;
-scrollbar-width: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+  padding: 15px 20px;
+  background-color: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid #8b5cf6;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 .navbar::-webkit-scrollbar {
-display: none;
+  display: none;
 }
 .navbar a {
-color: #ffffff;
-text-decoration: none;
-font-weight: bold;
-font-size: 14px;
-letter-spacing: 1px;
-flex-shrink: 0;
-cursor: pointer;
-transition: color 0.2s ease;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 .navbar a:hover, .navbar a.active-link {
-color: #ff3366;
+  color: #ff3366;
 }
 .header {
-text-align: center;
-padding: 60px 20px 20px 20px;
+  text-align: center;
+  padding: 60px 20px 20px 20px;
 }
 .header h1 {
-color: #ffffff;
-font-size: 48px;
-text-transform: lowercase;
-letter-spacing: 2px;
-margin-bottom: 15px;
-text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+  color: #ffffff;
+  font-size: 48px;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
 }
 .header p {
-color: #ffb3c6;
-font-size: 18px;
-font-weight: 500;
-letter-spacing: 1px;
+  color: #ffb3c6;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 .section-title {
-text-align: center;
-color: #38bdf8 !important;
-font-size: 28px;
-text-transform: uppercase;
-letter-spacing: 3px;
-margin: 40px 0 20px 0;
-text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);
-font-weight: 900;
+  text-align: center;
+  color: #38bdf8 !important;
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 40px 0 20px 0;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);
+  font-weight: 900;
 }
 .elegant-title {
-font-family: 'Playfair Display', serif !important;
-font-style: italic;
-font-weight: 700;
-font-size: 36px !important;
-text-transform: capitalize !important;
-background: linear-gradient(90deg, #ff3366, #ffcc00, #a855f7);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
-letter-spacing: 1px !important;
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 36px !important;
+  text-transform: capitalize !important;
+  background: linear-gradient(90deg, #ff3366, #ffcc00, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
+  letter-spacing: 1px !important;
 }
 
 /* 3 COLUMNAS FORZADAS EN TODOS LOS DISPOSITIVOS */
 .grid-container {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 10px;
-max-width: 900px;
-margin: 0 auto;
-padding: 10px 10px 25px 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px 10px 25px 10px;
 }
 
 .card {
-width: 100%;
-background-color: rgba(20, 15, 35, 0.85);
-backdrop-filter: blur(8px);
-border: 2px solid rgba(139, 92, 246, 0.4);
-border-radius: 12px;
-padding: 10px;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 0 auto;
-box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-transition: border-color 0.3s ease;
+  width: 100%;
+  background-color: rgba(20, 15, 35, 0.85);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transition: border-color 0.3s ease;
 }
 .card:hover {
-border-color: #ff3366;
+  border-color: #ff3366;
 }
 .card-cover {
-width: 100%;
-height: 110px;
-background: linear-gradient(135deg, #7000ff 0%, #ff4b72 100%);
-border-radius: 8px;
-display: flex;
-justify-content: center;
-align-items: center;
-margin-bottom: 10px;
+  width: 100%;
+  height: 110px;
+  background: linear-gradient(135deg, #7000ff 0%, #ff4b72 100%);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .card-cover span {
-color: white;
-font-size: 24px;
+  color: white;
+  font-size: 24px;
 }
 .tag {
-background-color: #ff3366;
-color: #ffffff;
-font-size: 8px;
-font-weight: bold;
-text-transform: uppercase;
-padding: 3px 8px;
-border-radius: 20px;
-margin-bottom: 6px;
+  background-color: #ff3366;
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-bottom: 6px;
 }
 .tag-new {
-background-color: #ffcc00;
-color: #0b0c10;
+  background-color: #ffcc00;
+  color: #0b0c10;
 }
 .title {
-color: #ffffff;
-font-size: 12px;
-font-weight: bold;
-margin: 2px 0 10px 0;
-line-height: 1.2;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 2px 0 10px 0;
+  line-height: 1.2;
 }
 .btn-listen, .btn-youtube-clip {
-color: #ffffff;
-text-decoration: none;
-font-weight: bold;
-font-size: 10px;
-padding: 6px 0;
-border-radius: 20px;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 5px;
-transition: transform 0.2s ease, background-color 0.2s ease;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 6px 0;
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .btn-listen {
-background-color: #1DB954;
+  background-color: #1DB954;
 }
 .btn-listen:hover {
-transform: scale(1.03);
-background-color: #1ed760;
+  transform: scale(1.03);
+  background-color: #1ed760;
 }
 .btn-youtube-clip {
-background-color: #FF0000;
+  background-color: #FF0000;
 }
 .btn-youtube-clip:hover {
-transform: scale(1.03);
-background-color: #cc0000;
+  transform: scale(1.03);
+  background-color: #cc0000;
 }
 .countdown-text {
-font-size: 10px;
-color: #ffcc00;
-font-weight: bold;
-margin-bottom: 6px;
-background: rgba(0, 0, 0, 0.3);
-padding: 4px;
-border-radius: 6px;
-width: 100%;
-letter-spacing: 0.5px;
+  font-size: 10px;
+  color: #ffcc00;
+  font-weight: bold;
+  margin-bottom: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  border-radius: 6px;
+  width: 100%;
+  letter-spacing: 0.5px;
 }
 .about-container {
-max-width: 800px;
-margin: 0 auto;
-padding: 30px;
-background-color: rgba(20, 15, 35, 0.85);
-backdrop-filter: blur(8px);
-border: 2px solid rgba(139, 92, 246, 0.4);
-border-radius: 16px;
-text-align: center;
-line-height: 1.6;
-font-size: 16px;
-color: #e2e8f0;
-box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(20, 15, 35, 0.85);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  border-radius: 16px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #e2e8f0;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 .about-container p { margin-bottom: 15px; }
 .about-highlight { color: #ff3366; font-weight: bold; }
@@ -223,214 +223,214 @@ box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 <body>
 
 <nav class="navbar">
-<a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
-<a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
-<a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
-<a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
-<a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
+  <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
+  <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
+  <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
+  <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
+  <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
 </nav>
 
 <div id="inicio" class="content-section active-section">
-<header class="header">
-<h1>pablox</h1>
-<p>Bienvenidos a la página web de pablox artista emergente</p>
-</header>
+  <header class="header">
+    <h1>pablox</h1>
+    <p>Bienvenidos a la página web de pablox artista emergente</p>
+  </header>
 </div>
 
 <div id="lanzamientos" class="content-section">
-<h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
-<main class="grid-container">
+  <h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
+  <main class="grid-container">
 
-<div class="card">
-<div class="card-cover"><span>🌙</span></div>
-<span class="tag tag-new">ÚLTIMO</span>
-<h3 class="title">Eclipse</h3>
-<a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🌙</span></div>
+      <span class="tag tag-new">ÚLTIMO</span>
+      <h3 class="title">Eclipse</h3>
+      <a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🔥</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Bellakeo</h3>
-<a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🔥</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Bellakeo</h3>
+      <a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>👑</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Mi Presencia</h3>
-<a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>👑</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Mi Presencia</h3>
+      <a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🔥</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Prueba</h3>
-<a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🔥</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Prueba</h3>
+      <a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>⚽</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">La roja en del Mundial</h3>
-<a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>⚽</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">La roja en del Mundial</h3>
+      <a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>⏳</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Tiempo atrás</h3>
-<a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>⏳</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Tiempo atrás</h3>
+      <a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🖤</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Triste</h3>
-<a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🖤</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Triste</h3>
+      <a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🪗</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">La Feria (Cumbia)</h3>
-<a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🪗</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">La Feria (Cumbia)</h3>
+      <a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🌅</span></div>
-<span class="tag">EP</span>
-<h3 class="title">Fin del Verano</h3>
-<a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🌅</span></div>
+      <span class="tag">EP</span>
+      <h3 class="title">Fin del Verano</h3>
+      <a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>✨</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Destino</h3>
-<a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>✨</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Destino</h3>
+      <a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🌟</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">La noche Brilla</h3>
-<a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🌟</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">La noche Brilla</h3>
+      <a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🎡</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Feria</h3>
-<a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🎡</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Feria</h3>
+      <a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>💿</span></div>
-<span class="tag">ÁLBUM</span>
-<h3 class="title">Luminoche</h3>
-<a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>💿</span></div>
+      <span class="tag">ÁLBUM</span>
+      <h3 class="title">Luminoche</h3>
+      <a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover"><span>🚀</span></div>
-<span class="tag">SENCILLO</span>
-<h3 class="title">Desde Cero</h3>
-<a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🚀</span></div>
+      <span class="tag">SENCILLO</span>
+      <h3 class="title">Desde Cero</h3>
+      <a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
 
-</main>
+  </main>
 </div>
 
 <div id="videoclips" class="content-section">
-<h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8);">VIDEOCLIPS</h2>
-<main class="grid-container">
+  <h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8);">VIDEOCLIPS</h2>
+  <main class="grid-container">
 
-<div class="card">
-<div class="card-cover"><span>🎥</span></div>
-<span class="tag tag-new">VIDEOCLIP</span>
-<h3 class="title">Eclipse (oficial)</h3>
-<a href="https://youtu.be/Jn6LCf2BHMA?is=kEjFthzcIHttZxjx" target="_blank" class="btn-youtube-clip">
-<i class="fa-brands fa-youtube"></i> VER
-</a>
-</div>
+    <div class="card">
+      <div class="card-cover"><span>🎥</span></div>
+      <span class="tag tag-new">VIDEOCLIP</span>
+      <h3 class="title">Eclipse (oficial)</h3>
+      <a href="https://youtu.be/Jn6LCf2BHMA?is=kEjFthzcIHttZxjx" target="_blank" class="btn-youtube-clip">
+        <i class="fa-brands fa-youtube"></i> VER
+      </a>
+    </div>
 
-<div class="card">
-<div class="card-cover" style="background: linear-gradient(135deg, #a855f7 0%, #ff3366 100%);"><span>⏳</span></div>
-<span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMO</span>
-<h3 class="title">Tiempo atrás</h3>
-<div id="countdown" class="countdown-text">Calculando...</div>
-<div id="video-btn-container">
-<div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
-<i class="fa-solid fa-clock"></i> BLOQUEADO
-</div>
-</div>
-</div>
+    <div class="card">
+      <div class="card-cover" style="background: linear-gradient(135deg, #a855f7 0%, #ff3366 100%);"><span>⏳</span></div>
+      <span class="tag" style="background-color: #ffcc00; color: #0b0c10;">PRÓXIMO</span>
+      <h3 class="title">Tiempo atrás</h3>
+      <div id="countdown" class="countdown-text">Calculando...</div>
+      <div id="video-btn-container">
+        <div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
+          <i class="fa-solid fa-clock"></i> BLOQUEADO
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<div class="card-cover" style="background: linear-gradient(135deg, #ff3366 100%, #ffcc00 0%);"><span>🔥</span></div>
-<h3 class="title">Bellakeo</h3>
-<div id="countdown-bellakeo" class="countdown-text">Calculando...</div>
-<div id="video-btn-container-bellakeo">
-<div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
-<i class="fa-solid fa-clock"></i> BLOQUEADO
-</div>
-</div>
-</div>
+    <div class="card">
+      <div class="card-cover" style="background: linear-gradient(135deg, #ff3366 100%, #ffcc00 0%);"><span>🔥</span></div>
+      <h3 class="title">Bellakeo</h3>
+      <div id="countdown-bellakeo" class="countdown-text">Calculando...</div>
+      <div id="video-btn-container-bellakeo">
+        <div class="btn-listen" style="background-color: rgba(255,255,255,0.1); color: #a5b4fc; cursor: default; justify-content: center; font-size: 9px;">
+          <i class="fa-solid fa-clock"></i> BLOQUEADO
+        </div>
+      </div>
+    </div>
 
-</main>
+  </main>
 </div>
 
 <div id="redes" class="content-section">
-<h2 class="section-title elegant-title">Sígueme en mis redes</h2>
-<main class="grid-container">
+  <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
+  <main class="grid-container">
 
-<div class="card">
-<div class="card-cover" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><span style="font-size: 30px;"><i class="fa-brands fa-instagram"></i></span></div>
-<span class="tag">INSTAGRAM</span>
-<h3 class="title">@pablox_oficial</h3>
-<a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fa-brands fa-instagram"></i> SEGUIR</a>
-</div>
+    <div class="card">
+      <div class="card-cover" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><span style="font-size: 30px;"><i class="fa-brands fa-instagram"></i></span></div>
+      <span class="tag">INSTAGRAM</span>
+      <h3 class="title">@pablox_oficial</h3>
+      <a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fa-brands fa-instagram"></i> SEGUIR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover" style="background-color: #000000; border: 2px solid #fe2c55;"><span style="font-size: 30px;"><i class="fa-brands fa-tiktok"></i></span></div>
-<span class="tag">TIKTOK</span>
-<h3 class="title">@oficial_pablox</h3>
-<a href="https://tiktok.com/@oficial_pablox" target="_blank" class="btn-listen" style="background-color: #000000; border: 2px solid #fe2c55;"><i class="fa-brands fa-tiktok"></i> SEGUIR</a>
-</div>
+    <div class="card">
+      <div class="card-cover" style="background-color: #000000; border: 2px solid #fe2c55;"><span style="font-size: 30px;"><i class="fa-brands fa-tiktok"></i></span></div>
+      <span class="tag">TIKTOK</span>
+      <h3 class="title">@oficial_pablox</h3>
+      <a href="https://tiktok.com/@oficial_pablox" target="_blank" class="btn-listen" style="background-color: #000000; border: 2px solid #fe2c55;"><i class="fa-brands fa-tiktok"></i> SEGUIR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover" style="background-color: #FF0000;"><span style="font-size: 30px;"><i class="fa-brands fa-youtube"></i></span></div>
-<span class="tag">YOUTUBE</span>
-<h3 class="title">pablox25</h3>
-<a href="https://youtube.com/@pablox25" target="_blank" class="btn-youtube-clip"><i class="fa-brands fa-youtube"></i> SUSCRIBIRME</a>
-</div>
+    <div class="card">
+      <div class="card-cover" style="background-color: #FF0000;"><span style="font-size: 30px;"><i class="fa-brands fa-youtube"></i></span></div>
+      <span class="tag">YOUTUBE</span>
+      <h3 class="title">pablox25</h3>
+      <a href="https://youtube.com/@pablox25" target="_blank" class="btn-youtube-clip"><i class="fa-brands fa-youtube"></i> SUSCRIBIRME</a>
+    </div>
 
-<div class="card">
-<div class="card-cover" style="background-color: #1DB954;"><span style="font-size: 30px;"><i class="fa-brands fa-spotify"></i></span></div>
-<span class="tag">SPOTIFY</span>
-<h3 class="title">pablox</h3>
-<a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> SEGUIR</a>
-</div>
+    <div class="card">
+      <div class="card-cover" style="background-color: #1DB954;"><span style="font-size: 30px;"><i class="fa-brands fa-spotify"></i></span></div>
+      <span class="tag">SPOTIFY</span>
+      <h3 class="title">pablox</h3>
+      <a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> SEGUIR</a>
+    </div>
 
-<div class="card">
-<div class="card-cover" style="background-color: #25D366;"><span style="font-size: 30px;"><i class="fa-brands fa-whatsapp"></i></span></div>
-<span class="tag" style="background-color: #25D366; color: #0b0c10;">WHATSAPP</span>
-<h3 class="title">X-GANG</h3>
-<a href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn-listen" style="background-color: #25D366;"><i class="fa-brands fa-whatsapp"></i> UNIRME</a>
-</div>
+    <div class="card">
+      <div class="card-cover" style="background-color: #25D366;"><span style="font-size: 30px;"><i class="fa-brands fa-whatsapp"></i></span></div>
+      <span class="tag" style="background-color: #25D366; color: #0b0c10;">WHATSAPP</span>
+      <h3 class="title">X-GANG</h3>
+      <a href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn-listen" style="background-color: #25D366;"><i class="fa-brands fa-whatsapp"></i> UNIRME</a>
+    </div>
 
-</main>
+  </main>
 </div>
 
 <div id="sobre-mi" class="content-section">
-<h2 class="section-title" style="color: #38bdf8 !important;">SOBRE MÍ</h2>
-<div class="about-container">
-<p>Soy de <span class="about-highlight">Manzanares (Ciudad Real, España)</span> y llevo unos 7 años haciendo música. Exploro casi todos los estilos, excepto el rock y el pop.</p>
-<p>Mis canciones hablan de <span class="about-highlight">historias reales y de lo que siento</span>. Escribo mis propios temas, participo en la producción y también me encargo de hacer mis videoclips.</p>
-<p>Mi objetivo es <span class="about-highlight">llegar a ser un grandísimo artista y conectar con personas de todo el mundo</span> a través de su música.</p>
-<p>Producido por la <span class="about-highlight">familia X-GANG</span>. ¡Gracias por apoyar mi carrera!</p>
-</div>
+  <h2 class="section-title" style="color: #38bdf8 !important;">SOBRE MÍ</h2>
+  <div class="about-container">
+    <p>Soy de <span class="about-highlight">Manzanares (Ciudad Real, España)</span> y llevo unos 7 años haciendo música. Exploro casi todos los estilos, excepto el rock y el pop.</p>
+    <p>Mis canciones hablan de <span class="about-highlight">historias reales y de lo que siento</span>. Escribo mis propios temas, participo en la producción y también me encargo de hacer mis videoclips.</p>
+    <p>Mi objetivo es <span class="about-highlight">llegar a ser un grandísimo artista y conectar con personas de todo el mundo</span> a través de su música.</p>
+    <p>Producido por la <span class="about-highlight">familia X-GANG</span>. ¡Gracias por apoyar mi carrera!</p>
+  </div>
 </div>
 
 <script>
@@ -438,12 +438,17 @@ function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(sec => sec.classList.remove('active-section'));
     
-    document.getElementById(sectionId).classList.add('active-section');
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.add('active-section');
+    }
     
     const links = document.querySelectorAll('.navbar a');
     links.forEach(link => link.classList.remove('active-link'));
     
-    element.classList.add('active-link');
+    if (element) {
+        element.classList.add('active-link');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -459,37 +464,45 @@ const countdownTimer = setInterval(function() {
     const now = new Date().getTime();
     
     // Cronómetro Tiempo atrás
-    const distance1 = countdownDate - now;
-    if (distance1 < 0) {
-        document.getElementById("countdown").innerHTML = "¡YA DISPONIBLE!";
-        document.getElementById("video-btn-container").innerHTML = `
-            <a href="${youtubeLink}" target="_blank" class="btn-youtube-clip">
-                <i class="fa-brands fa-youtube"></i> VER VIDEO
-            </a>
-        `;
-    } else {
-        const days = Math.floor(distance1 / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance1 % (1000 * 60)) / 1000);
-        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    const elCountdown = document.getElementById("countdown");
+    const elVideoContainer = document.getElementById("video-btn-container");
+    if (elCountdown && elVideoContainer) {
+        const distance1 = countdownDate - now;
+        if (distance1 < 0) {
+            elCountdown.innerHTML = "¡YA DISPONIBLE!";
+            elVideoContainer.innerHTML = `
+                <a href="${youtubeLink}" target="_blank" class="btn-youtube-clip">
+                    <i class="fa-brands fa-youtube"></i> VER VIDEO
+                </a>
+            `;
+        } else {
+            const days = Math.floor(distance1 / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance1 % (1000 * 60)) / 1000);
+            elCountdown.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+        }
     }
 
     // Cronómetro Bellakeo
-    const distance2 = countdownDateBellakeo - now;
-    if (distance2 < 0) {
-        document.getElementById("countdown-bellakeo").innerHTML = "¡YA DISPONIBLE!";
-        document.getElementById("video-btn-container-bellakeo").innerHTML = `
-            <a href="${youtubeLinkBellakeo}" target="_blank" class="btn-youtube-clip">
-                <i class="fa-brands fa-youtube"></i> VER VIDEO
-            </a>
-        `;
-    } else {
-        const days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
-        const hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
-        document.getElementById("countdown-bellakeo").innerHTML = days2 + "d " + hours2 + "h " + minutes2 + "m " + seconds2 + "s";
+    const elCountdownBellakeo = document.getElementById("countdown-bellakeo");
+    const elVideoContainerBellakeo = document.getElementById("video-btn-container-bellakeo");
+    if (elCountdownBellakeo && elVideoContainerBellakeo) {
+        const distance2 = countdownDateBellakeo - now;
+        if (distance2 < 0) {
+            elCountdownBellakeo.innerHTML = "¡YA DISPONIBLE!";
+            elVideoContainerBellakeo.innerHTML = `
+                <a href="${youtubeLinkBellakeo}" target="_blank" class="btn-youtube-clip">
+                    <i class="fa-brands fa-youtube"></i> VER VIDEO
+                </a>
+            `;
+        } else {
+            const days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+            const hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+            elCountdownBellakeo.innerHTML = days2 + "d " + hours2 + "h " + minutes2 + "m " + seconds2 + "s";
+        }
     }
 }, 1000);
 </script>
