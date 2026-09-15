@@ -177,7 +177,7 @@ body {
   margin: 2px 0 10px 0;
   line-height: 1.2;
 }
-.btn-listen, .btn-youtube-clip, .btn-home-nav {
+.btn-listen, .btn-youtube-clip, .btn-apple, .btn-amazon, .btn-home-nav {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
@@ -205,6 +205,21 @@ body {
 .btn-youtube-clip:hover {
   transform: scale(1.03);
   background-color: #cc0000;
+}
+.btn-apple {
+  background-color: #fa243c;
+}
+.btn-apple:hover {
+  transform: scale(1.03);
+  background-color: #e01b32;
+}
+.btn-amazon {
+  background-color: #232f3e;
+  color: #ff9900;
+}
+.btn-amazon:hover {
+  transform: scale(1.03);
+  background-color: #131a22;
 }
 
 /* TARJETAS DE LA SECCIÓN DE INICIO (5 columnas) */
@@ -458,6 +473,17 @@ body {
       <span class="tag">SENCILLO</span>
       <h3 class="title">Desde Cero</h3>
       <a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+    </div>
+  </main>
+
+  <!-- SECCIÓN AMAZON MUSIC -->
+  <h2 class="section-title" style="color: #ff9900 !important; text-shadow: 0 0 12px rgba(255, 153, 0, 0.9), 0 0 25px rgba(200, 100, 0, 0.8);">AMAZON MUSIC</h2>
+  <main class="grid-container" id="amazon-music-container">
+    <div class="card">
+      <div class="card-cover" style="background: linear-gradient(135deg, #232f3e 0%, #ff9900 100%);"><span>🌙</span></div>
+      <span class="tag tag-new">ECLIPSE</span>
+      <h3 class="title">Eclipse</h3>
+      <a href="https://music.amazon.com/albums/B0HJSGZDV7?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IVt4vPOHVl9FTvZMhrJugGknj" target="_blank" class="btn-amazon"><i class="fa-brands fa-amazon"></i> ESCUCHAR</a>
     </div>
   </main>
 </div>
