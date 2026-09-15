@@ -186,7 +186,7 @@ body {
   margin: 2px 0 10px 0;
   line-height: 1.2;
 }
-.btn-listen, .btn-youtube-clip, .btn-apple, .btn-amazon, .btn-home-nav {
+.btn-listen, .btn-youtube-clip, .btn-amazon, .btn-home-nav {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
@@ -317,7 +317,7 @@ body {
 .about-container p { margin-bottom: 15px; }
 .about-highlight { color: #ff3366; font-weight: bold; }
 
-/* Contrataciones y Temporizador Gigante */
+/* Contrataciones y Temporizador Gigante en Pantalla */
 .contrataciones-container {
   max-width: 800px;
   margin: 0 auto;
@@ -331,20 +331,21 @@ body {
 }
 
 .big-countdown-wrapper {
-  margin-top: 20px;
-  padding: 20px;
+  display: block;
+  margin: 10px 0;
+  padding: 35px 20px;
   background: rgba(13, 17, 23, 0.95);
-  border: 2px solid rgba(16, 185, 129, 0.6);
+  border: 2px solid rgba(16, 185, 129, 0.8);
   border-radius: 14px;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
 }
 
 .big-countdown-title {
   color: #10b981;
-  font-size: 15px;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-weight: bold;
 }
 
@@ -355,25 +356,25 @@ body {
 }
 
 .big-timer-box {
-  background: rgba(20, 15, 35, 0.9);
-  border: 1px solid rgba(16, 185, 129, 0.5);
-  border-radius: 12px;
-  padding: 15px 20px;
-  min-width: 90px;
+  background: rgba(20, 15, 35, 0.95);
+  border: 1px solid rgba(16, 185, 129, 0.6);
+  border-radius: 14px;
+  padding: 20px 15px;
+  min-width: 100px;
 }
 
 .big-timer-number {
-  font-size: 38px;
+  font-size: 48px;
   font-weight: 900;
   color: #ffffff;
-  text-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.9);
 }
 
 .big-timer-label {
-  font-size: 11px;
+  font-size: 12px;
   color: #cbd5e1;
   text-transform: uppercase;
-  margin-top: 5px;
+  margin-top: 8px;
   letter-spacing: 1px;
 }
 
@@ -633,10 +634,14 @@ body {
 <div id="contrataciones" class="content-section">
   <h2 class="section-title" style="color: #10b981 !important;">CONTRATACIONES</h2>
   <div class="contrataciones-container" id="contrataciones-content-box">
-    <p>¿Quieres contar con <span class="about-highlight">pablox</span> para un concierto, festival, bolo o evento privado?</p>
-    <p>Para contrataciones directas, disponibilidad de fechas y propuestas, puedes ponerte en contacto enviando un mensaje directo en Instagram.</p>
     
-    <!-- TEMPORIZADOR GIGANTE EN LA SECCIÓN -->
+    <!-- TEXTO INICIAL QUE SE OCULTA MIENTRAS ESTÁ EL TEMPORIZADOR -->
+    <div id="contrataciones-text-content" style="display: none;">
+      <p>¿Quieres contar con <span class="about-highlight">pablox</span> para un concierto, festival, bolo o evento privado?</p>
+      <p>Para contrataciones directas, disponibilidad de fechas y propuestas, puedes ponerte en contacto enviando un mensaje directo en Instagram.</p>
+    </div>
+
+    <!-- TEMPORIZADOR GIGANTE EN LA PANTALLA DE LA SECCIÓN -->
     <div class="big-countdown-wrapper" id="big-countdown-wrapper">
       <div class="big-countdown-title"><i class="fa-regular fa-clock"></i> Sección disponible en:</div>
       <div class="big-timers">
@@ -655,7 +660,7 @@ body {
       </div>
     </div>
 
-    <!-- BOTÓN QUE APARECERÁ CUANDO TERMINE EL TIEMPO -->
+    <!-- BOTÓN DE INSTAGRAM QUE APARECE CUANDO TERMINE EL TIEMPO -->
     <div id="instagram-btn-container" style="margin-top: 20px; display: none; justify-content: center;">
       <a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); width: 220px; padding: 10px 0;"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
     </div>
@@ -710,10 +715,15 @@ const timerInterval = setInterval(function() {
             contratacionesLink.classList.remove("locked-link");
         }
 
-        // Ocultar el temporizador gigante y mostrar el botón de Instagram en la sección
+        // Ocultar el temporizador gigante y mostrar el contenido y el botón de Instagram
         const bigCountdownWrapper = document.getElementById("big-countdown-wrapper");
         if (bigCountdownWrapper) {
             bigCountdownWrapper.style.display = "none";
+        }
+
+        const textContent = document.getElementById("contrataciones-text-content");
+        if (textContent) {
+            textContent.style.display = "block";
         }
 
         const instagramBtnContainer = document.getElementById("instagram-btn-container");
