@@ -65,6 +65,15 @@ body {
   color: #ff3366;
 }
 
+/* Enlace bloqueado en el menú */
+.navbar a.locked-link {
+  opacity: 0.4;
+  cursor: not-allowed !important;
+}
+.navbar a.locked-link:hover {
+  color: #ffffff !important;
+}
+
 .header {
   text-align: center;
   padding: 40px 20px 20px 20px;
@@ -315,6 +324,57 @@ body {
 .about-container p, .contrataciones-container p { margin-bottom: 15px; }
 .about-highlight { color: #ff3366; font-weight: bold; }
 
+/* Estilos del Temporizador */
+.countdown-container {
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  padding: 20px;
+  background-color: rgba(20, 15, 35, 0.85);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(56, 189, 248, 0.5);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.countdown-title {
+  color: #38bdf8;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.countdown-timers {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.timer-box {
+  background: rgba(13, 17, 23, 0.9);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  border-radius: 10px;
+  padding: 10px 15px;
+  min-width: 70px;
+}
+
+.timer-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 51, 102, 0.6);
+}
+
+.timer-label {
+  font-size: 10px;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
 .content-section { display: none; }
 .content-section.active-section { display: block; }
 </style>
@@ -328,7 +388,7 @@ body {
   <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
   <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
   <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
-  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones">CONTRATACIONES</a>
+  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones" class="locked-link" onclick="event.preventDefault();">CONTRATACIONES</a>
 </nav>
 
 <!-- SECCIÓN INICIO -->
@@ -388,6 +448,25 @@ body {
 
 <!-- SECCIÓN LANZAMIENTOS -->
 <div id="lanzamientos" class="content-section">
+  <!-- TEMPORIZADOR HACIA ATRÁS (2 HORAS) -->
+  <div class="countdown-container" id="countdown-wrapper">
+    <div class="countdown-title"><i class="fa-regular fa-clock"></i> Contrataciones disponibles en:</div>
+    <div class="countdown-timers">
+      <div class="timer-box">
+        <div id="hours" class="timer-number">02</div>
+        <div class="timer-label">Horas</div>
+      </div>
+      <div class="timer-box">
+        <div id="minutes" class="timer-number">00</div>
+        <div class="timer-label">Min</div>
+      </div>
+      <div class="timer-box">
+        <div id="seconds" class="timer-number">00</div>
+        <div class="timer-label">Seg</div>
+      </div>
+    </div>
+  </div>
+
   <h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
   <main class="grid-container">
     <div class="card">
@@ -579,9 +658,14 @@ body {
   </div>
 </div>
 
-<!-- SCRIPT DE NAVEGACIÓN -->
+<!-- SCRIPT DE NAVEGACIÓN Y TEMPORIZADOR -->
 <script>
 function switchTab(sectionId, element) {
+    // Si la sección es contrataciones y sigue bloqueada, impedimos el acceso
+    if (sectionId === 'contrataciones' && isLocked) {
+        return;
+    }
+
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(sec => sec.classList.remove('active-section'));
     
@@ -601,6 +685,47 @@ function switchTab(sectionId, element) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Estado inicial de bloqueo
+let isLocked = true;
+
+// Configuración de la cuenta regresiva fijada exactamente en 2 horas desde ahora
+const countDownDate = new Date().getTime() + (2 * 60 * 60 * 1000);
+
+const timerInterval = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    if (distance < 0) {
+        clearInterval(timerInterval);
+        isLocked = false;
+        
+        // Ocultar el temporizador de la sección de lanzamientos
+        const countdownWrapper = document.getElementById("countdown-wrapper");
+        if (countdownWrapper) {
+            countdownWrapper.style.display = "none";
+        }
+        
+        // Desbloquear el enlace en la barra de navegación
+        const contratacionesLink = document.getElementById("link-contrataciones");
+        if (contratacionesLink) {
+            contratacionesLink.classList.remove("locked-link");
+        }
+        return;
+    }
+
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
+    if (minutesEl) minutesEl.innerText = String(minutes).padStart(2, '0');
+    if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, '0');
+}, 1000);
 </script>
 
 </body>
