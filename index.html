@@ -12,6 +12,8 @@
 <title>pablox - Sitio Oficial</title>
 <!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Librería externa para generar códigos QR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <!-- Importar Google Fonts para una tipografía elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -177,7 +179,7 @@ body {
   margin: 2px 0 10px 0;
   line-height: 1.2;
 }
-.btn-listen, .btn-youtube-clip, .btn-amazon, .btn-home-nav {
+.btn-listen, .btn-youtube-clip, .btn-amazon, .btn-home-nav, .btn-entradas, .btn-gratis {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
@@ -192,28 +194,15 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
-.btn-listen {
-  background-color: #1DB954;
-}
-.btn-listen:hover {
-  transform: scale(1.03);
-  background-color: #1ed760;
-}
-.btn-youtube-clip {
-  background-color: #FF0000;
-}
-.btn-youtube-clip:hover {
-  transform: scale(1.03);
-  background-color: #cc0000;
-}
-.btn-amazon {
-  background-color: #232f3e;
-  color: #ff9900;
-}
-.btn-amazon:hover {
-  transform: scale(1.03);
-  background-color: #131a22;
-}
+.btn-listen { background-color: #1DB954; }
+.btn-listen:hover { transform: scale(1.03); background-color: #1ed760; }
+.btn-youtube-clip { background-color: #FF0000; }
+.btn-youtube-clip:hover { transform: scale(1.03); background-color: #cc0000; }
+.btn-amazon { background-color: #232f3e; color: #ff9900; }
+.btn-amazon:hover { transform: scale(1.03); background-color: #131a22; }
+.btn-entradas { background: linear-gradient(135deg, #ff3366, #ff8c00); }
+.btn-entradas:hover { transform: scale(1.03); opacity: 0.9; }
+.btn-gratis { background: linear-gradient(135deg, #10b981, #059669); }
 
 /* TARJETAS DE LA SECCIÓN DE INICIO */
 .home-cards-container {
@@ -225,23 +214,9 @@ body {
   padding: 0 15px;
 }
 
-@media (min-width: 600px) {
-  .home-cards-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 900px) {
-  .home-cards-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1150px) {
-  .home-cards-container {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
+@media (min-width: 600px) { .home-cards-container { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .home-cards-container { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1150px) { .home-cards-container { grid-template-columns: repeat(6, 1fr); } }
 
 .home-card {
   background: rgba(20, 15, 35, 0.9);
@@ -255,13 +230,11 @@ body {
   box-shadow: 0 8px 25px rgba(0,0,0,0.6);
   transition: all 0.3s ease;
 }
-
 .home-card:hover {
   border-color: #ff3366;
   box-shadow: 0 0 25px rgba(255, 51, 102, 0.4);
   transform: translateY(-5px);
 }
-
 .home-card-icon {
   width: 60px;
   height: 60px;
@@ -274,7 +247,6 @@ body {
   margin-bottom: 15px;
   box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
 }
-
 .home-card h3 {
   font-size: 16px;
   color: #ffffff;
@@ -282,7 +254,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
 .home-card p {
   font-size: 13px;
   color: #cbd5e1;
@@ -291,7 +262,7 @@ body {
   flex-grow: 1;
 }
 
-.about-container {
+.about-container, .contrataciones-container, .entradas-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 30px;
@@ -305,25 +276,122 @@ body {
   color: #e2e8f0;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
-.about-container p { margin-bottom: 15px; }
+.about-container p, .contrataciones-container p { margin-bottom: 15px; }
 .about-highlight { color: #ff3366; font-weight: bold; }
 
-/* Contrataciones */
-.contrataciones-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: rgba(20, 15, 35, 0.85);
-  backdrop-filter: blur(8px);
-  border: 2px solid rgba(16, 185, 129, 0.5);
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-  line-height: 1.6;
-  font-size: 16px;
-  color: #e2e8f0;
+/* Estilos de la sección Entradas y Admin */
+.admin-panel-btn, .scanner-btn {
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px dashed #8b5cf6;
+  color: #c084fc;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  margin-right: 5px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
-.contrataciones-container p { margin-bottom: 20px; }
+.admin-panel-btn:hover, .scanner-btn:hover { background: rgba(139, 92, 246, 0.4); color: #fff; }
+
+.admin-box, .scanner-box {
+  background: rgba(15, 12, 25, 0.95);
+  border: 2px solid #ff3366;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  text-align: left;
+  display: none;
+}
+.admin-box h3, .scanner-box h3 { color: #ff3366; margin-bottom: 15px; font-size: 16px; }
+.admin-box label, .scanner-box label { display: block; font-size: 12px; margin-bottom: 5px; color: #cbd5e1; }
+.admin-box input[type="text"], .admin-box input[type="date"], .admin-box input[type="time"], .admin-box input[type="number"], .scanner-box input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(139,92,246,0.5);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+}
+.admin-box button, .scanner-box button {
+  background: #ff3366;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.admin-box button:hover, .scanner-box button:hover { background: #e02e5b; }
+
+.event-card {
+  background: rgba(30, 20, 50, 0.9);
+  border: 1px solid rgba(255, 51, 102, 0.4);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+@media (min-width: 600px) {
+  .event-card { flex-direction: row; justify-content: space-between; align-items: center; }
+}
+.event-info h4 { color: #fff; font-size: 16px; margin-bottom: 4px; }
+.event-info p { color: #cbd5e1; font-size: 13px; }
+.event-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.btn-delete-event {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  display: none;
+}
+.btn-delete-event:hover { background: #ef4444; color: #fff; }
+
+/* Modal para obtener entrada nominativa con QR */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 15px;
+}
+.modal-content {
+  background: #140f23;
+  border: 2px solid #38bdf8;
+  padding: 25px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(56,189,248,0.4);
+}
+.modal-content h3 { color: #38bdf8; margin-bottom: 15px; font-size: 18px; }
+.ticket-preview {
+  background: #fff;
+  color: #000;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.ticket-preview h4 { color: #0b0c10; font-size: 16px; margin-bottom: 5px; }
+.ticket-preview p { font-size: 12px; color: #333; margin-bottom: 10px; }
+#qrcode { display: flex; justify-content: center; margin: 10px 0; }
 
 .content-section { display: none; }
 .content-section.active-section { display: block; }
@@ -333,16 +401,17 @@ body {
 
 <!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
-  <a onclick="switchTab('inicio', this)" id="link-inicio">INICIO</a>
+  <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
   <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
   <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
+  <a onclick="switchTab('entradas', this)" id="link-entradas">ENTRADAS</a>
   <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
   <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
-  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones" class="active-link">CONTRATACIONES</a>
+  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones">CONTRATACIONES</a>
 </nav>
 
 <!-- SECCIÓN INICIO -->
-<div id="inicio" class="content-section">
+<div id="inicio" class="content-section active-section">
   <header class="header">
     <h1>pablox</h1>
     <p>Bienvenidos a la página web oficial del artista</p>
@@ -363,6 +432,15 @@ body {
       <h3>Videoclips</h3>
       <p>Sumerge tus sentidos en los videos oficiales.</p>
       <button onclick="switchTab('videoclips', document.getElementById('link-videoclips'))" class="btn-home-nav" style="background: linear-gradient(135deg, #ff3366, #e11d48); padding: 8px 0; border-radius: 20px; width: 100%;">
+        <i class="fa-solid fa-arrow-right"></i> VER
+      </button>
+    </div>
+
+    <div class="home-card">
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #ff8c00, #ff3366);"><i class="fa-solid fa-ticket"></i></div>
+      <h3>Entradas</h3>
+      <p>Entradas y fechas para los próximos conciertos.</p>
+      <button onclick="switchTab('entradas', document.getElementById('link-entradas'))" class="btn-home-nav" style="background: linear-gradient(135deg, #ff8c00, #ff3366); padding: 8px 0; border-radius: 20px; width: 100%;">
         <i class="fa-solid fa-arrow-right"></i> VER
       </button>
     </div>
@@ -529,6 +607,97 @@ body {
   </main>
 </div>
 
+<!-- SECCIÓN ENTRADAS -->
+<div id="entradas" class="content-section">
+  <h2 class="section-title" style="color: #ff8c00 !important; text-shadow: 0 0 12px rgba(255, 140, 0, 0.9);">ENTRADAS & CONCIERTOS - pablox</h2>
+  <div class="entradas-container">
+    
+    <!-- Controles de Administrador exclusivos (Huella / Panel / Escáner) -->
+    <div id="adminControls" style="display:none; margin-bottom: 20px; border-bottom: 1px solid rgba(139,92,246,0.3); padding-bottom: 15px;">
+      <button onclick="toggleAdminPanel()" class="admin-panel-btn"><i class="fa-solid fa-plus-circle"></i> Nuevo Evento</button>
+      <button onclick="toggleScannerPanel()" class="scanner-btn"><i class="fa-solid fa-qrcode"></i> Escáner de Puerta QR</button>
+      <button onclick="logoutAdmin()" style="background: rgba(239, 68, 68, 0.3); border: 1px solid #ef4444; font-size: 11px; padding: 6px 12px; color:#fff; border-radius:6px; cursor:pointer;">Cerrar Sesión Admin</button>
+    </div>
+
+    <!-- Botón de Login por Huella (si no está logueado) -->
+    <div id="loginButtonContainer" style="margin-bottom: 20px;">
+      <button onclick="loginWithFingerprint()" class="admin-panel-btn"><i class="fa-solid fa-fingerprint"></i> Acceso Administrador pablox (Huella Dactilar)</button>
+    </div>
+
+    <!-- Panel de control privado para crear eventos -->
+    <div id="adminPanelBox" class="admin-box">
+      <h3>Crear Concierto / Evento (pablox)</h3>
+      <label>Título del Concierto:</label>
+      <input type="text" id="eventTitleInput" placeholder="Ej: Concierto en Manzanares">
+      
+      <label>Fecha de celebración:</label>
+      <input type="date" id="eventDateInput">
+      
+      <label>Hora de finalización (El evento se ocultará automáticamente al pasar esta hora y día):</label>
+      <input type="time" id="eventTimeInput">
+
+      <label>Lugar / Ciudad:</label>
+      <input type="text" id="eventLocationInput" placeholder="Ej: Sala Municipal, Manzanares">
+
+      <label>Límite de Entradas (Aforo Máximo que tú defines):</label>
+      <input type="number" id="eventLimitInput" placeholder="Ej: 150" value="100">
+
+      <div class="checkbox-container" style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <input type="checkbox" id="eventFreeCheckbox" onchange="togglePriceInput()" style="width:16px; height:16px; cursor:pointer;">
+        <label for="eventFreeCheckbox" style="margin-bottom:0; cursor:pointer; color:#fff;">Entrada Gratuita (Acceso libre)</label>
+      </div>
+
+      <div id="priceContainerGroup">
+        <label>Precio de la Entrada:</label>
+        <input type="text" id="eventPriceInput" placeholder="Ej: 10€">
+      </div>
+
+      <button onclick="addNewEvent()">Publicar Evento</button>
+    </div>
+
+    <!-- Escáner QR de Puerta (Validación para pablox) -->
+    <div id="scannerPanelBox" class="scanner-box">
+      <h3>Escáner de Entradas (Control de Acceso)</h3>
+      <label>Introduce o escanea el Código QR único del asistente:</label>
+      <input type="text" id="qrScanInput" placeholder="Pega aquí el código QR o ID de la entrada...">
+      <button onclick="validateTicketQR()">Validar Entrada</button>
+      <div id="scanResult" style="margin-top: 15px; font-weight: bold; font-size: 14px;"></div>
+    </div>
+
+    <!-- Lista pública de entradas disponibles -->
+    <div id="eventsListContainer">
+      <!-- Los eventos se cargarán aquí automáticamente -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal para pedir Nombre Completo y generar QR nominativo -->
+<div id="ticketModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3 id="modalEventTitle">Obtener Entrada</h3>
+    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 15px;">Para evitar falsificaciones, la entrada es nominativa.</p>
+    
+    <label style="display:block; text-align:left; font-size:12px; margin-bottom:5px; color:#cbd5e1;">Tu Nombre y Apellidos completos:</label>
+    <input type="text" id="attendeeNameInput" placeholder="Ej: Pablo García Martínez" style="width:100%; padding:8px 12px; margin-bottom:15px; background:rgba(255,255,255,0.05); border:1px solid #38bdf8; border-radius:6px; color:#fff;">
+
+    <div id="generatedTicketArea" style="display:none;">
+      <div class="ticket-preview" id="ticketCardToPrint">
+        <h4 id="ticketEventName"></h4>
+        <p id="ticketAttendeeName" style="font-weight:bold; color:#ff3366;"></p>
+        <p id="ticketDetailsInfo" style="font-size:11px;"></p>
+        <div id="qrcode"></div>
+        <p style="font-size:9px; color:#666; margin-top:5px;">Presenta este QR en puerta</p>
+      </div>
+      <button onclick="closeTicketModal()" style="background:#38bdf8; color:#0b0c10; width:100%; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Cerrar y Guardar</button>
+    </div>
+
+    <div id="generateBtnArea">
+      <button onclick="generateUserTicket()" style="background:#ff3366; color:#fff; width:100%; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Generar mi Entrada con QR</button>
+      <button onclick="closeTicketModal()" style="background:transparent; color:#aaa; width:100%; padding:6px; border:none; margin-top:5px; cursor:pointer;">Cancelar</button>
+    </div>
+  </div>
+</div>
+
 <!-- SECCIÓN REDES SOCIALES -->
 <div id="redes" class="content-section">
   <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
@@ -578,7 +747,7 @@ body {
 </div>
 
 <!-- SECCIÓN CONTRATACIONES -->
-<div id="contrataciones" class="content-section active-section">
+<div id="contrataciones" class="content-section">
   <h2 class="section-title" style="color: #10b981 !important;">CONTRATACIONES</h2>
   <div class="contrataciones-container">
     <p>¿Quieres contar con <span class="about-highlight">pablox</span> para un concierto, festival, bolo o evento privado?</p>
@@ -589,7 +758,7 @@ body {
   </div>
 </div>
 
-<!-- SCRIPT DE NAVEGACIÓN -->
+<!-- SCRIPT DE GESTIÓN, QR, CADUCIDAD Y VALIDACIÓN -->
 <script>
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
@@ -611,6 +780,310 @@ function switchTab(sectionId, element) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function isAdminLoggedIn() {
+    return localStorage.getItem('pablox_admin_auth') === 'true';
+}
+
+async function loginWithFingerprint() {
+    if (isAdminLoggedIn()) {
+        updateAdminUI();
+        return;
+    }
+    if (window.PublicKeyCredential && PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable) {
+        try {
+            let available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
+            if (available) {
+                let challenge = new Uint8Array(32);
+                window.crypto.getRandomValues(challenge);
+                await navigator.credentials.create({
+                    publicKey: {
+                        challenge: challenge,
+                        rp: { name: "pablox Sitio Oficial" },
+                        user: { id: new Uint8Array([1, 2, 3, 4]), name: "pablox", displayName: "Administrador pablox" },
+                        pubKeyCredParams: [{ alg: -7, type: "public-key" }],
+                        authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
+                        timeout: 60000
+                    }
+                });
+                localStorage.setItem('pablox_admin_auth', 'true');
+                alert("¡Huella reconocida con éxito! Bienvenido, pablox.");
+                updateAdminUI();
+                return;
+            }
+        } catch (e) {
+            console.log("Biometría cancelada:", e);
+        }
+    }
+    let secretPin = prompt("Introduce tu PIN de administrador pablox:");
+    if (secretPin === "pablox25") {
+        localStorage.setItem('pablox_admin_auth', 'true');
+        alert("¡Acceso concedido, pablox!");
+        updateAdminUI();
+    } else if (secretPin !== null) {
+        alert("PIN incorrecto.");
+    }
+}
+
+function logoutAdmin() {
+    localStorage.removeItem('pablox_admin_auth');
+    document.getElementById('adminPanelBox').style.display = 'none';
+    document.getElementById('scannerPanelBox').style.display = 'none';
+    updateAdminUI();
+    alert("Has cerrado sesión como administrador.");
+}
+
+function updateAdminUI() {
+    let controls = document.getElementById('adminControls');
+    let loginBtn = document.getElementById('loginButtonContainer');
+    if (isAdminLoggedIn()) {
+        controls.style.display = 'block';
+        loginBtn.style.display = 'none';
+    } else {
+        controls.style.display = 'none';
+        loginBtn.style.display = 'block';
+    }
+    renderEvents();
+}
+
+function toggleAdminPanel() {
+    let box = document.getElementById('adminPanelBox');
+    let scanner = document.getElementById('scannerPanelBox');
+    scanner.style.display = 'none';
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+}
+
+function toggleScannerPanel() {
+    let scanner = document.getElementById('scannerPanelBox');
+    let box = document.getElementById('adminPanelBox');
+    box.style.display = 'none';
+    scanner.style.display = scanner.style.display === 'block' ? 'none' : 'block';
+}
+
+function togglePriceInput() {
+    let isFree = document.getElementById('eventFreeCheckbox').checked;
+    let group = document.getElementById('priceContainerGroup');
+    group.style.display = isFree ? 'none' : 'block';
+}
+
+function getStoredEvents() {
+    let events = localStorage.getItem('pablox_events');
+    return events ? JSON.parse(events) : [
+        { id: "ev_1", title: "Showcase Exclusivo pablox", date: "2026-10-15", time: "21:00", location: "Manzanares, Ciudad Real", limit: 100, sold: 12, isFree: true, price: "" }
+    ];
+}
+
+function saveEvents(events) {
+    localStorage.setItem('pablox_events', JSON.stringify(events));
+}
+
+function getIssuedTickets() {
+    let tickets = localStorage.getItem('pablox_issued_tickets');
+    return tickets ? JSON.parse(tickets) : {};
+}
+
+function saveIssuedTickets(tickets) {
+    localStorage.setItem('pablox_issued_tickets', JSON.stringify(tickets));
+}
+
+function renderEvents() {
+    let container = document.getElementById('eventsListContainer');
+    let events = getStoredEvents();
+    
+    // Filtrar y eliminar automáticamente los eventos cuya fecha y hora ya hayan pasado
+    let now = new Date();
+    let activeEvents = events.filter(ev => {
+        let eventDateTime = new Date(ev.date + "T" + ev.time);
+        return eventDateTime > now;
+    });
+
+    if (activeEvents.length !== events.length) {
+        saveEvents(activeEvents); // Actualiza la lista guardada quitando los caducados
+        events = activeEvents;
+    }
+
+    if (events.length === 0) {
+        container.innerHTML = "<p style='color: #94a3b8; font-style: italic;'>No hay eventos o conciertos programados activos por ahora.</p>";
+        return;
+    }
+
+    let html = "";
+    let userIsAdmin = isAdminLoggedIn();
+
+    events.forEach((ev, index) => {
+        let remaining = ev.limit - (ev.sold || 0);
+        if (remaining < 0) remaining = 0;
+
+        let priceTag = ev.isFree ? `<div class="btn-gratis" style="padding: 6px 15px; width: auto; border-radius:20px; display:inline-block;"><i class="fa-solid fa-check"></i> GRATIS</div>` : `<div style="background:#ff3366; padding:6px 15px; border-radius:20px; font-weight:bold; font-size:11px; display:inline-block;">PRECIO: ${ev.price}</div>`;
+
+        let actionButton = "";
+        if (remaining > 0) {
+            actionButton = `<button onclick="openTicketModal('${ev.id}')" class="btn-entradas" style="padding: 8px 15px; width: auto; border:none;"><i class="fa-solid fa-ticket"></i> OBTENER ENTRADA</button>`;
+        } else {
+            actionButton = `<button disabled style="background:#4b5563; color:#9ca3af; padding:8px 15px; border-radius:20px; font-size:10px; border:none; font-weight:bold;">SOLD OUT (AGOTADO)</button>`;
+        }
+
+        let deleteBtn = userIsAdmin ? `<button onclick="deleteEvent(${index})" class="btn-delete-event" style="display:inline-block;"><i class="fa-solid fa-trash"></i></button>` : "";
+
+        html += `
+        <div class="event-card">
+            <div class="event-info">
+                <h4><i class="fa-solid fa-music"></i> ${ev.title}</h4>
+                <p><i class="fa-solid fa-calendar-days"></i> ${ev.date} a las ${ev.time}h | <i class="fa-solid fa-location-dot"></i> ${ev.location}</p>
+                <p style="margin-top:4px; color:#38bdf8; font-size:12px;">Disponibles: <b>${remaining}</b> / ${ev.limit} aforo total</p>
+            </div>
+            <div class="event-actions">
+                ${priceTag}
+                ${actionButton}
+                ${deleteBtn}
+            </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+}
+
+function addNewEvent() {
+    let title = document.getElementById('eventTitleInput').value;
+    let date = document.getElementById('eventDateInput').value;
+    let time = document.getElementById('eventTimeInput').value;
+    let location = document.getElementById('eventLocationInput').value;
+    let limit = parseInt(document.getElementById('eventLimitInput').value) || 100;
+    let isFree = document.getElementById('eventFreeCheckbox').checked;
+    let price = document.getElementById('eventPriceInput').value;
+
+    if (!title || !date || !time || !location) {
+        alert("Por favor, completa los campos básicos (título, fecha, hora y lugar).");
+        return;
+    }
+
+    let events = getStoredEvents();
+    let newId = 'ev_' + Date.now();
+    events.push({ id: newId, title, date, time, location, limit, sold: 0, isFree, price: isFree ? "" : price });
+    saveEvents(events);
+
+    document.getElementById('eventTitleInput').value = "";
+    document.getElementById('eventDateInput').value = "";
+    document.getElementById('eventTimeInput').value = "";
+    document.getElementById('eventLocationInput').value = "";
+    document.getElementById('eventLimitInput').value = "100";
+    document.getElementById('eventFreeCheckbox').checked = false;
+    document.getElementById('eventPriceInput').value = "";
+    togglePriceInput();
+
+    renderEvents();
+    document.getElementById('adminPanelBox').style.display = 'none';
+    alert("¡Evento creado correctamente!");
+}
+
+function deleteEvent(index) {
+    if (confirm("¿Seguro que deseas eliminar este evento?")) {
+        let events = getStoredEvents();
+        events.splice(index, 1);
+        saveEvents(events);
+        renderEvents();
+    }
+}
+
+// Lógica de generación de entradas nominativas con QR único
+let currentSelectedEventId = null;
+
+function openTicketModal(eventId) {
+    currentSelectedEventId = eventId;
+    let events = getStoredEvents();
+    let ev = events.find(e => e.id === eventId);
+    if (!ev) return;
+
+    document.getElementById('modalEventTitle').innerText = "Entrada para: " + ev.title;
+    document.getElementById('attendeeNameInput').value = "";
+    document.getElementById('generatedTicketArea').style.display = 'none';
+    document.getElementById('generateBtnArea').style.display = 'block';
+    document.getElementById('ticketModal').style.display = 'flex';
+}
+
+function closeTicketModal() {
+    document.getElementById('ticketModal').style.display = 'none';
+    renderEvents();
+}
+
+function generateUserTicket() {
+    let name = document.getElementById('attendeeNameInput').value.trim();
+    if (!name) {
+        alert("Por favor, introduce tu nombre y apellidos completos.");
+        return;
+    }
+
+    let events = getStoredEvents();
+    let ev = events.find(e => e.id === currentSelectedEventId);
+    if (!ev) return;
+
+    if ((ev.sold || 0) >= ev.limit) {
+        alert("Lo sentimos, las entradas se han agotado.");
+        closeTicketModal();
+        return;
+    }
+
+    ev.sold = (ev.sold || 0) + 1;
+    saveEvents(events);
+
+    let ticketCode = "PABLOX-" + ev.id + "-" + Math.random().toString(36).substring(2, 8).toUpperCase() + "-" + Date.now();
+
+    let issued = getIssuedTickets();
+    issued[ticketCode] = {
+        eventName: ev.title,
+        attendeeName: name,
+        date: ev.date,
+        time: ev.time,
+        location: ev.location,
+        scanned: false
+    };
+    saveIssuedTickets(issued);
+
+    document.getElementById('ticketEventName').innerText = ev.title;
+    document.getElementById('ticketAttendeeName').innerText = "Titular: " + name;
+    document.getElementById('ticketDetailsInfo').innerText = ev.date + " - " + ev.time + "h | " + ev.location;
+
+    document.getElementById('generateBtnArea').style.display = 'none';
+    document.getElementById('generatedTicketArea').style.display = 'block';
+
+    let qrContainer = document.getElementById('qrcode');
+    qrContainer.innerHTML = "";
+    new QRCode(qrContainer, {
+        text: ticketCode,
+        width: 120,
+        height: 120
+    });
+}
+
+function validateTicketQR() {
+    let code = document.getElementById('qrScanInput').value.trim();
+    let resultDiv = document.getElementById('scanResult');
+
+    if (!code) {
+        resultDiv.style.color = "#ef4444";
+        resultDiv.innerText = "Por favor, introduce el código de la entrada.";
+        return;
+    }
+
+    let issued = getIssuedTickets();
+    if (issued[code]) {
+        if (issued[code].scanned) {
+            resultDiv.style.color = "#f59e0b";
+            resultDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ¡ALERTA! Esta entrada ya fue utilizada.<br><span style="font-size:12px; color:#fff;">Titular: ${issued[code].attendeeName}</span>`;
+        } else {
+            issued[code].scanned = true;
+            saveIssuedTickets(issued);
+            resultDiv.style.color = "#10b981";
+            resultDiv.innerHTML = `<i class="fa-solid fa-circle-check"></i> ENTRADA VÁLIDA<br><span style="font-size:13px; color:#fff;">Titular: <b>${issued[code].attendeeName}</b><br>Evento: ${issued[code].eventName}</span>`;
+        }
+    } else {
+        resultDiv.style.color = "#ef4444";
+        resultDiv.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ENTRADA FALSIFICADA O INVÁLIDA`;
+    }
+}
+
+window.onload = function() {
+    updateAdminUI();
+};
 </script>
 
 </body>
