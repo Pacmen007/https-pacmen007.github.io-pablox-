@@ -33,30 +33,36 @@ body {
   min-height: 100vh;
 }
 
-/* Barra de Navegación */
+/* Barra de Navegación adaptable */
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 15px 20px;
-  padding: 12px 15px;
-  background-color: rgba(13, 17, 23, 0.9);
+  gap: 25px;
+  padding: 15px 20px;
+  background-color: rgba(13, 17, 23, 0.85);
   backdrop-filter: blur(10px);
   border-bottom: 2px solid #8b5cf6;
   position: sticky;
   top: 0;
   z-index: 1000;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.navbar::-webkit-scrollbar {
+  display: none;
 }
 .navbar a {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 1px;
+  flex-shrink: 0;
   cursor: pointer;
   transition: color 0.2s ease;
-  white-space: nowrap;
 }
 .navbar a:hover, .navbar a.active-link {
   color: #ff3366;
@@ -458,7 +464,6 @@ body {
       </button>
     </div>
 
-    <!-- Tarjeta de Entradas colocada exactamente debajo de Contrataciones en Inicio -->
     <div class="home-card">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #ff8c00, #ff3366);"><i class="fa-solid fa-ticket"></i></div>
       <h3>Entradas</h3>
@@ -668,16 +673,16 @@ body {
   <h2 class="section-title" style="color: #ff8c00 !important; text-shadow: 0 0 12px rgba(255, 140, 0, 0.9);">ENTRADAS & CONCIERTOS - pablox</h2>
   <div class="entradas-container">
     
-    <!-- Controles de Administrador exclusivos -->
+    <!-- Controles de Administrador exclusivos (Huella / Panel / Escáner) -->
     <div id="adminControls" style="display:none; margin-bottom: 20px; border-bottom: 1px solid rgba(139,92,246,0.3); padding-bottom: 15px;">
       <button onclick="toggleAdminPanel()" class="admin-panel-btn"><i class="fa-solid fa-plus-circle"></i> Nuevo Evento</button>
       <button onclick="toggleScannerPanel()" class="scanner-btn"><i class="fa-solid fa-qrcode"></i> Escáner de Puerta QR</button>
       <button onclick="logoutAdmin()" style="background: rgba(239, 68, 68, 0.3); border: 1px solid #ef4444; font-size: 11px; padding: 6px 12px; color:#fff; border-radius:6px; cursor:pointer;">Cerrar Sesión Admin</button>
     </div>
 
-    <!-- Botón de Login por Huella vinculado a acevedomenchenpablo@gmail.com -->
+    <!-- Botón de Login por Huella (si no está logueado) -->
     <div id="loginButtonContainer" style="margin-bottom: 20px;">
-      <button onclick="loginWithFingerprint()" class="admin-panel-btn"><i class="fa-solid fa-fingerprint"></i> Acceso Administrador (acevedomenchenpablo@gmail.com)</button>
+      <button onclick="loginWithFingerprint()" class="admin-panel-btn"><i class="fa-solid fa-fingerprint"></i> Acceso Administrador pablox (Huella Dactilar)</button>
     </div>
 
     <!-- Panel de control privado para crear eventos -->
@@ -808,14 +813,14 @@ async function loginWithFingerprint() {
                     publicKey: {
                         challenge: challenge,
                         rp: { name: "pablox Sitio Oficial" },
-                        user: { id: new Uint8Array([1, 2, 3, 4]), name: "acevedomenchenpablo@gmail.com", displayName: "pablox Administrador" },
+                        user: { id: new Uint8Array([1, 2, 3, 4]), name: "pablox", displayName: "Administrador pablox" },
                         pubKeyCredParams: [{ alg: -7, type: "public-key" }],
                         authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
                         timeout: 60000
                     }
                 });
                 localStorage.setItem('pablox_admin_auth', 'true');
-                alert("¡Huella reconocida con éxito para acevedomenchenpablo@gmail.com! Bienvenido, pablox.");
+                alert("¡Huella reconocida con éxito! Bienvenido, pablox.");
                 updateAdminUI();
                 return;
             }
@@ -898,6 +903,7 @@ function renderEvents() {
     let container = document.getElementById('eventsListContainer');
     let events = getStoredEvents();
     
+    // Filtrar y eliminar automáticamente los eventos cuya hora de fin ya haya pasado
     let now = new Date();
     let activeEvents = events.filter(ev => {
         let endDateTime = new Date(ev.date + "T" + (ev.endTime || "23:59"));
@@ -993,6 +999,7 @@ function deleteEvent(index) {
     }
 }
 
+// Lógica de generación de entradas nominativas con QR y PDF
 let currentSelectedEventId = null;
 let currentTicketCode = null;
 
@@ -1085,6 +1092,7 @@ function cancelMyTicket() {
             delete issued[currentTicketCode];
             saveIssuedTickets(issued);
 
+            // Reducir contador vendido del evento
             let events = getStoredEvents();
             let ev = events.find(e => e.id === evId);
             if (ev && ev.sold > 0) {
