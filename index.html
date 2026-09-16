@@ -12,8 +12,9 @@
 <title>pablox - Sitio Oficial</title>
 <!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Librería externa para generar códigos QR y exportar a PDF (html2pdf) -->
+<!-- Librería externa para generar códigos QR, leer cámara QR y exportar a PDF (html2pdf) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <!-- Importar Google Fonts para una tipografía elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
@@ -33,36 +34,30 @@ body {
   min-height: 100vh;
 }
 
-/* Barra de Navegación adaptable */
+/* Barra de Navegación */
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  gap: 25px;
-  padding: 15px 20px;
-  background-color: rgba(13, 17, 23, 0.85);
+  flex-wrap: wrap;
+  gap: 15px 20px;
+  padding: 12px 15px;
+  background-color: rgba(13, 17, 23, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 2px solid #8b5cf6;
   position: sticky;
   top: 0;
   z-index: 1000;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.navbar::-webkit-scrollbar {
-  display: none;
 }
 .navbar a {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 1px;
-  flex-shrink: 0;
   cursor: pointer;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 .navbar a:hover, .navbar a.active-link {
   color: #ff3366;
@@ -281,7 +276,7 @@ body {
 .about-highlight { color: #ff3366; font-weight: bold; }
 
 /* Estilos de la sección Entradas y Admin */
-.admin-panel-btn, .scanner-btn {
+.admin-panel-btn, .scanner-btn, .requests-btn {
   background: rgba(139, 92, 246, 0.2);
   border: 1px dashed #8b5cf6;
   color: #c084fc;
@@ -296,9 +291,9 @@ body {
   align-items: center;
   gap: 6px;
 }
-.admin-panel-btn:hover, .scanner-btn:hover { background: rgba(139, 92, 246, 0.4); color: #fff; }
+.admin-panel-btn:hover, .scanner-btn:hover, .requests-btn:hover { background: rgba(139, 92, 246, 0.4); color: #fff; }
 
-.admin-box, .scanner-box {
+.admin-box, .scanner-box, .requests-box {
   background: rgba(15, 12, 25, 0.95);
   border: 2px solid #ff3366;
   padding: 20px;
@@ -307,9 +302,9 @@ body {
   text-align: left;
   display: none;
 }
-.admin-box h3, .scanner-box h3 { color: #ff3366; margin-bottom: 15px; font-size: 16px; }
+.admin-box h3, .scanner-box h3, .requests-box h3 { color: #ff3366; margin-bottom: 15px; font-size: 16px; }
 .admin-box label, .scanner-box label { display: block; font-size: 12px; margin-bottom: 5px; color: #cbd5e1; }
-.admin-box input[type="text"], .admin-box input[type="date"], .admin-box input[type="time"], .admin-box input[type="number"], .scanner-box input {
+.admin-box input[type="text"], .admin-box input[type="date"], .admin-box input[type="time"], .admin-box input[type="number"], .scanner-box input, .scanner-box select {
   width: 100%;
   padding: 8px 12px;
   margin-bottom: 12px;
@@ -359,7 +354,28 @@ body {
 }
 .btn-delete-event:hover { background: #ef4444; color: #fff; }
 
-/* Modal para obtener entrada nominativa con QR y PDF */
+/* Botón discreto dentro de la sección de entradas para acceso administrador */
+.section-admin-trigger {
+  background: rgba(20, 15, 35, 0.5);
+  border: 1px dashed rgba(139, 92, 246, 0.3);
+  color: rgba(255, 255, 255, 0.4);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.section-admin-trigger:hover {
+  color: #ffcc00;
+  border-color: #ffcc00;
+  background: rgba(20, 15, 35, 0.9);
+}
+
+/* Modal para obtener entrada nominativa con QR, PDF y Estado Activa/Usada */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -673,16 +689,20 @@ body {
   <h2 class="section-title" style="color: #ff8c00 !important; text-shadow: 0 0 12px rgba(255, 140, 0, 0.9);">ENTRADAS & CONCIERTOS - pablox</h2>
   <div class="entradas-container">
     
-    <!-- Controles de Administrador exclusivos (Huella / Panel / Escáner) -->
+    <!-- Botón discreto dentro de Entradas para acceso de administrador -->
+    <div id="sectionAdminTriggerContainer" style="text-align: left; margin-bottom: 15px;">
+      <button onclick="secretAdminLogin()" class="section-admin-trigger" title="Acceso Administrador pablox">
+        <i class="fa-solid fa-crown"></i> Admin
+      </button>
+    </div>
+
+    <!-- Controles de Administrador exclusivos (Ocultos hasta iniciar sesión) -->
     <div id="adminControls" style="display:none; margin-bottom: 20px; border-bottom: 1px solid rgba(139,92,246,0.3); padding-bottom: 15px;">
       <button onclick="toggleAdminPanel()" class="admin-panel-btn"><i class="fa-solid fa-plus-circle"></i> Nuevo Evento</button>
       <button onclick="toggleScannerPanel()" class="scanner-btn"><i class="fa-solid fa-qrcode"></i> Escáner de Puerta QR</button>
+      <button onclick="toggleRequestsPanel()" class="requests-btn"><i class="fa-solid fa-envelope-open-text"></i> Avisos y Rechazos</button>
+      <button onclick="changeAdminPassword()" style="background: rgba(255, 204, 0, 0.2); border: 1px solid #ffcc00; font-size: 11px; padding: 6px 12px; color:#ffcc00; border-radius:6px; cursor:pointer; margin-right:5px;"><i class="fa-solid fa-key"></i> Cambiar Contraseña</button>
       <button onclick="logoutAdmin()" style="background: rgba(239, 68, 68, 0.3); border: 1px solid #ef4444; font-size: 11px; padding: 6px 12px; color:#fff; border-radius:6px; cursor:pointer;">Cerrar Sesión Admin</button>
-    </div>
-
-    <!-- Botón de Login por Huella (si no está logueado) -->
-    <div id="loginButtonContainer" style="margin-bottom: 20px;">
-      <button onclick="loginWithFingerprint()" class="admin-panel-btn"><i class="fa-solid fa-fingerprint"></i> Acceso Administrador pablox (Huella Dactilar)</button>
     </div>
 
     <!-- Panel de control privado para crear eventos -->
@@ -724,12 +744,27 @@ body {
       <button onclick="addNewEvent()">Publicar Evento</button>
     </div>
 
-    <!-- Escáner QR de Puerta (Validación para pablox) -->
+    <!-- Panel de Avisos de Rechazo de los Asistentes (Para que el administrador los revise y acepte el rechazo) -->
+    <div id="requestsPanelBox" class="requests-box">
+      <h3>Avisos de Asistentes (Motivos de No Asistencia)</h3>
+      <p style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Aquí verás las solicitudes de la gente que ha avisado de que no puede asistir y su motivo. Al rechazarla, la entrada se anula y el aforo se libera.</p>
+      <div id="requestsListContainer">
+        <!-- Los avisos de rechazo se cargarán aquí -->
+      </div>
+    </div>
+
+    <!-- Escáner QR de Puerta -->
     <div id="scannerPanelBox" class="scanner-box">
       <h3>Escáner de Entradas (Control de Acceso)</h3>
-      <label>Introduce o escanea el Código QR único del asistente:</label>
-      <input type="text" id="qrScanInput" placeholder="Pega aquí el código QR o ID de la entrada...">
-      <button onclick="validateTicketQR()">Validar Entrada</button>
+      <div style="margin-bottom: 12px;">
+        <button onclick="startCameraScanner()" style="background:#10b981; margin-right:5px;"><i class="fa-solid fa-camera"></i> Activar Cámara</button>
+        <button onclick="stopCameraScanner()" style="background:#ef4444;"><i class="fa-solid fa-stop"></i> Apagar Cámara</button>
+      </div>
+      <div id="reader" style="width: 100%; max-width: 350px; margin: 0 auto 15px auto;"></div>
+
+      <label>Introduce o escanea el código QR:</label>
+      <input type="text" id="qrScanInput" placeholder="Código QR o ID de la entrada...">
+      <button onclick="validateTicketQR()" style="background:#10b981; width:100%;"><i class="fa-solid fa-check"></i> Validar Entrada</button>
       <div id="scanResult" style="margin-top: 15px; font-weight: bold; font-size: 14px;"></div>
     </div>
 
@@ -740,26 +775,42 @@ body {
   </div>
 </div>
 
-<!-- Modal para pedir Nombre Completo y generar QR nominativo con PDF -->
+<!-- Modal para Obtener, Descargar en PDF, Estado ACTIVA/USADA y Enviar Motivo de Rechazo -->
 <div id="ticketModal" class="modal-overlay">
   <div class="modal-content">
     <h3 id="modalEventTitle">Obtener Entrada</h3>
-    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 15px;">Para evitar falsificaciones, la entrada es nominativa.</p>
+    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 15px;">Entrada nominativa y segura para pablox.</p>
     
     <label style="display:block; text-align:left; font-size:12px; margin-bottom:5px; color:#cbd5e1;">Tu Nombre y Apellidos completos:</label>
     <input type="text" id="attendeeNameInput" placeholder="Ej: Pablo García Martínez" style="width:100%; padding:8px 12px; margin-bottom:15px; background:rgba(255,255,255,0.05); border:1px solid #38bdf8; border-radius:6px; color:#fff;">
 
     <div id="generatedTicketArea" style="display:none;">
+      <!-- Indicador visual de Estado -->
+      <div id="ticketStatusBadge" style="margin-bottom: 10px; font-weight: bold; font-size: 14px; padding: 6px; border-radius: 6px;"></div>
+
       <div class="ticket-preview" id="ticketCardToPrint">
         <h4 id="ticketEventName"></h4>
         <p id="ticketAttendeeName" style="font-weight:bold; color:#ff3366;"></p>
         <p id="ticketDetailsInfo" style="font-size:11px;"></p>
         <div id="qrcode"></div>
-        <p style="font-size:9px; color:#666; margin-top:5px;">Presenta este QR en puerta</p>
+        <p style="font-size:9px; color:#666; margin-top:5px;">Presenta este QR oficial en puerta</p>
       </div>
+
+      <!-- Apartado para que el asistente mande su motivo de no poder asistir -->
+      <div style="text-align:left; margin-bottom:12px;">
+        <label style="font-size:11px; color:#cbd5e1;">¿No puedes asistir? Manda tu motivo al administrador:</label>
+        <select id="cancelReasonSelect" style="width:100%; padding:6px; background:rgba(255,255,255,0.05); border:1px solid #ef4444; border-radius:6px; color:#fff; font-size:12px; margin-bottom:8px;">
+          <option value="No puedo asistir por motivos personales" style="color:#000;">No puedo asistir por motivos personales</option>
+          <option value="Cambio de planes" style="color:#000;">Cambio de planes</option>
+          <option value="Error al registrar los datos" style="color:#000;">Error al registrar los datos</option>
+          <option value="Enfermedad" style="color:#000;">Enfermedad</option>
+          <option value="Otro motivo" style="color:#000;">Otro motivo</option>
+        </select>
+        <button onclick="submitCancelRequest()" style="background:#ef4444; color:#fff; width:100%; padding:6px; border:none; border-radius:6px; font-weight:bold; font-size:12px; cursor:pointer;"><i class="fa-solid fa-paper-plane"></i> Enviar aviso al Administrador</button>
+      </div>
+
       <div style="display:flex; gap:8px; margin-bottom:10px;">
         <button onclick="downloadTicketPDF()" style="background:#10b981; color:#fff; flex:1; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;"><i class="fa-solid fa-file-pdf"></i> Descargar PDF</button>
-        <button onclick="cancelMyTicket()" style="background:#ef4444; color:#fff; flex:1; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;" title="Avisar al admin para anular"><i class="fa-solid fa-ban"></i> Anular Entrada</button>
       </div>
       <button onclick="closeTicketModal()" style="background:#38bdf8; color:#0b0c10; width:100%; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Cerrar</button>
     </div>
@@ -771,7 +822,7 @@ body {
   </div>
 </div>
 
-<!-- SCRIPT DE GESTIÓN, QR, CADUCIDAD Y PDF -->
+<!-- SCRIPT DE GESTIÓN Y AVISOS DE RECHAZO -->
 <script>
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
@@ -798,43 +849,50 @@ function isAdminLoggedIn() {
     return localStorage.getItem('pablox_admin_auth') === 'true';
 }
 
-async function loginWithFingerprint() {
+function getStoredPassword() {
+    return localStorage.getItem('pablox_custom_password') || 'pablox25';
+}
+
+function secretAdminLogin() {
     if (isAdminLoggedIn()) {
-        updateAdminUI();
+        alert("Ya estás autenticado como administrador, pablox.");
         return;
     }
-    if (window.PublicKeyCredential && PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable) {
-        try {
-            let available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
-            if (available) {
-                let challenge = new Uint8Array(32);
-                window.crypto.getRandomValues(challenge);
-                await navigator.credentials.create({
-                    publicKey: {
-                        challenge: challenge,
-                        rp: { name: "pablox Sitio Oficial" },
-                        user: { id: new Uint8Array([1, 2, 3, 4]), name: "pablox", displayName: "Administrador pablox" },
-                        pubKeyCredParams: [{ alg: -7, type: "public-key" }],
-                        authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
-                        timeout: 60000
-                    }
-                });
-                localStorage.setItem('pablox_admin_auth', 'true');
-                alert("¡Huella reconocida con éxito! Bienvenido, pablox.");
-                updateAdminUI();
-                return;
-            }
-        } catch (e) {
-            console.log("Biometría cancelada:", e);
+
+    let currentSavedPass = localStorage.getItem('pablox_custom_password');
+    if (!currentSavedPass) {
+        let newPass = prompt("¡Es tu primera vez como administrador! Introduce la nueva contraseña secreta que quieras usar:");
+        if (newPass && newPass.trim() !== "") {
+            localStorage.setItem('pablox_custom_password', newPass.trim());
+            localStorage.setItem('pablox_admin_auth', 'true');
+            alert("¡Contraseña guardada con éxito! Bienvenido, pablox.");
+            updateAdminUI();
         }
+        return;
     }
-    let secretPin = prompt("Introduce tu PIN de administrador pablox:");
-    if (secretPin === "pablox25") {
+
+    let pin = prompt("Introduce tu Contraseña de Administrador:");
+    if (pin === getStoredPassword()) {
         localStorage.setItem('pablox_admin_auth', 'true');
-        alert("¡Acceso concedido, pablox!");
+        alert("¡Acceso de administrador concedido, pablox!");
         updateAdminUI();
-    } else if (secretPin !== null) {
-        alert("PIN incorrecto.");
+    } else if (pin !== null) {
+        alert("Contraseña incorrecta.");
+    }
+}
+
+function changeAdminPassword() {
+    let oldPass = prompt("Introduce tu contraseña actual:");
+    if (oldPass === getStoredPassword()) {
+        let newPass = prompt("Introduce la nueva contraseña que deseas usar:");
+        if (newPass && newPass.trim() !== "") {
+            localStorage.setItem('pablox_custom_password', newPass.trim());
+            alert("¡Contraseña cambiada con éxito!");
+        } else {
+            alert("La contraseña no puede estar vacía.");
+        }
+    } else if (oldPass !== null) {
+        alert("Contraseña actual incorrecta.");
     }
 }
 
@@ -842,19 +900,22 @@ function logoutAdmin() {
     localStorage.removeItem('pablox_admin_auth');
     document.getElementById('adminPanelBox').style.display = 'none';
     document.getElementById('scannerPanelBox').style.display = 'none';
+    document.getElementById('requestsPanelBox').style.display = 'none';
+    stopCameraScanner();
     updateAdminUI();
     alert("Has cerrado sesión como administrador.");
 }
 
 function updateAdminUI() {
     let controls = document.getElementById('adminControls');
-    let loginBtn = document.getElementById('loginButtonContainer');
+    let triggerBtn = document.getElementById('sectionAdminTriggerContainer');
     if (isAdminLoggedIn()) {
         controls.style.display = 'block';
-        loginBtn.style.display = 'none';
+        triggerBtn.style.display = 'none';
+        renderRequestsList();
     } else {
         controls.style.display = 'none';
-        loginBtn.style.display = 'block';
+        triggerBtn.style.display = 'block';
     }
     renderEvents();
 }
@@ -862,15 +923,65 @@ function updateAdminUI() {
 function toggleAdminPanel() {
     let box = document.getElementById('adminPanelBox');
     let scanner = document.getElementById('scannerPanelBox');
+    let requests = document.getElementById('requestsPanelBox');
     scanner.style.display = 'none';
+    requests.style.display = 'none';
+    stopCameraScanner();
     box.style.display = box.style.display === 'block' ? 'none' : 'block';
 }
 
 function toggleScannerPanel() {
     let scanner = document.getElementById('scannerPanelBox');
     let box = document.getElementById('adminPanelBox');
+    let requests = document.getElementById('requestsPanelBox');
     box.style.display = 'none';
+    requests.style.display = 'none';
     scanner.style.display = scanner.style.display === 'block' ? 'none' : 'block';
+    if(scanner.style.display === 'none') {
+        stopCameraScanner();
+    }
+}
+
+function toggleRequestsPanel() {
+    let requests = document.getElementById('requestsPanelBox');
+    let box = document.getElementById('adminPanelBox');
+    let scanner = document.getElementById('scannerPanelBox');
+    box.style.display = 'none';
+    scanner.style.display = 'none';
+    stopCameraScanner();
+    requests.style.display = requests.style.display === 'block' ? 'none' : 'block';
+    if(requests.style.display === 'block') {
+        renderRequestsList();
+    }
+}
+
+let html5QrCode = null;
+function startCameraScanner() {
+    if (!isAdminLoggedIn()) return;
+    let scannerBox = document.getElementById('reader');
+    scannerBox.innerHTML = "";
+    
+    html5QrCode = new Html5Qrcode("reader");
+    html5QrCode.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        (decodedText, decodedResult) => {
+            document.getElementById('qrScanInput').value = decodedText;
+            validateTicketQR();
+            stopCameraScanner();
+        },
+        (errorMessage) => {}
+    ).catch((err) => {
+        alert("No se pudo iniciar la cámara: " + err);
+    });
+}
+
+function stopCameraScanner() {
+    if (html5QrCode) {
+        html5QrCode.stop().then(() => {
+            html5QrCode.clear();
+        }).catch(err => {});
+    }
 }
 
 function togglePriceInput() {
@@ -903,7 +1014,6 @@ function renderEvents() {
     let container = document.getElementById('eventsListContainer');
     let events = getStoredEvents();
     
-    // Filtrar y eliminar automáticamente los eventos cuya hora de fin ya haya pasado
     let now = new Date();
     let activeEvents = events.filter(ev => {
         let endDateTime = new Date(ev.date + "T" + (ev.endTime || "23:59"));
@@ -922,6 +1032,7 @@ function renderEvents() {
 
     let html = "";
     let userIsAdmin = isAdminLoggedIn();
+    let myStoredTicket = localStorage.getItem('pablox_my_last_ticket_code');
 
     events.forEach((ev, index) => {
         let remaining = ev.limit - (ev.sold || 0);
@@ -930,7 +1041,17 @@ function renderEvents() {
         let priceTag = ev.isFree ? `<div class="btn-gratis" style="padding: 6px 15px; width: auto; border-radius:20px; display:inline-block;"><i class="fa-solid fa-check"></i> GRATIS</div>` : `<div style="background:#ff3366; padding:6px 15px; border-radius:20px; font-weight:bold; font-size:11px; display:inline-block;">PRECIO: ${ev.price}</div>`;
 
         let actionButton = "";
-        if (remaining > 0) {
+        let recoverButton = "";
+
+        let issued = getIssuedTickets();
+        let userHasThisTicket = false;
+        if (myStoredTicket && issued[myStoredTicket] && issued[myStoredTicket].eventId === ev.id) {
+            userHasThisTicket = true;
+        }
+
+        if (userHasThisTicket) {
+            recoverButton = `<button onclick="recoverMyTicket('${myStoredTicket}')" style="background:#38bdf8; color:#0b0c10; padding:8px 12px; border-radius:20px; font-size:10px; border:none; font-weight:bold; cursor:pointer;" title="Recupera o vuelve a descargar tu entrada"><i class="fa-solid fa-ticket"></i> RECUPERAR ENTRADA</button>`;
+        } else if (remaining > 0) {
             actionButton = `<button onclick="openTicketModal('${ev.id}')" class="btn-entradas" style="padding: 8px 15px; width: auto; border:none;"><i class="fa-solid fa-ticket"></i> OBTENER ENTRADA</button>`;
         } else {
             actionButton = `<button disabled style="background:#4b5563; color:#9ca3af; padding:8px 15px; border-radius:20px; font-size:10px; border:none; font-weight:bold;">SOLD OUT (AGOTADO)</button>`;
@@ -948,6 +1069,7 @@ function renderEvents() {
             <div class="event-actions">
                 ${priceTag}
                 ${actionButton}
+                ${recoverButton}
                 ${deleteBtn}
             </div>
         </div>`;
@@ -956,6 +1078,11 @@ function renderEvents() {
 }
 
 function addNewEvent() {
+    if (!isAdminLoggedIn()) {
+        alert("Acción no autorizada.");
+        return;
+    }
+
     let title = document.getElementById('eventTitleInput').value;
     let date = document.getElementById('eventDateInput').value;
     let startTime = document.getElementById('eventStartTimeInput').value;
@@ -966,7 +1093,7 @@ function addNewEvent() {
     let price = document.getElementById('eventPriceInput').value;
 
     if (!title || !date || !startTime || !endTime || !location) {
-        alert("Por favor, completa todos los campos de fecha, hora de inicio y hora de fin.");
+        alert("Por favor, completa todos los campos.");
         return;
     }
 
@@ -991,6 +1118,7 @@ function addNewEvent() {
 }
 
 function deleteEvent(index) {
+    if (!isAdminLoggedIn()) return;
     if (confirm("¿Seguro que deseas eliminar este evento?")) {
         let events = getStoredEvents();
         events.splice(index, 1);
@@ -999,7 +1127,6 @@ function deleteEvent(index) {
     }
 }
 
-// Lógica de generación de entradas nominativas con QR y PDF
 let currentSelectedEventId = null;
 let currentTicketCode = null;
 
@@ -1014,6 +1141,59 @@ function openTicketModal(eventId) {
     document.getElementById('generatedTicketArea').style.display = 'none';
     document.getElementById('generateBtnArea').style.display = 'block';
     document.getElementById('ticketModal').style.display = 'flex';
+}
+
+function recoverMyTicket(ticketCode) {
+    let issued = getIssuedTickets();
+    if (!issued[ticketCode]) {
+        alert("No se encontró la entrada guardada.");
+        localStorage.removeItem('pablox_my_last_ticket_code');
+        renderEvents();
+        return;
+    }
+    let ticket = issued[ticketCode];
+    currentTicketCode = ticketCode;
+
+    document.getElementById('modalEventTitle').innerText = "Recuperar Entrada: " + ticket.eventName;
+    document.getElementById('attendeeNameInput').value = ticket.attendeeName;
+    
+    document.getElementById('ticketEventName').innerText = ticket.eventName;
+    document.getElementById('ticketAttendeeName').innerText = "Titular: " + ticket.attendeeName;
+    document.getElementById('ticketDetailsInfo').innerText = ticket.date + " | " + ticket.startTime + "h - " + ticket.endTime + "h | " + ticket.location;
+
+    updateTicketBadge(ticket.status || (ticket.scanned ? 'usada' : 'activa'));
+
+    document.getElementById('generateBtnArea').style.display = 'none';
+    document.getElementById('generatedTicketArea').style.display = 'block';
+    document.getElementById('ticketModal').style.display = 'flex';
+
+    let qrContainer = document.getElementById('qrcode');
+    qrContainer.innerHTML = "";
+    new QRCode(qrContainer, {
+        text: currentTicketCode,
+        width: 120,
+        height: 120
+    });
+}
+
+function updateTicketBadge(status) {
+    let badge = document.getElementById('ticketStatusBadge');
+    if (status === 'usada') {
+        badge.style.background = "rgba(239, 68, 68, 0.2)";
+        badge.style.border = "1px solid #ef4444";
+        badge.style.color = "#fca5a5";
+        badge.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ESTADO: USADA`;
+    } else if (status === 'rechazada' || status === 'pendiente_rechazo') {
+        badge.style.background = "rgba(239, 68, 68, 0.3)";
+        badge.style.border = "1px solid #ef4444";
+        badge.style.color = "#f87171";
+        badge.innerHTML = `<i class="fa-solid fa-ban"></i> ESTADO: ${status === 'pendiente_rechazo' ? 'AVISO DE RECHAZO ENVIADO' : 'RECHAZADA'}`;
+    } else {
+        badge.style.background = "rgba(16, 185, 129, 0.2)";
+        badge.style.border = "1px solid #10b981";
+        badge.style.color = "#6ee7b7";
+        badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> ESTADO: ACTIVA`;
+    }
 }
 
 function closeTicketModal() {
@@ -1042,6 +1222,7 @@ function generateUserTicket() {
     saveEvents(events);
 
     currentTicketCode = "PABLOX-" + ev.id + "-" + Math.random().toString(36).substring(2, 8).toUpperCase() + "-" + Date.now();
+    localStorage.setItem('pablox_my_last_ticket_code', currentTicketCode);
 
     let issued = getIssuedTickets();
     issued[currentTicketCode] = {
@@ -1052,13 +1233,17 @@ function generateUserTicket() {
         startTime: ev.startTime,
         endTime: ev.endTime,
         location: ev.location,
-        scanned: false
+        scanned: false,
+        status: 'activa',
+        reason: ''
     };
     saveIssuedTickets(issued);
 
     document.getElementById('ticketEventName').innerText = ev.title;
     document.getElementById('ticketAttendeeName').innerText = "Titular: " + name;
     document.getElementById('ticketDetailsInfo').innerText = ev.date + " | " + ev.startTime + "h - " + ev.endTime + "h | " + ev.location;
+
+    updateTicketBadge('activa');
 
     document.getElementById('generateBtnArea').style.display = 'none';
     document.getElementById('generatedTicketArea').style.display = 'block';
@@ -1084,48 +1269,96 @@ function downloadTicketPDF() {
     html2pdf().from(element).set(opt).save();
 }
 
-function cancelMyTicket() {
-    if (confirm("¿Seguro que deseas anular tu entrada para que el administrador la elimine y libere el aforo?")) {
-        let issued = getIssuedTickets();
-        if (issued[currentTicketCode]) {
-            let evId = issued[currentTicketCode].eventId;
-            delete issued[currentTicketCode];
-            saveIssuedTickets(issued);
+function submitCancelRequest() {
+    let reason = document.getElementById('cancelReasonSelect').value;
+    let issued = getIssuedTickets();
+    if (issued[currentTicketCode]) {
+        issued[currentTicketCode].status = 'pendiente_rechazo';
+        issued[currentTicketCode].reason = reason;
+        saveIssuedTickets(issued);
 
-            // Reducir contador vendido del evento
-            let events = getStoredEvents();
-            let ev = events.find(e => e.id === evId);
-            if (ev && ev.sold > 0) {
-                ev.sold--;
-                saveEvents(events);
-            }
+        updateTicketBadge('pendiente_rechazo');
+        alert("Aviso de anulación enviado correctamente al administrador.");
+    }
+}
 
-            alert("Entrada anulada correctamente. Se ha notificado al sistema.");
-            closeTicketModal();
+function renderRequestsList() {
+    let container = document.getElementById('requestsListContainer');
+    let issued = getIssuedTickets();
+    let html = "";
+    let count = 0;
+
+    for (let code in issued) {
+        let t = issued[code];
+        if (t.status === 'pendiente_rechazo') {
+            count++;
+            html += `
+            <div style="background: rgba(30, 20, 50, 0.9); border: 1px solid #ef4444; border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                <p style="color: #fff; font-size: 14px; font-weight: bold;">${t.eventName}</p>
+                <p style="color: #cbd5e1; font-size: 12px;">Titular: <b>${t.attendeeName}</b></p>
+                <p style="color: #f87171; font-size: 12px; margin: 4px 0;">Motivo: "${t.reason}"</p>
+                <button onclick="adminApproveRejection('${code}')" style="background:#ef4444; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-weight:bold; font-size:11px; cursor:pointer;"><i class="fa-solid fa-ban"></i> Aceptar Rechazo y Liberar Aforo</button>
+            </div>`;
         }
+    }
+
+    if (count === 0) {
+        html = "<p style='color: #94a3b8; font-style: italic;'>No hay avisos pendientes de rechazo por parte de los asistentes.</p>";
+    }
+    container.innerHTML = html;
+}
+
+function adminApproveRejection(code) {
+    let issued = getIssuedTickets();
+    if (issued[code]) {
+        let evId = issued[code].eventId;
+        issued[code].status = 'rechazada';
+        issued[code].scanned = true;
+        saveIssuedTickets(issued);
+
+        // Liberar aforo
+        let events = getStoredEvents();
+        let ev = events.find(e => e.id === evId);
+        if (ev && ev.sold > 0) {
+            ev.sold--;
+            saveEvents(events);
+        }
+
+        alert("Entrada rechazada definitivamente y aforo liberado.");
+        renderRequestsList();
+        renderEvents();
     }
 }
 
 function validateTicketQR() {
+    if (!isAdminLoggedIn()) {
+        alert("Acceso denegado.");
+        return;
+    }
+
     let code = document.getElementById('qrScanInput').value.trim();
     let resultDiv = document.getElementById('scanResult');
 
     if (!code) {
         resultDiv.style.color = "#ef4444";
-        resultDiv.innerText = "Por favor, introduce el código de la entrada.";
+        resultDiv.innerText = "Por favor, introduce o escanea el código de la entrada.";
         return;
     }
 
     let issued = getIssuedTickets();
     if (issued[code]) {
-        if (issued[code].scanned) {
+        if (issued[code].status === 'rechazada') {
+            resultDiv.style.color = "#ef4444";
+            resultDiv.innerHTML = `<i class="fa-solid fa-ban"></i> ESTA ENTRADA FUE RECHAZADA.<br><span style="font-size:12px; color:#fff;">Titular: ${issued[code].attendeeName}</span>`;
+        } else if (issued[code].scanned || issued[code].status === 'usada') {
             resultDiv.style.color = "#f59e0b";
             resultDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ¡ALERTA! Esta entrada ya fue utilizada.<br><span style="font-size:12px; color:#fff;">Titular: ${issued[code].attendeeName}</span>`;
         } else {
             issued[code].scanned = true;
+            issued[code].status = 'usada';
             saveIssuedTickets(issued);
             resultDiv.style.color = "#10b981";
-            resultDiv.innerHTML = `<i class="fa-solid fa-circle-check"></i> ENTRADA VÁLIDA<br><span style="font-size:13px; color:#fff;">Titular: <b>${issued[code].attendeeName}</b><br>Evento: ${issued[code].eventName}</span>`;
+            resultDiv.innerHTML = `<i class="fa-solid fa-circle-check"></i> ENTRADA VÁLIDA (Desactivada)<br><span style="font-size:13px; color:#fff;">Titular: <b>${issued[code].attendeeName}</b><br>Evento: ${issued[code].eventName}</span>`;
         }
     } else {
         resultDiv.style.color = "#ef4444";
