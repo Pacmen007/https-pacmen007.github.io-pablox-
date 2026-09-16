@@ -34,19 +34,19 @@
     <!-- Visor de la Cámara (Oculto inicialmente) -->
     <div id="scanner-container" class="w-full hidden flex flex-col items-center space-y-4">
       <div id="reader" class="w-full rounded-xl overflow-hidden border-2 border-emerald-500 shadow-2xl bg-black"></div>
-      <button onclick="detenerEscaner()" class="text-sm text-red-400 hover:text-red-300 underline">
-        Cerrar Cámara
+      <button onclick="detenerEscaner()" class="text-sm text-red-400 hover:text-red-300 underline font-medium">
+        Cerrar Cámara / Volver
       </button>
     </div>
 
     <!-- Panel de Resultado y Gestión de la Entrada -->
-    <div id="result-card" class="w-full bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-xl hidden">
-      <div class="flex items-center justify-between mb-3">
+    <div id="result-card" class="w-full bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-xl hidden space-y-4">
+      <div class="flex items-center justify-between">
         <span id="badge-estado" class="px-3 py-1 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">Activa</span>
         <span id="ticket-id" class="text-xs text-slate-400 font-mono">ID: --</span>
       </div>
 
-      <div class="space-y-2 mb-4">
+      <div class="space-y-1">
         <h2 id="attendee-name" class="text-xl font-bold text-white">Nombre de la Persona</h2>
         <p class="text-sm text-slate-300">Tipo de entrada: <span id="ticket-type" class="text-white font-medium">General</span></p>
       </div>
@@ -54,12 +54,17 @@
       <!-- Botón de Desactivación Manual por el Administrador -->
       <button id="btn-desactivar" onclick="desactivarEntradaActual()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-4 rounded-xl shadow transition transform active:scale-95 flex items-center justify-center space-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-height="2" d="M6 18L18 6M6 6l12 12" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
         <span>Desactivar Entrada Manualmente</span>
       </button>
+
+      <!-- Botón para escanear otra entrada -->
+      <button onclick="reiniciarEscaneo()" class="w-full bg-slate-700 hover:bg-slate-600 text-white font-medium py-2.5 px-4 rounded-xl transition text-sm">
+        Escanear Siguiente Entrada
+      </button>
       
-      <div id="action-feedback" class="mt-3 text-center text-sm font-medium"></div>
+      <div id="action-feedback" class="text-center text-sm font-medium"></div>
     </div>
 
   </main>
@@ -76,33 +81,32 @@
 
     function iniciarEscaner() {
       document.getElementById('start-section').classList.add('hidden');
-      document.getElementById('scanner-container').classList.remove('hidden');
       document.getElementById('result-card').classList.add('hidden');
+      document.getElementById('scanner-container').classList.remove('hidden');
 
-      html5QrCode = new Html5Qrcode("reader");
+      if (!html5QrCode) {
+        html5QrCode = new Html5Qrcode("reader");
+      }
       
       const config = { fps: 10, qrbox: { width: 250, height: 250 } };
 
-      // Inicia directamente con la cámara trasera ("environment")
       html5QrCode.start(
         { facingMode: "environment" }, 
         config,
         onScanSuccess,
         onScanFailure
       ).catch(err => {
-        alert("No se pudo acceder a la cámara. Asegúrate de dar permisos en el navegador.");
+        alert("No se pudo acceder a la cámara. Comprueba los permisos en tu navegador.");
         detenerEscaner();
       });
     }
 
     function detenerEscaner() {
-      if (html5QrCode) {
+      if (html5QrCode && html5QrCode.isScanning) {
         html5QrCode.stop().then(() => {
-          html5QrCode.clear();
           document.getElementById('scanner-container').classList.add('hidden');
           document.getElementById('start-section').classList.remove('hidden');
         }).catch(err => {
-          console.error("Error al detener la cámara", err);
           document.getElementById('scanner-container').classList.add('hidden');
           document.getElementById('start-section').classList.remove('hidden');
         });
@@ -113,32 +117,27 @@
     }
 
     function onScanSuccess(decodedText, decodedResult) {
-      // Al escanear con éxito, detenemos temporalmente la cámara para mostrar los datos del usuario
       entradaActualToken = decodedText;
       
-      // Reproducir sonido o vibración corta si el móvil lo soporta
       if (navigator.vibrate) navigator.vibrate(100);
 
-      // Simulación de búsqueda de datos de la persona por el código escaneado
-      // (Aquí conectarías con tu base de datos o API real)
+      // Datos de prueba (aquí conectarías con tu base de datos real)
       mostrarDatosEntrada({
         token: decodedText,
-        nombre: "Alex Pérez (Invitado)",
-        tipo: "Acceso VIP / Anticipada",
-        estado: "activa" // Se mantiene activa hasta que el admin pulse el botón de desactivar
+        nombre: "Invitado Verificado",
+        tipo: "Acceso General",
+        estado: "activa"
       });
 
-      // Detener cámara al encontrar el código
-      if (html5QrCode) {
-        html5QrCode.stop().then(() => {
-          html5QrCode.clear();
-          document.getElementById('scanner-container').classList.add('hidden');
-        }).catch(err => console.log(err));
+      // Detener cámara al detectar con éxito
+      if (html5QrCode && html5QrCode.isScanning) {
+        html5QrCode.stop().catch(err => console.log(err));
       }
+      document.getElementById('scanner-container').classList.add('hidden');
     }
 
     function onScanFailure(error) {
-      // Errores de lectura por frame se ignoran para mantener la fluidez de búsqueda del QR
+      // Ignorar errores de fotogramas por segundo para mantener la lectura fluida
     }
 
     function mostrarDatosEntrada(datos) {
@@ -149,17 +148,26 @@
       const badge = document.getElementById('badge-estado');
       const btnDesactivar = document.getElementById('btn-desactivar');
       
-      badge.innerText = "Activa (Lista para usar)";
+      // La entrada se muestra ACTIVA hasta que el admin decida desactivarla manualmente
+      badge.innerText = "Activa";
       badge.className = "px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+      
       btnDesactivar.disabled = false;
-      btnDesactivar.classList.remove('opacity-50', 'cursor-not-allowed');
-      document.getElementById('action-feedback').innerText = "";
+      btnDesactivar.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-slate-700');
+      btnDesactivar.classList.add('bg-red-600', 'hover:bg-red-500');
+      btnDesactivar.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        <span>Desactivar Entrada Manualmente</span>
+      `;
 
+      document.getElementById('action-feedback').innerText = "";
       document.getElementById('result-card').classList.remove('hidden');
     }
 
     function desactivarEntradaActual() {
-      // Lógica para marcar la entrada como desactivada/usada en tu base de datos
+      // Acción de desactivar la entrada del usuario actual de forma manual
       const badge = document.getElementById('badge-estado');
       const btnDesactivar = document.getElementById('btn-desactivar');
       
@@ -167,12 +175,18 @@
       badge.className = "px-3 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/30";
       
       btnDesactivar.disabled = true;
-      btnDesactivar.classList.add('opacity-50', 'cursor-not-allowed');
+      btnDesactivar.classList.remove('bg-red-600', 'hover:bg-red-500');
+      btnDesactivar.classList.add('bg-slate-700', 'opacity-50', 'cursor-not-allowed');
       
-      document.getElementById('action-feedback').innerHTML = "<span class='text-red-400 font-semibold'>✔ Entrada desactivada correctamente. Acceso denegado a futuros intentos.</span>";
+      document.getElementById('action-feedback').innerHTML = "<span class='text-red-400 font-semibold'>✔ Entrada desactivada correctamente. Ya no se podrá volver a usar.</span>";
 
-      // Aquí puedes añadir una llamada fetch() a tu servidor para actualizar el estado del token a desactivado:
-      // fetch('/api/desactivar-entrada', { method: 'POST', body: JSON.stringify({ token: entradaActualToken }) });
+      // Aquí puedes colocar tu petición fetch() para guardar el estado en tu base de datos:
+      // fetch('/api/desactivar', { method: 'POST', body: JSON.stringify({ token: entradaActualToken }) });
+    }
+
+    function reiniciarEscaneo() {
+      document.getElementById('result-card').classList.add('hidden');
+      iniciarEscaner();
     }
   </script>
 </body>
