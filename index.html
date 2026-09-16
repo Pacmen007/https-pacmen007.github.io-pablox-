@@ -65,15 +65,6 @@ body {
   color: #ff3366;
 }
 
-/* Enlace bloqueado en el menú */
-.navbar a.locked-link {
-  opacity: 0.4;
-  cursor: not-allowed !important;
-}
-.navbar a.locked-link:hover {
-  color: #ffffff !important;
-}
-
 .header {
   text-align: center;
   padding: 40px 20px 20px 20px;
@@ -317,7 +308,7 @@ body {
 .about-container p { margin-bottom: 15px; }
 .about-highlight { color: #ff3366; font-weight: bold; }
 
-/* Contrataciones y Temporizador Gigante en Pantalla */
+/* Contrataciones */
 .contrataciones-container {
   max-width: 800px;
   margin: 0 auto;
@@ -328,55 +319,11 @@ body {
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  line-height: 1.6;
+  font-size: 16px;
+  color: #e2e8f0;
 }
-
-.big-countdown-wrapper {
-  display: block;
-  margin: 10px 0;
-  padding: 35px 20px;
-  background: rgba(13, 17, 23, 0.95);
-  border: 2px solid rgba(16, 185, 129, 0.8);
-  border-radius: 14px;
-  box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
-}
-
-.big-countdown-title {
-  color: #10b981;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.big-timers {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.big-timer-box {
-  background: rgba(20, 15, 35, 0.95);
-  border: 1px solid rgba(16, 185, 129, 0.6);
-  border-radius: 14px;
-  padding: 20px 15px;
-  min-width: 100px;
-}
-
-.big-timer-number {
-  font-size: 48px;
-  font-weight: 900;
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(16, 185, 129, 0.9);
-}
-
-.big-timer-label {
-  font-size: 12px;
-  color: #cbd5e1;
-  text-transform: uppercase;
-  margin-top: 8px;
-  letter-spacing: 1px;
-}
+.contrataciones-container p { margin-bottom: 20px; }
 
 .content-section { display: none; }
 .content-section.active-section { display: block; }
@@ -386,16 +333,16 @@ body {
 
 <!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
-  <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
+  <a onclick="switchTab('inicio', this)" id="link-inicio">INICIO</a>
   <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
   <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
   <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
   <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
-  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones" class="locked-link">CONTRATACIONES</a>
+  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones" class="active-link">CONTRATACIONES</a>
 </nav>
 
 <!-- SECCIÓN INICIO -->
-<div id="inicio" class="content-section active-section">
+<div id="inicio" class="content-section">
   <header class="header">
     <h1>pablox</h1>
     <p>Bienvenidos a la página web oficial del artista</p>
@@ -457,7 +404,7 @@ body {
       <div class="card-cover"><span>🌙</span></div>
       <span class="tag tag-new">ÚLTIMO</span>
       <h3 class="title">Eclipse</h3>
-      <a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
+      <a href="https://open.spotify.com/track/1PJK1UJJZYOkRZiymCbGzI?si=PZi2FNZYQBWjZ7ppHnTWRg&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> ESCUCHAR</a>
     </div>
     <div class="card">
       <div class="card-cover"><span>🔥</span></div>
@@ -631,50 +578,20 @@ body {
 </div>
 
 <!-- SECCIÓN CONTRATACIONES -->
-<div id="contrataciones" class="content-section">
+<div id="contrataciones" class="content-section active-section">
   <h2 class="section-title" style="color: #10b981 !important;">CONTRATACIONES</h2>
-  <div class="contrataciones-container" id="contrataciones-content-box">
-    
-    <!-- TEXTO INICIAL QUE SE OCULTA MIENTRAS ESTÁ EL TEMPORIZADOR -->
-    <div id="contrataciones-text-content" style="display: none;">
-      <p>¿Quieres contar con <span class="about-highlight">pablox</span> para un concierto, festival, bolo o evento privado?</p>
-      <p>Para contrataciones directas, disponibilidad de fechas y propuestas, puedes ponerte en contacto enviando un mensaje directo en Instagram.</p>
-    </div>
-
-    <!-- TEMPORIZADOR GIGANTE EN LA PANTALLA DE LA SECCIÓN -->
-    <div class="big-countdown-wrapper" id="big-countdown-wrapper">
-      <div class="big-countdown-title"><i class="fa-regular fa-clock"></i> Sección disponible en:</div>
-      <div class="big-timers">
-        <div class="big-timer-box">
-          <div id="big-hours" class="big-timer-number">02</div>
-          <div class="big-timer-label">Horas</div>
-        </div>
-        <div class="big-timer-box">
-          <div id="big-minutes" class="big-timer-number">00</div>
-          <div class="big-timer-label">Min</div>
-        </div>
-        <div class="big-timer-box">
-          <div id="big-seconds" class="big-timer-number">00</div>
-          <div class="big-timer-label">Seg</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BOTÓN DE INSTAGRAM QUE APARECE CUANDO TERMINE EL TIEMPO -->
-    <div id="instagram-btn-container" style="margin-top: 20px; display: none; justify-content: center;">
+  <div class="contrataciones-container">
+    <p>¿Quieres contar con <span class="about-highlight">pablox</span> para un concierto, festival, bolo o evento privado?</p>
+    <p>Para contrataciones directas, disponibilidad de fechas y propuestas, puedes ponerte en contacto enviando un mensaje directo en Instagram.</p>
+    <div style="margin-top: 25px; display: flex; justify-content: center;">
       <a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); width: 220px; padding: 10px 0;"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
     </div>
   </div>
 </div>
 
-<!-- SCRIPT DE NAVEGACIÓN Y TEMPORIZADOR -->
+<!-- SCRIPT DE NAVEGACIÓN -->
 <script>
 function switchTab(sectionId, element) {
-    // Si la sección es contrataciones y sigue bloqueada, impedimos el acceso
-    if (sectionId === 'contrataciones' && isLocked) {
-        return;
-    }
-
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(sec => sec.classList.remove('active-section'));
     
@@ -694,58 +611,6 @@ function switchTab(sectionId, element) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-// Estado inicial de bloqueo
-let isLocked = true;
-
-// Configuración de la cuenta regresiva fijada exactamente en 2 horas desde ahora
-const countDownDate = new Date().getTime() + (2 * 60 * 60 * 1000);
-
-const timerInterval = setInterval(function() {
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
-
-    if (distance < 0) {
-        clearInterval(timerInterval);
-        isLocked = false;
-        
-        // Desbloquear el enlace en la barra de navegación quitando la clase de bloqueo
-        const contratacionesLink = document.getElementById("link-contrataciones");
-        if (contratacionesLink) {
-            contratacionesLink.classList.remove("locked-link");
-        }
-
-        // Ocultar el temporizador gigante y mostrar el contenido y el botón de Instagram
-        const bigCountdownWrapper = document.getElementById("big-countdown-wrapper");
-        if (bigCountdownWrapper) {
-            bigCountdownWrapper.style.display = "none";
-        }
-
-        const textContent = document.getElementById("contrataciones-text-content");
-        if (textContent) {
-            textContent.style.display = "block";
-        }
-
-        const instagramBtnContainer = document.getElementById("instagram-btn-container");
-        if (instagramBtnContainer) {
-            instagramBtnContainer.style.display = "flex";
-        }
-
-        return;
-    }
-
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    const hoursEl = document.getElementById("big-hours");
-    const minutesEl = document.getElementById("big-minutes");
-    const secondsEl = document.getElementById("big-seconds");
-
-    if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
-    if (minutesEl) minutesEl.innerText = String(minutes).padStart(2, '0');
-    if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, '0');
-}, 1000);
 </script>
 
 </body>
