@@ -12,8 +12,9 @@
 <title>pablox - Sitio Oficial</title>
 <!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Librería externa para generar códigos QR -->
+<!-- Librería externa para generar códigos QR y exportar a PDF (html2pdf) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <!-- Importar Google Fonts para una tipografía elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -32,36 +33,30 @@ body {
   min-height: 100vh;
 }
 
-/* Barra de Navegación adaptable */
+/* Barra de Navegación */
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  gap: 25px;
-  padding: 15px 20px;
-  background-color: rgba(13, 17, 23, 0.85);
+  flex-wrap: wrap;
+  gap: 15px 20px;
+  padding: 12px 15px;
+  background-color: rgba(13, 17, 23, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 2px solid #8b5cf6;
   position: sticky;
   top: 0;
   z-index: 1000;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.navbar::-webkit-scrollbar {
-  display: none;
 }
 .navbar a {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 1px;
-  flex-shrink: 0;
   cursor: pointer;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 .navbar a:hover, .navbar a.active-link {
   color: #ff3366;
@@ -358,7 +353,7 @@ body {
 }
 .btn-delete-event:hover { background: #ef4444; color: #fff; }
 
-/* Modal para obtener entrada nominativa con QR */
+/* Modal para obtener entrada nominativa con QR y PDF */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -404,10 +399,10 @@ body {
   <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
   <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
   <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
-  <a onclick="switchTab('entradas', this)" id="link-entradas">ENTRADAS</a>
   <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
   <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
   <a onclick="switchTab('contrataciones', this)" id="link-contrataciones">CONTRATACIONES</a>
+  <a onclick="switchTab('entradas', this)" id="link-entradas">ENTRADAS</a>
 </nav>
 
 <!-- SECCIÓN INICIO -->
@@ -437,15 +432,6 @@ body {
     </div>
 
     <div class="home-card">
-      <div class="home-card-icon" style="background: linear-gradient(135deg, #ff8c00, #ff3366);"><i class="fa-solid fa-ticket"></i></div>
-      <h3>Entradas</h3>
-      <p>Entradas y fechas para los próximos conciertos.</p>
-      <button onclick="switchTab('entradas', document.getElementById('link-entradas'))" class="btn-home-nav" style="background: linear-gradient(135deg, #ff8c00, #ff3366); padding: 8px 0; border-radius: 20px; width: 100%;">
-        <i class="fa-solid fa-arrow-right"></i> VER
-      </button>
-    </div>
-
-    <div class="home-card">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);"><i class="fa-solid fa-share-nodes"></i></div>
       <h3>Redes Sociales</h3>
       <p>Conecta conmigo en Instagram, TikTok y más.</p>
@@ -469,6 +455,16 @@ body {
       <p>Contáctanos para conciertos, bolos y eventos.</p>
       <button onclick="switchTab('contrataciones', document.getElementById('link-contrataciones'))" class="btn-home-nav" style="background: linear-gradient(135deg, #10b981, #047857); padding: 8px 0; border-radius: 20px; width: 100%;">
         <i class="fa-solid fa-arrow-right"></i> CONTACTAR
+      </button>
+    </div>
+
+    <!-- Tarjeta de Entradas colocada exactamente debajo de Contrataciones en Inicio -->
+    <div class="home-card">
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #ff8c00, #ff3366);"><i class="fa-solid fa-ticket"></i></div>
+      <h3>Entradas</h3>
+      <p>Entradas y fechas para los próximos conciertos.</p>
+      <button onclick="switchTab('entradas', document.getElementById('link-entradas'))" class="btn-home-nav" style="background: linear-gradient(135deg, #ff8c00, #ff3366); padding: 8px 0; border-radius: 20px; width: 100%;">
+        <i class="fa-solid fa-arrow-right"></i> VER
       </button>
     </div>
   </div>
@@ -607,97 +603,6 @@ body {
   </main>
 </div>
 
-<!-- SECCIÓN ENTRADAS -->
-<div id="entradas" class="content-section">
-  <h2 class="section-title" style="color: #ff8c00 !important; text-shadow: 0 0 12px rgba(255, 140, 0, 0.9);">ENTRADAS & CONCIERTOS - pablox</h2>
-  <div class="entradas-container">
-    
-    <!-- Controles de Administrador exclusivos (Huella / Panel / Escáner) -->
-    <div id="adminControls" style="display:none; margin-bottom: 20px; border-bottom: 1px solid rgba(139,92,246,0.3); padding-bottom: 15px;">
-      <button onclick="toggleAdminPanel()" class="admin-panel-btn"><i class="fa-solid fa-plus-circle"></i> Nuevo Evento</button>
-      <button onclick="toggleScannerPanel()" class="scanner-btn"><i class="fa-solid fa-qrcode"></i> Escáner de Puerta QR</button>
-      <button onclick="logoutAdmin()" style="background: rgba(239, 68, 68, 0.3); border: 1px solid #ef4444; font-size: 11px; padding: 6px 12px; color:#fff; border-radius:6px; cursor:pointer;">Cerrar Sesión Admin</button>
-    </div>
-
-    <!-- Botón de Login por Huella (si no está logueado) -->
-    <div id="loginButtonContainer" style="margin-bottom: 20px;">
-      <button onclick="loginWithFingerprint()" class="admin-panel-btn"><i class="fa-solid fa-fingerprint"></i> Acceso Administrador pablox (Huella Dactilar)</button>
-    </div>
-
-    <!-- Panel de control privado para crear eventos -->
-    <div id="adminPanelBox" class="admin-box">
-      <h3>Crear Concierto / Evento (pablox)</h3>
-      <label>Título del Concierto:</label>
-      <input type="text" id="eventTitleInput" placeholder="Ej: Concierto en Manzanares">
-      
-      <label>Fecha de celebración:</label>
-      <input type="date" id="eventDateInput">
-      
-      <label>Hora de finalización (El evento se ocultará automáticamente al pasar esta hora y día):</label>
-      <input type="time" id="eventTimeInput">
-
-      <label>Lugar / Ciudad:</label>
-      <input type="text" id="eventLocationInput" placeholder="Ej: Sala Municipal, Manzanares">
-
-      <label>Límite de Entradas (Aforo Máximo que tú defines):</label>
-      <input type="number" id="eventLimitInput" placeholder="Ej: 150" value="100">
-
-      <div class="checkbox-container" style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-        <input type="checkbox" id="eventFreeCheckbox" onchange="togglePriceInput()" style="width:16px; height:16px; cursor:pointer;">
-        <label for="eventFreeCheckbox" style="margin-bottom:0; cursor:pointer; color:#fff;">Entrada Gratuita (Acceso libre)</label>
-      </div>
-
-      <div id="priceContainerGroup">
-        <label>Precio de la Entrada:</label>
-        <input type="text" id="eventPriceInput" placeholder="Ej: 10€">
-      </div>
-
-      <button onclick="addNewEvent()">Publicar Evento</button>
-    </div>
-
-    <!-- Escáner QR de Puerta (Validación para pablox) -->
-    <div id="scannerPanelBox" class="scanner-box">
-      <h3>Escáner de Entradas (Control de Acceso)</h3>
-      <label>Introduce o escanea el Código QR único del asistente:</label>
-      <input type="text" id="qrScanInput" placeholder="Pega aquí el código QR o ID de la entrada...">
-      <button onclick="validateTicketQR()">Validar Entrada</button>
-      <div id="scanResult" style="margin-top: 15px; font-weight: bold; font-size: 14px;"></div>
-    </div>
-
-    <!-- Lista pública de entradas disponibles -->
-    <div id="eventsListContainer">
-      <!-- Los eventos se cargarán aquí automáticamente -->
-    </div>
-  </div>
-</div>
-
-<!-- Modal para pedir Nombre Completo y generar QR nominativo -->
-<div id="ticketModal" class="modal-overlay">
-  <div class="modal-content">
-    <h3 id="modalEventTitle">Obtener Entrada</h3>
-    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 15px;">Para evitar falsificaciones, la entrada es nominativa.</p>
-    
-    <label style="display:block; text-align:left; font-size:12px; margin-bottom:5px; color:#cbd5e1;">Tu Nombre y Apellidos completos:</label>
-    <input type="text" id="attendeeNameInput" placeholder="Ej: Pablo García Martínez" style="width:100%; padding:8px 12px; margin-bottom:15px; background:rgba(255,255,255,0.05); border:1px solid #38bdf8; border-radius:6px; color:#fff;">
-
-    <div id="generatedTicketArea" style="display:none;">
-      <div class="ticket-preview" id="ticketCardToPrint">
-        <h4 id="ticketEventName"></h4>
-        <p id="ticketAttendeeName" style="font-weight:bold; color:#ff3366;"></p>
-        <p id="ticketDetailsInfo" style="font-size:11px;"></p>
-        <div id="qrcode"></div>
-        <p style="font-size:9px; color:#666; margin-top:5px;">Presenta este QR en puerta</p>
-      </div>
-      <button onclick="closeTicketModal()" style="background:#38bdf8; color:#0b0c10; width:100%; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Cerrar y Guardar</button>
-    </div>
-
-    <div id="generateBtnArea">
-      <button onclick="generateUserTicket()" style="background:#ff3366; color:#fff; width:100%; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Generar mi Entrada con QR</button>
-      <button onclick="closeTicketModal()" style="background:transparent; color:#aaa; width:100%; padding:6px; border:none; margin-top:5px; cursor:pointer;">Cancelar</button>
-    </div>
-  </div>
-</div>
-
 <!-- SECCIÓN REDES SOCIALES -->
 <div id="redes" class="content-section">
   <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
@@ -758,7 +663,110 @@ body {
   </div>
 </div>
 
-<!-- SCRIPT DE GESTIÓN, QR, CADUCIDAD Y VALIDACIÓN -->
+<!-- SECCIÓN ENTRADAS -->
+<div id="entradas" class="content-section">
+  <h2 class="section-title" style="color: #ff8c00 !important; text-shadow: 0 0 12px rgba(255, 140, 0, 0.9);">ENTRADAS & CONCIERTOS - pablox</h2>
+  <div class="entradas-container">
+    
+    <!-- Controles de Administrador exclusivos -->
+    <div id="adminControls" style="display:none; margin-bottom: 20px; border-bottom: 1px solid rgba(139,92,246,0.3); padding-bottom: 15px;">
+      <button onclick="toggleAdminPanel()" class="admin-panel-btn"><i class="fa-solid fa-plus-circle"></i> Nuevo Evento</button>
+      <button onclick="toggleScannerPanel()" class="scanner-btn"><i class="fa-solid fa-qrcode"></i> Escáner de Puerta QR</button>
+      <button onclick="logoutAdmin()" style="background: rgba(239, 68, 68, 0.3); border: 1px solid #ef4444; font-size: 11px; padding: 6px 12px; color:#fff; border-radius:6px; cursor:pointer;">Cerrar Sesión Admin</button>
+    </div>
+
+    <!-- Botón de Login por Huella vinculado a acevedomenchenpablo@gmail.com -->
+    <div id="loginButtonContainer" style="margin-bottom: 20px;">
+      <button onclick="loginWithFingerprint()" class="admin-panel-btn"><i class="fa-solid fa-fingerprint"></i> Acceso Administrador (acevedomenchenpablo@gmail.com)</button>
+    </div>
+
+    <!-- Panel de control privado para crear eventos -->
+    <div id="adminPanelBox" class="admin-box">
+      <h3>Crear Concierto / Evento (pablox)</h3>
+      <label>Título del Concierto:</label>
+      <input type="text" id="eventTitleInput" placeholder="Ej: Concierto en Manzanares">
+      
+      <label>Fecha de celebración:</label>
+      <input type="date" id="eventDateInput">
+      
+      <div style="display:flex; gap:10px;">
+        <div style="flex:1;">
+          <label>Hora de Inicio:</label>
+          <input type="time" id="eventStartTimeInput">
+        </div>
+        <div style="flex:1;">
+          <label>Hora de Fin (Caducidad automática):</label>
+          <input type="time" id="eventEndTimeInput">
+        </div>
+      </div>
+
+      <label>Lugar / Ciudad:</label>
+      <input type="text" id="eventLocationInput" placeholder="Ej: Sala Municipal, Manzanares">
+
+      <label>Límite de Entradas (Aforo Máximo):</label>
+      <input type="number" id="eventLimitInput" placeholder="Ej: 150" value="100">
+
+      <div class="checkbox-container" style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <input type="checkbox" id="eventFreeCheckbox" onchange="togglePriceInput()" style="width:16px; height:16px; cursor:pointer;">
+        <label for="eventFreeCheckbox" style="margin-bottom:0; cursor:pointer; color:#fff;">Entrada Gratuita (Acceso libre)</label>
+      </div>
+
+      <div id="priceContainerGroup">
+        <label>Precio de la Entrada:</label>
+        <input type="text" id="eventPriceInput" placeholder="Ej: 10€">
+      </div>
+
+      <button onclick="addNewEvent()">Publicar Evento</button>
+    </div>
+
+    <!-- Escáner QR de Puerta (Validación para pablox) -->
+    <div id="scannerPanelBox" class="scanner-box">
+      <h3>Escáner de Entradas (Control de Acceso)</h3>
+      <label>Introduce o escanea el Código QR único del asistente:</label>
+      <input type="text" id="qrScanInput" placeholder="Pega aquí el código QR o ID de la entrada...">
+      <button onclick="validateTicketQR()">Validar Entrada</button>
+      <div id="scanResult" style="margin-top: 15px; font-weight: bold; font-size: 14px;"></div>
+    </div>
+
+    <!-- Lista pública de entradas disponibles -->
+    <div id="eventsListContainer">
+      <!-- Los eventos se cargarán aquí automáticamente -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal para pedir Nombre Completo y generar QR nominativo con PDF -->
+<div id="ticketModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3 id="modalEventTitle">Obtener Entrada</h3>
+    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 15px;">Para evitar falsificaciones, la entrada es nominativa.</p>
+    
+    <label style="display:block; text-align:left; font-size:12px; margin-bottom:5px; color:#cbd5e1;">Tu Nombre y Apellidos completos:</label>
+    <input type="text" id="attendeeNameInput" placeholder="Ej: Pablo García Martínez" style="width:100%; padding:8px 12px; margin-bottom:15px; background:rgba(255,255,255,0.05); border:1px solid #38bdf8; border-radius:6px; color:#fff;">
+
+    <div id="generatedTicketArea" style="display:none;">
+      <div class="ticket-preview" id="ticketCardToPrint">
+        <h4 id="ticketEventName"></h4>
+        <p id="ticketAttendeeName" style="font-weight:bold; color:#ff3366;"></p>
+        <p id="ticketDetailsInfo" style="font-size:11px;"></p>
+        <div id="qrcode"></div>
+        <p style="font-size:9px; color:#666; margin-top:5px;">Presenta este QR en puerta</p>
+      </div>
+      <div style="display:flex; gap:8px; margin-bottom:10px;">
+        <button onclick="downloadTicketPDF()" style="background:#10b981; color:#fff; flex:1; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;"><i class="fa-solid fa-file-pdf"></i> Descargar PDF</button>
+        <button onclick="cancelMyTicket()" style="background:#ef4444; color:#fff; flex:1; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;" title="Avisar al admin para anular"><i class="fa-solid fa-ban"></i> Anular Entrada</button>
+      </div>
+      <button onclick="closeTicketModal()" style="background:#38bdf8; color:#0b0c10; width:100%; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Cerrar</button>
+    </div>
+
+    <div id="generateBtnArea">
+      <button onclick="generateUserTicket()" style="background:#ff3366; color:#fff; width:100%; padding:8px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Generar mi Entrada con QR</button>
+      <button onclick="closeTicketModal()" style="background:transparent; color:#aaa; width:100%; padding:6px; border:none; margin-top:5px; cursor:pointer;">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT DE GESTIÓN, QR, CADUCIDAD Y PDF -->
 <script>
 function switchTab(sectionId, element) {
     const sections = document.querySelectorAll('.content-section');
@@ -800,14 +808,14 @@ async function loginWithFingerprint() {
                     publicKey: {
                         challenge: challenge,
                         rp: { name: "pablox Sitio Oficial" },
-                        user: { id: new Uint8Array([1, 2, 3, 4]), name: "pablox", displayName: "Administrador pablox" },
+                        user: { id: new Uint8Array([1, 2, 3, 4]), name: "acevedomenchenpablo@gmail.com", displayName: "pablox Administrador" },
                         pubKeyCredParams: [{ alg: -7, type: "public-key" }],
                         authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
                         timeout: 60000
                     }
                 });
                 localStorage.setItem('pablox_admin_auth', 'true');
-                alert("¡Huella reconocida con éxito! Bienvenido, pablox.");
+                alert("¡Huella reconocida con éxito para acevedomenchenpablo@gmail.com! Bienvenido, pablox.");
                 updateAdminUI();
                 return;
             }
@@ -869,7 +877,7 @@ function togglePriceInput() {
 function getStoredEvents() {
     let events = localStorage.getItem('pablox_events');
     return events ? JSON.parse(events) : [
-        { id: "ev_1", title: "Showcase Exclusivo pablox", date: "2026-10-15", time: "21:00", location: "Manzanares, Ciudad Real", limit: 100, sold: 12, isFree: true, price: "" }
+        { id: "ev_1", title: "Showcase Exclusivo pablox", date: "2026-10-15", startTime: "21:00", endTime: "23:59", location: "Manzanares, Ciudad Real", limit: 100, sold: 12, isFree: true, price: "" }
     ];
 }
 
@@ -890,15 +898,14 @@ function renderEvents() {
     let container = document.getElementById('eventsListContainer');
     let events = getStoredEvents();
     
-    // Filtrar y eliminar automáticamente los eventos cuya fecha y hora ya hayan pasado
     let now = new Date();
     let activeEvents = events.filter(ev => {
-        let eventDateTime = new Date(ev.date + "T" + ev.time);
-        return eventDateTime > now;
+        let endDateTime = new Date(ev.date + "T" + (ev.endTime || "23:59"));
+        return endDateTime > now;
     });
 
     if (activeEvents.length !== events.length) {
-        saveEvents(activeEvents); // Actualiza la lista guardada quitando los caducados
+        saveEvents(activeEvents);
         events = activeEvents;
     }
 
@@ -929,7 +936,7 @@ function renderEvents() {
         <div class="event-card">
             <div class="event-info">
                 <h4><i class="fa-solid fa-music"></i> ${ev.title}</h4>
-                <p><i class="fa-solid fa-calendar-days"></i> ${ev.date} a las ${ev.time}h | <i class="fa-solid fa-location-dot"></i> ${ev.location}</p>
+                <p><i class="fa-solid fa-calendar-days"></i> ${ev.date} de ${ev.startTime || '??'}h a ${ev.endTime || '??'}h | <i class="fa-solid fa-location-dot"></i> ${ev.location}</p>
                 <p style="margin-top:4px; color:#38bdf8; font-size:12px;">Disponibles: <b>${remaining}</b> / ${ev.limit} aforo total</p>
             </div>
             <div class="event-actions">
@@ -945,25 +952,27 @@ function renderEvents() {
 function addNewEvent() {
     let title = document.getElementById('eventTitleInput').value;
     let date = document.getElementById('eventDateInput').value;
-    let time = document.getElementById('eventTimeInput').value;
+    let startTime = document.getElementById('eventStartTimeInput').value;
+    let endTime = document.getElementById('eventEndTimeInput').value;
     let location = document.getElementById('eventLocationInput').value;
     let limit = parseInt(document.getElementById('eventLimitInput').value) || 100;
     let isFree = document.getElementById('eventFreeCheckbox').checked;
     let price = document.getElementById('eventPriceInput').value;
 
-    if (!title || !date || !time || !location) {
-        alert("Por favor, completa los campos básicos (título, fecha, hora y lugar).");
+    if (!title || !date || !startTime || !endTime || !location) {
+        alert("Por favor, completa todos los campos de fecha, hora de inicio y hora de fin.");
         return;
     }
 
     let events = getStoredEvents();
     let newId = 'ev_' + Date.now();
-    events.push({ id: newId, title, date, time, location, limit, sold: 0, isFree, price: isFree ? "" : price });
+    events.push({ id: newId, title, date, startTime, endTime, location, limit, sold: 0, isFree, price: isFree ? "" : price });
     saveEvents(events);
 
     document.getElementById('eventTitleInput').value = "";
     document.getElementById('eventDateInput').value = "";
-    document.getElementById('eventTimeInput').value = "";
+    document.getElementById('eventStartTimeInput').value = "";
+    document.getElementById('eventEndTimeInput').value = "";
     document.getElementById('eventLocationInput').value = "";
     document.getElementById('eventLimitInput').value = "100";
     document.getElementById('eventFreeCheckbox').checked = false;
@@ -984,8 +993,8 @@ function deleteEvent(index) {
     }
 }
 
-// Lógica de generación de entradas nominativas con QR único
 let currentSelectedEventId = null;
+let currentTicketCode = null;
 
 function openTicketModal(eventId) {
     currentSelectedEventId = eventId;
@@ -1025,14 +1034,16 @@ function generateUserTicket() {
     ev.sold = (ev.sold || 0) + 1;
     saveEvents(events);
 
-    let ticketCode = "PABLOX-" + ev.id + "-" + Math.random().toString(36).substring(2, 8).toUpperCase() + "-" + Date.now();
+    currentTicketCode = "PABLOX-" + ev.id + "-" + Math.random().toString(36).substring(2, 8).toUpperCase() + "-" + Date.now();
 
     let issued = getIssuedTickets();
-    issued[ticketCode] = {
+    issued[currentTicketCode] = {
+        eventId: ev.id,
         eventName: ev.title,
         attendeeName: name,
         date: ev.date,
-        time: ev.time,
+        startTime: ev.startTime,
+        endTime: ev.endTime,
         location: ev.location,
         scanned: false
     };
@@ -1040,7 +1051,7 @@ function generateUserTicket() {
 
     document.getElementById('ticketEventName').innerText = ev.title;
     document.getElementById('ticketAttendeeName').innerText = "Titular: " + name;
-    document.getElementById('ticketDetailsInfo').innerText = ev.date + " - " + ev.time + "h | " + ev.location;
+    document.getElementById('ticketDetailsInfo').innerText = ev.date + " | " + ev.startTime + "h - " + ev.endTime + "h | " + ev.location;
 
     document.getElementById('generateBtnArea').style.display = 'none';
     document.getElementById('generatedTicketArea').style.display = 'block';
@@ -1048,10 +1059,43 @@ function generateUserTicket() {
     let qrContainer = document.getElementById('qrcode');
     qrContainer.innerHTML = "";
     new QRCode(qrContainer, {
-        text: ticketCode,
+        text: currentTicketCode,
         width: 120,
         height: 120
     });
+}
+
+function downloadTicketPDF() {
+    let element = document.getElementById('ticketCardToPrint');
+    let opt = {
+        margin:       10,
+        filename:     'entrada-pablox.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a5', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(opt).save();
+}
+
+function cancelMyTicket() {
+    if (confirm("¿Seguro que deseas anular tu entrada para que el administrador la elimine y libere el aforo?")) {
+        let issued = getIssuedTickets();
+        if (issued[currentTicketCode]) {
+            let evId = issued[currentTicketCode].eventId;
+            delete issued[currentTicketCode];
+            saveIssuedTickets(issued);
+
+            let events = getStoredEvents();
+            let ev = events.find(e => e.id === evId);
+            if (ev && ev.sold > 0) {
+                ev.sold--;
+                saveEvents(events);
+            }
+
+            alert("Entrada anulada correctamente. Se ha notificado al sistema.");
+            closeTicketModal();
+        }
+    }
 }
 
 function validateTicketQR() {
