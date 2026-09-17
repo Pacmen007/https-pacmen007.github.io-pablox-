@@ -54,8 +54,7 @@
             text-align: center;
             font-size: 1.25rem;
             font-weight: 700;
-            /* Aplicado color azul claro al texto de Amazon Music / Títulos específicos si procede */
-            color: #60a5fa; 
+            color: var(--accent-color);
         }
 
         .subtitle {
@@ -103,17 +102,6 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-        }
-
-        /* Tarjeta con estilo personalizado de Amazon Music en Azul Claro */
-        .amazon-card {
-            background-color: #1e3a8a !important; /* Fondo azul claro/medio acorde a la solicitud */
-            border: 1px solid #60a5fa;
-            color: #eff6ff;
-        }
-
-        .amazon-card .ticket-event-name {
-            color: #93c5fd !important; /* Nombre de Amazon Music en azul claro */
         }
 
         /* Diseño del Ticket imprimible / descargable */
@@ -237,7 +225,7 @@
 <body>
 
     <div class="ticket-container" id="ticketContentToDownload">
-        <div class="header-title">Amazon Music</div>
+        <div class="header-title">Entrada para: <span id="displayEventTitle">Hol</span></div>
         <div class="subtitle">Entrada nominativa y segura para pablox.</div>
 
         <div class="input-group">
@@ -249,26 +237,26 @@
             <span>✅ ESTADO: ACTIVA</span>
         </div>
 
-        <!-- Tarjeta física del ticket con estilo de Amazon Music en azul claro -->
-        <div class="printable-ticket amazon-card" id="pdfCard">
-            <div class="ticket-event-name" id="cardEventName">Amazon Music</div>
-            <div class="ticket-holder" style="color: #93c5fd;">Titular: <span id="cardHolderName">Gt</span></div>
+        <!-- Tarjeta física del ticket -->
+        <div class="printable-ticket" id="pdfCard">
+            <div class="ticket-event-name" id="cardEventName">Hol</div>
+            <div class="ticket-holder">Titular: <span id="cardHolderName">Gt</span></div>
 
-            <!-- Bloque de lugar, fecha y horario -->
-            <div class="ticket-details-box" style="background: #eff6ff; color: #1e3a8a; border-color: #93c5fd;">
+            <!-- Bloque mejorado: Lugar, Fecha y Horario de inicio/fin -->
+            <div class="ticket-details-box">
                 <div class="ticket-detail-row">
-                    <span>📅</span> <span><strong style="color: #1e3a8a;">Fecha:</strong> 2026-09-24</span>
+                    <span>📅</span> <span><strong>Fecha:</strong> 2026-09-24</span>
                 </div>
                 <div class="ticket-detail-row">
-                    <span>⏰</span> <span><strong style="color: #1e3a8a;">Horario:</strong> 07:59h - 09:00h</span>
+                    <span>⏰</span> <span><strong>Horario:</strong> 07:59h - 09:00h</span>
                 </div>
                 <div class="ticket-detail-row">
-                    <span>📍</span> <span><strong style="color: #1e3a8a;">Lugar:</strong> Manzanares</span>
+                    <span>📍</span> <span><strong>Lugar:</strong> Manzanares</span>
                 </div>
             </div>
 
             <div class="qr-wrapper" id="qrcode"></div>
-            <div class="ticket-footer-text" style="color: #bfdbfe;">Presenta este QR oficial en puerta</div>
+            <div class="ticket-footer-text">Presenta este QR oficial en puerta</div>
         </div>
 
         <div class="input-group">
@@ -295,7 +283,7 @@
 
     <script>
         // Generar el código QR inicial con los datos de la entrada
-        const qrData = "TICKET-AMAZONMUSIC-GT-20260924-MANZANARES";
+        const qrData = "TICKET-HOL-GT-20260924-MANZANARES";
         const qrcodeContainer = document.getElementById("qrcode");
         
         const qr = new QRCode(qrcodeContainer, {
@@ -316,7 +304,7 @@
             const element = document.getElementById("pdfCard");
             const opt = {
                 margin:       10,
-                filename:     'Entrada-AmazonMusic-pablox.pdf',
+                filename:     'Entrada-pablox-Hol.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
