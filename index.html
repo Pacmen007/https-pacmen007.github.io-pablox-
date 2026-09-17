@@ -6,8 +6,8 @@
   <title>pablox - Sitio Oficial</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Librería para generar códigos QR -->
-  <script src="https://cdnjs.cloudflare.com/ajax5/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Librería QRCode.js para generar el código QR en la entrada -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-between p-4">
 
@@ -20,81 +20,99 @@
   <!-- Contenido Principal -->
   <main class="w-full max-w-md flex flex-col items-center flex-grow justify-center space-y-6">
     
-    <!-- Sección de Entradas y Vista Previa de la Entrada -->
-    <section class="w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-5">
-      <div class="text-center space-y-2">
-        <h2 class="text-xl font-bold text-white">Tus Entradas</h2>
-        <p class="text-sm text-slate-300">Detalles del acceso oficial para el evento en Manzanares.</p>
-      </div>
-
-      <!-- Tarjeta Detallada de la Entrada (Simulando lo que sale en la descarga/PDF) -->
-      <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4 space-y-4">
-        <div class="border-b border-slate-700 pb-3 flex justify-between items-center">
-          <div>
-            <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Entrada Oficial</span>
-            <h3 class="text-lg font-bold text-white">Concierto en Vivo</h3>
-          </div>
-          <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2.5 py-1 rounded-full border border-emerald-500/30">General</span>
-        </div>
-
-        <!-- Información del Asistente y Evento -->
-        <div class="space-y-2 text-sm">
-          <div class="flex justify-between">
-            <span class="text-slate-400">Asistente:</span>
-            <span id="nombre-asistente" class="font-semibold text-white">Nombre y Apellidos</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-400">Lugar:</span>
-            <span class="font-medium text-slate-200">Manzanares, Ciudad Real</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-400">Fecha:</span>
-            <span class="font-medium text-slate-200">Próximamente</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-400">Horario:</span>
-            <span class="font-medium text-slate-200">21:00h - 01:00h</span>
-          </div>
-        </div>
-
-        <!-- Código QR -->
-        <div class="pt-2 flex flex-col items-center justify-center space-y-2 bg-white/5 p-3 rounded-lg border border-slate-700">
-          <div id="qrcode" class="bg-white p-2 rounded-md">
-            <!-- Aquí se genera dinámicamente el QR -->
-          </div>
-          <span class="text-xs font-mono text-slate-400">ID: PABLOX-2026-REF</span>
-        </div>
-      </div>
-
-      <!-- Botón de Enlace Externo -->
-      <div class="pt-1">
-        <a href="https://conciertos-pablox.webnode.es" target="_blank" class="inline-block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow transition transform active:scale-95 text-center">
-          Ver más en Conciertos Pablox
+    <!-- Sección de Entradas -->
+    <section class="w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-4 text-center">
+      <h2 class="text-xl font-bold text-white">Entradas</h2>
+      <p class="text-sm text-slate-300">Haz clic abajo para acceder a la plataforma de venta de entradas y asegurar tu acceso.</p>
+      
+      <div class="pt-2 space-y-3">
+        <a href="https://conciertos-pablox.webnode.es" target="_blank" class="inline-block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow transition transform active:scale-95">
+          Comprar Entradas
         </a>
+        
+        <!-- Botón de prueba para simular la descarga/visualización de la entrada con los datos completos -->
+        <button onclick="generarEntradaDescargable('Pablo Gómez Pérez', 'Manzanares, Ciudad Real', '15 de Octubre de 2026', '22:00 h', '03:00 h')" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-medium py-2 px-3 rounded-lg transition">
+          Simular Descarga de Mi Entrada
+        </button>
       </div>
     </section>
 
   </main>
+
+  <!-- Modal / Vista previa de la entrada descargable -->
+  <div id="modal-entrada" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50">
+    <div class="bg-slate-800 border border-slate-700 w-full max-w-sm rounded-2xl p-6 text-slate-100 space-y-4 shadow-2xl relative">
+      <div class="text-center border-b border-slate-700 pb-3">
+        <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold">Entrada Oficial - pablox</span>
+        <h3 id="ticket-nombre" class="text-lg font-bold mt-1">Nombre Completo</h3>
+      </div>
+
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between">
+          <span class="text-slate-400">Lugar:</span>
+          <span id="ticket-lugar" class="font-medium text-right">Manzanares</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Fecha:</span>
+          <span id="ticket-fecha" class="font-medium">--/--/----</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Inicio:</span>
+          <span id="ticket-inicio" class="font-medium">00:00 h</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Fin:</span>
+          <span id="ticket-fin" class="font-medium">00:00 h</span>
+        </div>
+      </div>
+
+      <!-- Contenedor del Código QR -->
+      <div class="flex flex-col items-center justify-center pt-2 border-t border-slate-700">
+        <div id="qrcode" class="bg-white p-3 rounded-xl shadow-inner"></div>
+        <span class="text-[10px] text-slate-400 mt-2">Presenta este código QR en la entrada</span>
+      </div>
+
+      <button onclick="cerrarEntrada()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-sm transition">
+        Cerrar Vista
+      </button>
+    </div>
+  </div>
 
   <!-- Pie de página -->
   <footer class="w-full max-w-md text-center py-4 text-xs text-slate-500">
     © 2026 pablox - Todos los derechos reservados.
   </footer>
 
-  <!-- Script para generar el Código QR automáticamente en la web -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Script para generar la tarjeta/entrada con los datos -->
   <script>
-    // Genera el QR automáticamente dentro del contenedor 'qrcode'
-    window.onload = function() {
+    function generarEntradaDescargable(nombrePersona, lugar, fecha, horaInicio, horaFin) {
+      // Rellenar datos en el diseño de la entrada
+      document.getElementById('ticket-nombre').innerText = nombrePersona;
+      document.getElementById('ticket-lugar').innerText = lugar;
+      document.getElementById('ticket-fecha').innerText = fecha;
+      document.getElementById('ticket-inicio').innerText = horaInicio;
+      document.getElementById('ticket-fin').innerText = horaFin;
+
+      // Limpiar QR anterior si existe
+      document.getElementById('qrcode').innerHTML = "";
+
+      // Generar el código QR único basado en los datos de la persona
       new QRCode(document.getElementById("qrcode"), {
-        text: "https://conciertos-pablox.webnode.es/entrada-verificada",
-        width: 110,
-        height: 110,
+        text: `TICKET-${nombrePersona}-${fecha}`,
+        width: 128,
+        height: 128,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
       });
-    };
+
+      // Mostrar el modal con la entrada
+      document.getElementById('modal-entrada').classList.remove('hidden');
+    }
+
+    function cerrarEntrada() {
+      document.getElementById('modal-entrada').classList.add('hidden');
+    }
   </script>
 </body>
 </html>
