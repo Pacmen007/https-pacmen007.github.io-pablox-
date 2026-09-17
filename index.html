@@ -1,118 +1,341 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pablox - Sitio Oficial</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Librería QRCode.js para generar el código QR en la entrada -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pablox - Entrada Oficial</title>
+    <!-- Librería para generar códigos QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Librería para exportar a PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131b2e;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .ticket-container {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            /* Aplicado color azul claro al texto de Amazon Music / Títulos específicos si procede */
+            color: #60a5fa; 
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .input-group input, .input-group select {
+            background-color: #0b0f19;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--accent-color);
+        }
+
+        .status-badge {
+            background-color: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* Tarjeta con estilo personalizado de Amazon Music en Azul Claro */
+        .amazon-card {
+            background-color: #1e3a8a !important; /* Fondo azul claro/medio acorde a la solicitud */
+            border: 1px solid #60a5fa;
+            color: #eff6ff;
+        }
+
+        .amazon-card .ticket-event-name {
+            color: #93c5fd !important; /* Nombre de Amazon Music en azul claro */
+        }
+
+        /* Diseño del Ticket imprimible / descargable */
+        .printable-ticket {
+            background: #ffffff;
+            color: #111827;
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .ticket-event-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-align: center;
+            color: #1e1b4b;
+        }
+
+        .ticket-holder {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+
+        /* Sección mejorada para lugar, fecha y horas */
+        .ticket-details-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 14px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: #334155;
+        }
+
+        .ticket-detail-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticket-detail-row strong {
+            color: #0f172a;
+        }
+
+        .qr-wrapper {
+            background: #ffffff;
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr-wrapper canvas, .qr-wrapper img {
+            display: block;
+            max-width: 140px;
+            height: auto;
+        }
+
+        .ticket-footer-text {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-align: center;
+        }
+
+        /* Botones de acción */
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        .btn-danger:hover { background-color: #dc2626; }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        .btn-success:hover { background-color: #059669; }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .btn-secondary:hover { background-color: var(--accent-hover); }
+
+        .section-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+    </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-between p-4">
+<body>
 
-  <!-- Encabezado -->
-  <header class="w-full max-w-md text-center py-6">
-    <h1 class="text-3xl font-bold tracking-wide">pablox</h1>
-    <p class="text-sm text-slate-400">LA X-GANG</p>
-  </header>
+    <div class="ticket-container" id="ticketContentToDownload">
+        <div class="header-title">Amazon Music</div>
+        <div class="subtitle">Entrada nominativa y segura para pablox.</div>
 
-  <!-- Contenido Principal -->
-  <main class="w-full max-w-md flex flex-col items-center flex-grow justify-center space-y-6">
-    
-    <!-- Sección de Entradas -->
-    <section class="w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-4 text-center">
-      <h2 class="text-xl font-bold text-white">Entradas</h2>
-      <p class="text-sm text-slate-300">Haz clic abajo para acceder a la plataforma de venta de entradas y asegurar tu acceso.</p>
-      
-      <div class="pt-2 space-y-3">
-        <a href="https://conciertos-pablox.webnode.es" target="_blank" class="inline-block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow transition transform active:scale-95">
-          Comprar Entradas
-        </a>
-        
-        <!-- Botón de prueba para simular la descarga/visualización de la entrada con los datos completos -->
-        <button onclick="generarEntradaDescargable('Pablo Gómez Pérez', 'Manzanares, Ciudad Real', '15 de Octubre de 2026', '22:00 h', '03:00 h')" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-medium py-2 px-3 rounded-lg transition">
-          Simular Descarga de Mi Entrada
+        <div class="input-group">
+            <label for="fullNameInput">Tu Nombre y Apellidos completos:</label>
+            <input type="text" id="fullNameInput" value="Gt" oninput="updateHolderName(this.value)">
+        </div>
+
+        <div class="status-badge">
+            <span>✅ ESTADO: ACTIVA</span>
+        </div>
+
+        <!-- Tarjeta física del ticket con estilo de Amazon Music en azul claro -->
+        <div class="printable-ticket amazon-card" id="pdfCard">
+            <div class="ticket-event-name" id="cardEventName">Amazon Music</div>
+            <div class="ticket-holder" style="color: #93c5fd;">Titular: <span id="cardHolderName">Gt</span></div>
+
+            <!-- Bloque de lugar, fecha y horario -->
+            <div class="ticket-details-box" style="background: #eff6ff; color: #1e3a8a; border-color: #93c5fd;">
+                <div class="ticket-detail-row">
+                    <span>📅</span> <span><strong style="color: #1e3a8a;">Fecha:</strong> 2026-09-24</span>
+                </div>
+                <div class="ticket-detail-row">
+                    <span>⏰</span> <span><strong style="color: #1e3a8a;">Horario:</strong> 07:59h - 09:00h</span>
+                </div>
+                <div class="ticket-detail-row">
+                    <span>📍</span> <span><strong style="color: #1e3a8a;">Lugar:</strong> Manzanares</span>
+                </div>
+            </div>
+
+            <div class="qr-wrapper" id="qrcode"></div>
+            <div class="ticket-footer-text" style="color: #bfdbfe;">Presenta este QR oficial en puerta</div>
+        </div>
+
+        <div class="input-group">
+            <label class="section-label" for="reasonSelect">¿No puedes asistir? Manda tu motivo al administrador:</label>
+            <select id="reasonSelect">
+                <option value="No puedo asistir por motivos personales">No puedo asistir por motivos personales</option>
+                <option value="Problemas de salud o fuerza mayor">Problemas de salud o fuerza mayor</option>
+                <option value="Cambio de planes de última hora">Cambio de planes de última hora</option>
+            </select>
+        </div>
+
+        <button class="btn btn-danger" onclick="sendNotice()">
+            <span>✈️ Enviar aviso al Administrador</span>
         </button>
-      </div>
-    </section>
 
-  </main>
+        <button class="btn btn-success" onclick="downloadPDF()">
+            <span>📥 Descargar PDF</span>
+        </button>
 
-  <!-- Modal / Vista previa de la entrada descargable -->
-  <div id="modal-entrada" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50">
-    <div class="bg-slate-800 border border-slate-700 w-full max-w-sm rounded-2xl p-6 text-slate-100 space-y-4 shadow-2xl relative">
-      <div class="text-center border-b border-slate-700 pb-3">
-        <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold">Entrada Oficial - pablox</span>
-        <h3 id="ticket-nombre" class="text-lg font-bold mt-1">Nombre Completo</h3>
-      </div>
-
-      <div class="space-y-2 text-sm">
-        <div class="flex justify-between">
-          <span class="text-slate-400">Lugar:</span>
-          <span id="ticket-lugar" class="font-medium text-right">Manzanares</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-slate-400">Fecha:</span>
-          <span id="ticket-fecha" class="font-medium">--/--/----</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-slate-400">Inicio:</span>
-          <span id="ticket-inicio" class="font-medium">00:00 h</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-slate-400">Fin:</span>
-          <span id="ticket-fin" class="font-medium">00:00 h</span>
-        </div>
-      </div>
-
-      <!-- Contenedor del Código QR -->
-      <div class="flex flex-col items-center justify-center pt-2 border-t border-slate-700">
-        <div id="qrcode" class="bg-white p-3 rounded-xl shadow-inner"></div>
-        <span class="text-[10px] text-slate-400 mt-2">Presenta este código QR en la entrada</span>
-      </div>
-
-      <button onclick="cerrarEntrada()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-sm transition">
-        Cerrar Vista
-      </button>
+        <button class="btn btn-secondary" onclick="closeWindow()">
+            <span>Cerrar</span>
+        </button>
     </div>
-  </div>
 
-  <!-- Pie de página -->
-  <footer class="w-full max-w-md text-center py-4 text-xs text-slate-500">
-    © 2026 pablox - Todos los derechos reservados.
-  </footer>
+    <script>
+        // Generar el código QR inicial con los datos de la entrada
+        const qrData = "TICKET-AMAZONMUSIC-GT-20260924-MANZANARES";
+        const qrcodeContainer = document.getElementById("qrcode");
+        
+        const qr = new QRCode(qrcodeContainer, {
+            text: qrData,
+            width: 130,
+            height: 130,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
 
-  <!-- Script para generar la tarjeta/entrada con los datos -->
-  <script>
-    function generarEntradaDescargable(nombrePersona, lugar, fecha, horaInicio, horaFin) {
-      // Rellenar datos en el diseño de la entrada
-      document.getElementById('ticket-nombre').innerText = nombrePersona;
-      document.getElementById('ticket-lugar').innerText = lugar;
-      document.getElementById('ticket-fecha').innerText = fecha;
-      document.getElementById('ticket-inicio').innerText = horaInicio;
-      document.getElementById('ticket-fin').innerText = horaFin;
+        function updateHolderName(value) {
+            const cleanName = value.trim() === "" ? "[Nombre]" : value;
+            document.getElementById("cardHolderName").innerText = cleanName;
+        }
 
-      // Limpiar QR anterior si existe
-      document.getElementById('qrcode').innerHTML = "";
+        function downloadPDF() {
+            const element = document.getElementById("pdfCard");
+            const opt = {
+                margin:       10,
+                filename:     'Entrada-AmazonMusic-pablox.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().from(element).set(opt).save();
+        }
 
-      // Generar el código QR único basado en los datos de la persona
-      new QRCode(document.getElementById("qrcode"), {
-        text: `TICKET-${nombrePersona}-${fecha}`,
-        width: 128,
-        height: 128,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
-      });
+        function sendNotice() {
+            const reason = document.getElementById("reasonSelect").value;
+            alert("Aviso enviado correctamente al administrador:\n\n\"" + reason + "\"");
+        }
 
-      // Mostrar el modal con la entrada
-      document.getElementById('modal-entrada').classList.remove('hidden');
-    }
-
-    function cerrarEntrada() {
-      document.getElementById('modal-entrada').classList.add('hidden');
-    }
-  </script>
+        function closeWindow() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.close();
+            }
+        }
+    </script>
 </body>
 </html>
