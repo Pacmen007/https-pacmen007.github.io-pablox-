@@ -3,327 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pablox - Entrada Oficial</title>
-    <!-- Librería para generar códigos QR -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <!-- Librería para exportar a PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>X-GANG - Entradas</title>
+    <!-- Tus estilos actuales irían aquí -->
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131b2e;
-            --accent-color: #3b82f6;
-            --accent-hover: #2563eb;
-            --success-color: #10b981;
-            --danger-color: #ef4444;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .ticket-container {
-            background-color: var(--card-bg);
-            border: 2px solid var(--accent-color);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 420px;
-            padding: 24px;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .header-title {
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .subtitle {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .input-group label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .input-group input, .input-group select {
-            background-color: #0b0f19;
-            border: 1px solid #374151;
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            border-color: var(--accent-color);
-        }
-
-        .status-badge {
-            background-color: rgba(16, 185, 129, 0.15);
-            border: 1px solid var(--success-color);
-            color: var(--success-color);
-            padding: 8px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        /* Diseño del Ticket imprimible / descargable */
-        .printable-ticket {
-            background: #ffffff;
-            color: #111827;
-            border-radius: 14px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .ticket-event-name {
-            font-size: 1.3rem;
-            font-weight: 800;
-            text-align: center;
-            color: #1e1b4b;
-        }
-
-        .ticket-holder {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #4f46e5;
-        }
-
-        /* Sección mejorada para lugar, fecha y horas */
-        .ticket-details-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 10px 14px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-size: 0.82rem;
-            color: #334155;
-        }
-
-        .ticket-detail-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ticket-detail-row strong {
-            color: #0f172a;
-        }
-
-        .qr-wrapper {
-            background: #ffffff;
-            padding: 8px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .qr-wrapper canvas, .qr-wrapper img {
-            display: block;
-            max-width: 140px;
-            height: auto;
-        }
-
-        .ticket-footer-text {
-            font-size: 0.75rem;
-            color: #64748b;
-            text-align: center;
-        }
-
-        /* Botones de acción */
-        .btn {
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.2s, transform 0.1s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            text-decoration: none;
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        .btn-danger {
-            background-color: var(--danger-color);
-            color: white;
-        }
-        .btn-danger:hover { background-color: #dc2626; }
-
-        .btn-success {
-            background-color: var(--success-color);
-            color: white;
-        }
-        .btn-success:hover { background-color: #059669; }
-
-        .btn-secondary {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        .btn-secondary:hover { background-color: var(--accent-hover); }
-
-        .section-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
+        body { font-family: Arial, sans-serif; background-color: #111; color: #fff; margin: 0; padding: 20px; }
+        .seccion-entradas { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .entrada-card { background: #222; border-radius: 8px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; }
+        .btn-descargar { display: inline-block; background: #e50914; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
+        .btn-descargar:hover { background: #b20710; }
     </style>
 </head>
 <body>
 
-    <div class="ticket-container" id="ticketContentToDownload">
-        <div class="header-title">Entrada para: <span id="displayEventTitle">Hol</span></div>
-        <div class="subtitle">Entrada nominativa y segura para pablox.</div>
-
-        <div class="input-group">
-            <label for="fullNameInput">Tu Nombre y Apellidos completos:</label>
-            <input type="text" id="fullNameInput" value="Gt" oninput="updateHolderName(this.value)">
-        </div>
-
-        <div class="status-badge">
-            <span>✅ ESTADO: ACTIVA</span>
-        </div>
-
-        <!-- Tarjeta física del ticket -->
-        <div class="printable-ticket" id="pdfCard">
-            <div class="ticket-event-name" id="cardEventName">Hol</div>
-            <div class="ticket-holder">Titular: <span id="cardHolderName">Gt</span></div>
-
-            <!-- Bloque mejorado: Lugar, Fecha y Horario de inicio/fin -->
-            <div class="ticket-details-box">
-                <div class="ticket-detail-row">
-                    <span>📅</span> <span><strong>Fecha:</strong> 2026-09-24</span>
-                </div>
-                <div class="ticket-detail-row">
-                    <span>⏰</span> <span><strong>Horario:</strong> 07:59h - 09:00h</span>
-                </div>
-                <div class="ticket-detail-row">
-                    <span>📍</span> <span><strong>Lugar:</strong> Manzanares</span>
-                </div>
-            </div>
-
-            <div class="qr-wrapper" id="qrcode"></div>
-            <div class="ticket-footer-text">Presenta este QR oficial en puerta</div>
-        </div>
-
-        <div class="input-group">
-            <label class="section-label" for="reasonSelect">¿No puedes asistir? Manda tu motivo al administrador:</label>
-            <select id="reasonSelect">
-                <option value="No puedo asistir por motivos personales">No puedo asistir por motivos personales</option>
-                <option value="Problemas de salud o fuerza mayor">Problemas de salud o fuerza mayor</option>
-                <option value="Cambio de planes de última hora">Cambio de planes de última hora</option>
-            </select>
-        </div>
-
-        <button class="btn btn-danger" onclick="sendNotice()">
-            <span>✈️ Enviar aviso al Administrador</span>
-        </button>
-
-        <button class="btn btn-success" onclick="downloadPDF()">
-            <span>📥 Descargar PDF</span>
-        </button>
-
-        <button class="btn btn-secondary" onclick="closeWindow()">
-            <span>Cerrar</span>
-        </button>
-    </div>
-
-    <script>
-        // Generar el código QR inicial con los datos de la entrada
-        const qrData = "TICKET-HOL-GT-20260924-MANZANARES";
-        const qrcodeContainer = document.getElementById("qrcode");
+    <!-- ========================================== -->
+    <!-- SOLO SE MODIFICA ESTA ZONA DE LA PÁGINA     -->
+    <!-- ========================================== -->
+    <section class="seccion-entradas">
+        <h2>Tus Entradas - X-GANG</h2>
         
-        const qr = new QRCode(qrcodeContainer, {
-            text: qrData,
-            width: 130,
-            height: 130,
-            colorDark : "#000000",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
+        <div class="entrada-card">
+            <h3>X-GANG Showcase Oficial</h3>
+            <p><strong>Lugar:</strong> Sala Ego / Auditorio Municipal (Manzanares)</p>
+            <p><strong>Fecha:</strong> 25 de Octubre de 2026</p>
+            <p><strong>Horario:</strong> 22:00 - 02:00</p>
+            
+            <!-- Botón de descarga permanente de la entrada ya hecha -->
+            <a href="entradas/entrada-generada.pdf" class="btn-descargar" download="Entrada-X-GANG.pdf">
+                Descargar Entrada (PDF / QR)
+            </a>
+        </div>
+    </section>
+    <!-- ========================================== -->
 
-        function updateHolderName(value) {
-            const cleanName = value.trim() === "" ? "[Nombre]" : value;
-            document.getElementById("cardHolderName").innerText = cleanName;
-        }
-
-        function downloadPDF() {
-            const element = document.getElementById("pdfCard");
-            const opt = {
-                margin:       10,
-                filename:     'Entrada-pablox-Hol.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().from(element).set(opt).save();
-        }
-
-        function sendNotice() {
-            const reason = document.getElementById("reasonSelect").value;
-            alert("Aviso enviado correctamente al administrador:\n\n\"" + reason + "\"");
-        }
-
-        function closeWindow() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.close();
-            }
-        }
-    </script>
 </body>
 </html>
