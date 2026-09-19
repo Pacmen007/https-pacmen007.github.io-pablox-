@@ -12,8 +12,8 @@
 <title>pablox - Sitio Oficial</title>
 <!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Importar Google Fonts para tipografías elegantes -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Cinzel:wght@700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Importar Google Fonts con diferentes tipografías únicas para cada sección -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Bungee&family=Playfair+Display:ital,wght@0,700;1,600&family=Orbitron:wght@700;900&family=Chakra+Petch:wght@700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
   box-sizing: border-box;
@@ -70,12 +70,12 @@ body {
   padding: 40px 20px 20px 20px;
 }
 
-/* Estilo exclusivo y chulo para "pablox" en el Inicio (Azul oscuro, morado, rojo y blanco) */
+/* Estilo exclusivo y chulo para "pablox" en minúsculas en el Inicio (Azul oscuro, morado, rojo y blanco) */
 .header h1 {
   font-family: 'Cinzel', serif !important;
   font-size: 58px !important;
   font-weight: 900 !important;
-  text-transform: lowercase;
+  text-transform: lowercase !important;
   letter-spacing: 3px;
   margin-bottom: 10px;
   background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 35%, #dc2626 70%, #ffffff 100%);
@@ -100,6 +100,50 @@ body {
   margin: 40px 0 20px 0;
   text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);
   font-weight: 900;
+}
+
+/* Estilo exclusivo y chulo para la sección Contrataciones con tipografía 'Chakra Petch' y color naranja brillante */
+.contrataciones-title {
+  font-family: 'Chakra Petch', sans-serif !important;
+  font-size: 34px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 45px 0 25px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #ffedd5 0%, #fb923c 50%, #c2410c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(251, 146, 60, 0.7), 0 0 40px rgba(194, 65, 12, 0.5);
+}
+
+/* Estilo exclusivo y chulo para la sección Sobre Mí con tipografía 'Orbitron' y color amarillo brillante */
+.sobremi-title {
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 45px 0 25px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #fef08a 0%, #facc15 50%, #ca8a04 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(250, 204, 21, 0.7), 0 0 40px rgba(202, 138, 4, 0.5);
+}
+
+/* Estilo exclusivo y chulo para Videoclips con tipografía 'Bungee' y color morado brillante */
+.videoclips-title {
+  font-family: 'Bungee', cursive !important;
+  font-size: 32px !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 45px 0 25px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 50%, #581c87 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.7), 0 0 40px rgba(147, 51, 234, 0.5);
 }
 
 /* Estilo exclusivo y chulo para Lanzamientos en tonos verde, blanco y cian brillante */
@@ -335,7 +379,7 @@ body {
   padding: 30px;
   background-color: rgba(20, 15, 35, 0.85);
   backdrop-filter: blur(8px);
-  border: 2px solid rgba(139, 92, 246, 0.4);
+  border: 2px solid rgba(250, 204, 21, 0.4);
   border-radius: 16px;
   text-align: center;
   line-height: 1.6;
@@ -344,7 +388,7 @@ body {
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 .about-container p { margin-bottom: 15px; }
-.about-highlight { color: #ff3366; font-weight: bold; }
+.about-highlight { color: #facc15; font-weight: bold; }
 
 /* Contrataciones */
 .contrataciones-container {
@@ -353,7 +397,7 @@ body {
   padding: 30px;
   background-color: rgba(20, 15, 35, 0.85);
   backdrop-filter: blur(8px);
-  border: 2px solid rgba(16, 185, 129, 0.5);
+  border: 2px solid rgba(251, 146, 60, 0.4);
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
@@ -424,10 +468,10 @@ body {
     </div>
 
     <div class="home-card">
-      <div class="home-card-icon" style="background: linear-gradient(135deg, #10b981, #047857);"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #fb923c, #c2410c);"><i class="fa-solid fa-briefcase"></i></div>
       <h3>Contrataciones</h3>
       <p>Contáctanos para conciertos, bolos y eventos.</p>
-      <button onclick="switchTab('contrataciones', document.getElementById('link-contrataciones'))" class="btn-home-nav" style="background: linear-gradient(135deg, #10b981, #047857); padding: 8px 0; border-radius: 20px; width: 100%;">
+      <button onclick="switchTab('contrataciones', document.getElementById('link-contrataciones'))" class="btn-home-nav" style="background: linear-gradient(135deg, #fb923c, #c2410c); padding: 8px 0; border-radius: 20px; width: 100%;">
         <i class="fa-solid fa-arrow-right"></i> CONTACTAR
       </button>
     </div>
@@ -538,7 +582,7 @@ body {
 
 <!-- SECCIÓN VIDEOCLIPS -->
 <div id="videoclips" class="content-section">
-  <h2 class="section-title" style="color: #a855f7 !important; text-shadow: 0 0 12px rgba(168, 85, 247, 0.9), 0 0 25px rgba(147, 51, 234, 0.8);">VIDEOCLIPS</h2>
+  <h2 class="videoclips-title">Videoclips</h2>
   <main class="grid-container">
     <div class="card">
       <div class="card-cover" style="background: linear-gradient(135deg, #a855f7 100%, #38bdf8 0%);"><span>⭐</span></div>
@@ -612,7 +656,7 @@ body {
 
 <!-- SECCIÓN SOBRE MÍ -->
 <div id="sobre-mi" class="content-section">
-  <h2 class="section-title" style="color: #38bdf8 !important;">SOBRE MÍ</h2>
+  <h2 class="sobremi-title">Sobre Mí</h2>
   <div class="about-container">
     <p>Soy de <span class="about-highlight">Manzanares (Ciudad Real, España)</span> y llevo unos 7 años haciendo música. Exploro casi todos los estilos, excepto el rock y el pop.</p>
     <p>Hago mis propias canciones, edición y videoclips, hablando siempre de <span class="about-highlight">historias reales y de lo que siento</span>.</p>
@@ -623,9 +667,9 @@ body {
 
 <!-- SECCIÓN CONTRATACIONES -->
 <div id="contrataciones" class="content-section">
-  <h2 class="section-title" style="color: #10b981 !important;">CONTRATACIONES</h2>
+  <h2 class="contrataciones-title">Contrataciones</h2>
   <div class="contrataciones-container">
-    <p>¿Quieres contar con <span class="about-highlight">pablox</span> para un concierto, festival, bolo o evento privado?</p>
+    <p>¿Quieres contar con <span class="about-highlight" style="color: #fb923c;">pablox</span> para un concierto, festival, bolo o evento privado?</p>
     <p>Para contrataciones directas, disponibilidad de fechas y propuestas, puedes ponerte en contacto enviando un mensaje directo en Instagram.</p>
     <div style="margin-top: 25px; display: flex; justify-content: center;">
       <a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); width: 220px; padding: 10px 0;"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
