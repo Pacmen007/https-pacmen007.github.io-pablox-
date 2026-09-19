@@ -12,8 +12,8 @@
 <title>pablox - Sitio Oficial</title>
 <!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Importar Google Fonts para una tipografía elegante -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Importar Google Fonts para tipografías elegantes -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Cinzel:wght@700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
   box-sizing: border-box;
@@ -94,6 +94,22 @@ body {
   text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);
   font-weight: 900;
 }
+
+/* Estilo exclusivo y chulo para Lanzamientos en tonos verde, blanco y cian brillante */
+.lanzamientos-title {
+  font-family: 'Cinzel', serif !important;
+  font-size: 38px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: 4px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #4ade80 50%, #22c55e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(74, 222, 128, 0.5);
+  margin: 45px 0 25px 0;
+  text-align: center;
+}
+
 .elegant-title {
   font-family: 'Playfair Display', serif !important;
   font-style: italic;
@@ -413,7 +429,7 @@ body {
 
 <!-- SECCIÓN LANZAMIENTOS -->
 <div id="lanzamientos" class="content-section active-section">
-  <h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
+  <h2 class="lanzamientos-title">Lanzamientos</h2>
   <main class="grid-container">
     <div class="card">
       <div class="card-cover"><span>🌙</span></div>
@@ -501,7 +517,7 @@ body {
     </div>
   </main>
 
-  <!-- SECCIÓN AMAZON MUSIC -->
+  <!-- SECCIÓN AMAZON MUSIC (LANZAMIENTOS) -->
   <h2 class="section-title" style="color: #38bdf8 !important; text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);">AMAZON MUSIC</h2>
   <main class="grid-container" id="amazon-music-container">
     <div class="card card-amazon-blue">
@@ -571,6 +587,13 @@ body {
       <span class="tag">SPOTIFY</span>
       <h3 class="title">pablox</h3>
       <a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> SEGUIR</a>
+    </div>
+    <!-- Tarjeta de Amazon Music con tu enlace exacto de artista -->
+    <div class="card card-amazon-blue">
+      <div class="card-cover" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);"><span style="font-size: 30px;"><i class="fa-brands fa-amazon"></i></span></div>
+      <span class="tag" style="background-color: #38bdf8; color: #0b0c10;">AMAZON MUSIC</span>
+      <h3 class="title">pablox</h3>
+      <a href="https://music.amazon.com/artists/B0HF6CPZMG/pablox?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_59NUeI4PQvBZo2LE1mRBvNXkC" target="_blank" class="btn-amazon-listen"><i class="fa-brands fa-amazon"></i> SEGUIR</a>
     </div>
     <div class="card">
       <div class="card-cover" style="background-color: #25D366;"><span style="font-size: 30px;"><i class="fa-brands fa-whatsapp"></i></span></div>
