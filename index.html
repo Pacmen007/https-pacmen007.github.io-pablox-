@@ -142,6 +142,18 @@ body {
   border-color: #ff3366;
   transform: translateY(-3px);
 }
+
+/* Tarjeta específica de Amazon Music con sus colores oficiales */
+.card-amazon {
+  background-color: rgba(35, 47, 62, 0.9) !important;
+  border: 2px solid #ff9900 !important;
+  box-shadow: 0 4px 20px rgba(255, 153, 0, 0.25) !important;
+}
+.card-amazon:hover {
+  border-color: #ffb84d !important;
+  transform: translateY(-3px);
+}
+
 .card-cover {
   width: 100%;
   height: 110px;
@@ -209,10 +221,12 @@ body {
 .btn-amazon {
   background-color: #232f3e;
   color: #ff9900;
+  border: 1px solid #ff9900;
 }
 .btn-amazon:hover {
   transform: scale(1.03);
-  background-color: #131a22;
+  background-color: #ff9900;
+  color: #131a22;
 }
 
 /* TARJETAS DE LA SECCIÓN DE INICIO */
@@ -334,11 +348,11 @@ body {
 <!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
   <a onclick="switchTab('inicio', this)" id="link-inicio">INICIO</a>
-  <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
+  <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos" class="active-link">LANZAMIENTOS</a>
   <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
   <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
   <a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
-  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones" class="active-link">CONTRATACIONES</a>
+  <a onclick="switchTab('contrataciones', this)" id="link-contrataciones">CONTRATACIONES</a>
 </nav>
 
 <!-- SECCIÓN INICIO -->
@@ -397,7 +411,7 @@ body {
 </div>
 
 <!-- SECCIÓN LANZAMIENTOS -->
-<div id="lanzamientos" class="content-section">
+<div id="lanzamientos" class="content-section active-section">
   <h2 class="section-title" style="color: #38bdf8 !important;">LANZAMIENTOS</h2>
   <main class="grid-container">
     <div class="card">
@@ -486,12 +500,12 @@ body {
     </div>
   </main>
 
-  <!-- SECCIÓN AMAZON MUSIC -->
+  <!-- SECCIÓN AMAZON MUSIC (Con los colores oficiales de Amazon Music) -->
   <h2 class="section-title" style="color: #ff9900 !important; text-shadow: 0 0 12px rgba(255, 153, 0, 0.9), 0 0 25px rgba(200, 100, 0, 0.8);">AMAZON MUSIC</h2>
   <main class="grid-container" id="amazon-music-container">
-    <div class="card">
+    <div class="card card-amazon">
       <div class="card-cover" style="background: linear-gradient(135deg, #232f3e 0%, #ff9900 100%);"><span>🌙</span></div>
-      <span class="tag tag-new">ECLIPSE</span>
+      <span class="tag" style="background-color: #ff9900; color: #131a22;">AMAZON MUSIC</span>
       <h3 class="title">Eclipse</h3>
       <a href="https://music.amazon.com/albums/B0HJSGZDV7?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IVt4vPOHVl9FTvZMhrJugGknj" target="_blank" class="btn-amazon"><i class="fa-brands fa-amazon"></i> ESCUCHAR</a>
     </div>
@@ -578,7 +592,7 @@ body {
 </div>
 
 <!-- SECCIÓN CONTRATACIONES -->
-<div id="contrataciones" class="content-section active-section">
+<div id="contrataciones" class="content-section">
   <h2 class="section-title" style="color: #10b981 !important;">CONTRATACIONES</h2>
   <div class="contrataciones-container">
     <p>¿Quieres contar con <span class="about-highlight">pablox</span> para un concierto, festival, bolo o evento privado?</p>
