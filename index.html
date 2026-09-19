@@ -499,12 +499,12 @@ body {
     </div>
   </main>
 
-  <!-- SECCIÓN AMAZON MUSIC (Título y tarjeta en azul claro y azul oscuro) -->
+  <!-- SECCIÓN AMAZON MUSIC -->
   <h2 class="section-title" style="color: #38bdf8 !important; text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);">AMAZON MUSIC</h2>
   <main class="grid-container" id="amazon-music-container">
     <div class="card card-amazon-blue">
       <div class="card-cover" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);"><span>🌙</span></div>
-      <span class="tag" style="background-color: #38bdf8; color: #0b0c10;">AMAZON MUSIC</span>
+      <span class="tag" style="background-color: #38bdf8; color: #0b0c10;">SENCILLO</span>
       <h3 class="title">Eclipse</h3>
       <a href="https://music.amazon.com/albums/B0HJSGZDV7?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IVt4vPOHVl9FTvZMhrJugGknj" target="_blank" class="btn-amazon-blue"><i class="fa-brands fa-amazon"></i> ESCUCHAR</a>
     </div>
@@ -616,7 +616,7 @@ function switchTab(sectionId, element) {
     const links = document.querySelectorAll('.navbar a');
     links.forEach(link => link.classList.remove('active-link'));
     
-    ThematchingLink = document.getElementById('link-' + sectionId);
+    const matchingLink = document.getElementById('link-' + sectionId);
     if (matchingLink) {
         matchingLink.classList.add('active-link');
     } else if (element) {
