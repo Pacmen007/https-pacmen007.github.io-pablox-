@@ -1,13 +1,12 @@
-Aquí tienes el código actualizado. He ajustado exclusivamente el contenedor de la sección de Redes Sociales para que sus tarjetas tengan exactamente la misma estructura, proporciones, anchos y estética impecable que las tarjetas de Spotify de la sección de Lanzamientos, manteniendo a la vez su título bien centrado y con el espacio correcto respecto a la parte superior:
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Etiquetas para forzar la actualización automática sin caché -->
+<!-- Etiquetas avanzadas para forzar la actualización automática sin caché en cualquier dispositivo -->
 <meta http-equiv="Expires" content="0">
 <meta http-equiv="Last-Modified" content="0">
-<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 
 <title>pablox - Sitio Oficial</title>
@@ -179,7 +178,7 @@ body {
   width: 100% !important;
 }
 
-/* Rejilla general adaptable idéntica para Lanzamientos y Redes Sociales */
+/* Rejilla general adaptable original */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -221,7 +220,7 @@ body {
 }
 .videoclip-card:hover {
   border-color: #ef4444 !important;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5) !important;
+  transform: translateY(-3px);
 }
 
 .redes-card {
@@ -666,7 +665,7 @@ body {
   </main>
 </div>
 
-<!-- SECCIÓN REDES SOCIALES (Alineadas idénticas a las tarjetas de Spotify) -->
+<!-- SECCIÓN REDES SOCIALES -->
 <div id="redes" class="content-section">
   <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
   <main class="grid-container">
@@ -758,4 +757,3 @@ function switchTab(sectionId, element) {
 
 </body>
 </html>
-
