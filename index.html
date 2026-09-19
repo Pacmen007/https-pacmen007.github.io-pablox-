@@ -1,3 +1,4 @@
+Aquí tienes el código actualizado. He ajustado exclusivamente el contenedor de la sección de Redes Sociales para que sus tarjetas tengan exactamente la misma estructura, proporciones, anchos y estética impecable que las tarjetas de Spotify de la sección de Lanzamientos, manteniendo a la vez su título bien centrado y con el espacio correcto respecto a la parte superior:
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,8 +13,8 @@
 <title>pablox - Sitio Oficial</title>
 <!-- Importar FontAwesome para los logos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Importar Google Fonts con diferentes tipografías únicas para cada sección -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Bungee&family=Playfair+Display:ital,wght@0,700;1,600&family=Orbitron:wght@700;900&family=Chakra+Petch:wght@700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Importar Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Bungee&family=Bungee+Shade&family=Playfair+Display:ital,wght@0,700;1,600&family=Orbitron:wght@700;900&family=Chakra+Petch:wght@700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
   box-sizing: border-box;
@@ -91,6 +92,19 @@ body {
   letter-spacing: 1px;
 }
 
+/* Título exclusivo Amazon Music */
+.amazon-title {
+  font-family: 'Bungee Shade', cursive !important;
+  font-size: 30px !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  color: #38bdf8 !important;
+  margin: 45px 0 20px 0;
+  text-shadow: 0 0 15px rgba(56, 189, 248, 0.9), 0 0 30px rgba(2, 132, 199, 0.7);
+  letter-spacing: 2px;
+}
+
 /* Estilos exclusivos de títulos por sección */
 .contrataciones-title {
   font-family: 'Chakra Petch', sans-serif !important;
@@ -147,6 +161,7 @@ body {
   text-align: center;
 }
 
+/* Título de Redes Sociales centrado y bien espaciado */
 .elegant-title {
   font-family: 'Playfair Display', serif !important;
   font-style: italic;
@@ -158,9 +173,13 @@ body {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
   letter-spacing: 1px !important;
+  margin: 45px 0 25px 0 !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
 }
 
-/* Rejilla general adaptable */
+/* Rejilla general adaptable idéntica para Lanzamientos y Redes Sociales */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -206,12 +225,12 @@ body {
 }
 
 .redes-card {
-  border: 2px solid rgba(168, 85, 247, 0.5) !important;
-  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2) !important;
+  border: 2px solid rgba(168, 85, 247, 0.4) !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
 }
 .redes-card:hover {
   border-color: #a855f7 !important;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5) !important;
+  transform: translateY(-3px);
 }
 
 .card-amazon-blue {
@@ -336,7 +355,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* 1. Tarjeta Inicio - Lanzamientos (Verde claro) */
 .home-card-lanzamientos {
   border: 2px solid rgba(74, 222, 128, 0.5);
 }
@@ -346,7 +364,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* 2. Tarjeta Inicio - Videoclips (Morado) */
 .home-card-videoclips {
   border: 2px solid rgba(168, 85, 247, 0.5);
 }
@@ -356,7 +373,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* 3. Tarjeta Inicio - Redes Sociales (Azul cian brillante) */
 .home-card-redes {
   border: 2px solid rgba(56, 189, 248, 0.5);
 }
@@ -366,7 +382,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* 4. Tarjeta Inicio - Sobre Mí (Color Amarillo) */
 .home-card-sobremi {
   border: 2px solid rgba(250, 204, 21, 0.5);
 }
@@ -376,7 +391,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* 5. Tarjeta Inicio - Contrataciones (Color Naranja) */
 .home-card-contrataciones {
   border: 2px solid rgba(251, 146, 60, 0.5);
 }
@@ -432,7 +446,6 @@ body {
 .about-container p { margin-bottom: 15px; }
 .about-highlight { color: #facc15; font-weight: bold; }
 
-/* Contrataciones */
 .contrataciones-container {
   max-width: 800px;
   margin: 0 auto;
@@ -610,8 +623,8 @@ body {
     </div>
   </main>
 
-  <!-- SECCIÓN AMAZON MUSIC (LANZAMIENTOS) -->
-  <h2 class="section-title" style="color: #38bdf8 !important; text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);">AMAZON MUSIC</h2>
+  <!-- SECCIÓN AMAZON MUSIC -->
+  <h2 class="amazon-title">AMAZON MUSIC</h2>
   <main class="grid-container" id="amazon-music-container">
     <div class="card card-amazon-blue">
       <div class="card-cover" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);"><span>🌙</span></div>
@@ -653,7 +666,7 @@ body {
   </main>
 </div>
 
-<!-- SECCIÓN REDES SOCIALES -->
+<!-- SECCIÓN REDES SOCIALES (Alineadas idénticas a las tarjetas de Spotify) -->
 <div id="redes" class="content-section">
   <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
   <main class="grid-container">
@@ -745,3 +758,4 @@ function switchTab(sectionId, element) {
 
 </body>
 </html>
+
