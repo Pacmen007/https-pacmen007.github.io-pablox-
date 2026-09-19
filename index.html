@@ -69,14 +69,21 @@ body {
   text-align: center;
   padding: 40px 20px 20px 20px;
 }
+
+/* Estilo exclusivo y chulo para "pablox" en el Inicio (Azul oscuro, morado, rojo y blanco) */
 .header h1 {
-  color: #ffffff;
-  font-size: 48px;
+  font-family: 'Cinzel', serif !important;
+  font-size: 58px !important;
+  font-weight: 900 !important;
   text-transform: lowercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   margin-bottom: 10px;
-  text-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 35%, #dc2626 70%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
 }
+
 .header p {
   color: #ffb3c6;
   font-size: 16px;
@@ -364,7 +371,7 @@ body {
 
 <!-- MENÚ DE NAVEGACIÓN -->
 <nav class="navbar">
-  <a onclick="switchTab('inicio', this)" id="link-inicio">INICIO</a>
+  <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
   <a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
   <a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
   <a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
@@ -373,7 +380,7 @@ body {
 </nav>
 
 <!-- SECCIÓN INICIO -->
-<div id="inicio" class="content-section">
+<div id="inicio" class="content-section active-section">
   <header class="header">
     <h1>pablox</h1>
     <p>Bienvenidos a la página web oficial del artista</p>
@@ -428,7 +435,7 @@ body {
 </div>
 
 <!-- SECCIÓN LANZAMIENTOS -->
-<div id="lanzamientos" class="content-section active-section">
+<div id="lanzamientos" class="content-section">
   <h2 class="lanzamientos-title">Lanzamientos</h2>
   <main class="grid-container">
     <div class="card">
@@ -588,7 +595,6 @@ body {
       <h3 class="title">pablox</h3>
       <a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> SEGUIR</a>
     </div>
-    <!-- Tarjeta de Amazon Music con tu enlace exacto de artista -->
     <div class="card card-amazon-blue">
       <div class="card-cover" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);"><span style="font-size: 30px;"><i class="fa-brands fa-amazon"></i></span></div>
       <span class="tag" style="background-color: #38bdf8; color: #0b0c10;">AMAZON MUSIC</span>
