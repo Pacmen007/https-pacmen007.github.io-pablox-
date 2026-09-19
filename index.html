@@ -189,7 +189,9 @@ body {
   margin: 2px 0 10px 0;
   line-height: 1.2;
 }
-.btn-listen, .btn-youtube-clip, .btn-amazon, .btn-home-nav {
+
+/* Botones con estructura idéntica a los de Spotify (.btn-listen) */
+.btn-listen, .btn-youtube-clip, .btn-amazon-listen, .btn-home-nav {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
@@ -218,12 +220,12 @@ body {
   transform: scale(1.03);
   background-color: #cc0000;
 }
-.btn-amazon-blue {
+
+/* Botón de Amazon Music con la misma forma y bordes exactos que Spotify pero en azul */
+.btn-amazon-listen {
   background-color: #0284c7;
-  color: #ffffff;
-  border: none;
 }
-.btn-amazon-blue:hover {
+.btn-amazon-listen:hover {
   transform: scale(1.03);
   background-color: #0369a1;
 }
@@ -506,7 +508,7 @@ body {
       <div class="card-cover" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);"><span>🌙</span></div>
       <span class="tag" style="background-color: #38bdf8; color: #0b0c10;">SENCILLO</span>
       <h3 class="title">Eclipse</h3>
-      <a href="https://music.amazon.com/albums/B0HJSGZDV7?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IVt4vPOHVl9FTvZMhrJugGknj" target="_blank" class="btn-amazon-blue"><i class="fa-brands fa-amazon"></i> ESCUCHAR</a>
+      <a href="https://music.amazon.com/albums/B0HJSGZDV7?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_IVt4vPOHVl9FTvZMhrJugGknj" target="_blank" class="btn-amazon-listen"><i class="fa-brands fa-amazon"></i> ESCUCHAR</a>
     </div>
   </main>
 </div>
