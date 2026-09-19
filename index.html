@@ -70,7 +70,7 @@ body {
   padding: 40px 20px 20px 20px;
 }
 
-/* Forzado absoluto en minúsculas con Orbitron para que no salten mayúsculas */
+/* Título principal en minúsculas y Orbitron */
 .header h1 {
   font-family: 'Orbitron', sans-serif !important;
   font-size: 58px !important;
@@ -91,18 +91,7 @@ body {
   letter-spacing: 1px;
 }
 
-.section-title {
-  text-align: center;
-  color: #38bdf8 !important;
-  font-size: 28px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin: 40px 0 20px 0;
-  text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 25px rgba(2, 132, 199, 0.8);
-  font-weight: 900;
-}
-
-/* Estilo exclusivo y chulo para la sección Contrataciones con tipografía 'Chakra Petch' y color naranja brillante */
+/* Estilos exclusivos de títulos por sección */
 .contrataciones-title {
   font-family: 'Chakra Petch', sans-serif !important;
   font-size: 34px !important;
@@ -117,7 +106,6 @@ body {
   text-shadow: 0 0 20px rgba(251, 146, 60, 0.7), 0 0 40px rgba(194, 65, 12, 0.5);
 }
 
-/* Estilo exclusivo y chulo para la sección Sobre Mí con tipografía 'Orbitron' y color amarillo brillante */
 .sobremi-title {
   font-family: 'Orbitron', sans-serif !important;
   font-size: 32px !important;
@@ -132,7 +120,6 @@ body {
   text-shadow: 0 0 20px rgba(250, 204, 21, 0.7), 0 0 40px rgba(202, 138, 4, 0.5);
 }
 
-/* Estilo exclusivo y chulo para Videoclips con tipografía 'Bungee' y color morado brillante */
 .videoclips-title {
   font-family: 'Bungee', cursive !important;
   font-size: 32px !important;
@@ -146,7 +133,6 @@ body {
   text-shadow: 0 0 20px rgba(168, 85, 247, 0.7), 0 0 40px rgba(147, 51, 234, 0.5);
 }
 
-/* Estilo exclusivo y chulo para Lanzamientos en tonos verde, blanco y cian brillante */
 .lanzamientos-title {
   font-family: 'Cinzel', serif !important;
   font-size: 38px !important;
@@ -194,7 +180,7 @@ body {
   width: 100%;
   background-color: rgba(20, 15, 35, 0.85);
   backdrop-filter: blur(8px);
-  border: 2px solid rgba(139, 92, 246, 0.4);
+  border: 2px solid rgba(74, 222, 128, 0.4);
   border-radius: 12px;
   padding: 10px;
   text-align: center;
@@ -206,11 +192,28 @@ body {
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
 .card:hover {
-  border-color: #ff3366;
+  border-color: #4ade80;
   transform: translateY(-3px);
 }
 
-/* Tarjeta de Amazon Music en tonos azul claro y azul oscuro */
+.videoclip-card {
+  border: 2px solid rgba(239, 68, 68, 0.5) !important;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2) !important;
+}
+.videoclip-card:hover {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5) !important;
+}
+
+.redes-card {
+  border: 2px solid rgba(168, 85, 247, 0.5) !important;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2) !important;
+}
+.redes-card:hover {
+  border-color: #a855f7 !important;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5) !important;
+}
+
 .card-amazon-blue {
   background-color: rgba(13, 27, 42, 0.9) !important;
   border: 2px solid #38bdf8 !important;
@@ -236,8 +239,8 @@ body {
   font-size: 24px;
 }
 .tag {
-  background-color: #ff3366;
-  color: #ffffff;
+  background-color: #4ade80;
+  color: #0b0c10;
   font-size: 8px;
   font-weight: bold;
   text-transform: uppercase;
@@ -257,7 +260,7 @@ body {
   line-height: 1.2;
 }
 
-/* Botones con estructura idéntica a los de Spotify (.btn-listen) */
+/* Botones de reproducción */
 .btn-listen, .btn-youtube-clip, .btn-amazon-listen, .btn-home-nav {
   color: #ffffff;
   text-decoration: none;
@@ -287,8 +290,6 @@ body {
   transform: scale(1.03);
   background-color: #cc0000;
 }
-
-/* Botón de Amazon Music con la misma forma y bordes exactos que Spotify pero en azul */
 .btn-amazon-listen {
   background-color: #0284c7;
 }
@@ -312,13 +313,11 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (min-width: 900px) {
   .home-cards-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 @media (min-width: 1150px) {
   .home-cards-container {
     grid-template-columns: repeat(5, 1fr);
@@ -327,7 +326,6 @@ body {
 
 .home-card {
   background: rgba(20, 15, 35, 0.9);
-  border: 2px solid rgba(139, 92, 246, 0.4);
   border-radius: 16px;
   padding: 25px 15px;
   text-align: center;
@@ -338,9 +336,53 @@ body {
   transition: all 0.3s ease;
 }
 
-.home-card:hover {
-  border-color: #ff3366;
-  box-shadow: 0 0 25px rgba(255, 51, 102, 0.4);
+/* 1. Tarjeta Inicio - Lanzamientos (Verde claro) */
+.home-card-lanzamientos {
+  border: 2px solid rgba(74, 222, 128, 0.5);
+}
+.home-card-lanzamientos:hover {
+  border-color: #4ade80;
+  box-shadow: 0 0 25px rgba(74, 222, 128, 0.4);
+  transform: translateY(-5px);
+}
+
+/* 2. Tarjeta Inicio - Videoclips (Morado) */
+.home-card-videoclips {
+  border: 2px solid rgba(168, 85, 247, 0.5);
+}
+.home-card-videoclips:hover {
+  border-color: #a855f7;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+  transform: translateY(-5px);
+}
+
+/* 3. Tarjeta Inicio - Redes Sociales (Azul cian brillante) */
+.home-card-redes {
+  border: 2px solid rgba(56, 189, 248, 0.5);
+}
+.home-card-redes:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+  transform: translateY(-5px);
+}
+
+/* 4. Tarjeta Inicio - Sobre Mí (Color Amarillo) */
+.home-card-sobremi {
+  border: 2px solid rgba(250, 204, 21, 0.5);
+}
+.home-card-sobremi:hover {
+  border-color: #facc15;
+  box-shadow: 0 0 25px rgba(250, 204, 21, 0.4);
+  transform: translateY(-5px);
+}
+
+/* 5. Tarjeta Inicio - Contrataciones (Color Naranja) */
+.home-card-contrataciones {
+  border: 2px solid rgba(251, 146, 60, 0.5);
+}
+.home-card-contrataciones:hover {
+  border-color: #fb923c;
+  box-shadow: 0 0 25px rgba(251, 146, 60, 0.4);
   transform: translateY(-5px);
 }
 
@@ -431,34 +473,34 @@ body {
   </header>
 
   <div class="home-cards-container">
-    <div class="home-card">
-      <div class="home-card-icon" style="background: linear-gradient(135deg, #38bdf8, #2563eb);"><i class="fa-solid fa-compact-disc"></i></div>
+    <div class="home-card home-card-lanzamientos">
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #4ade80, #16a34a);"><i class="fa-solid fa-compact-disc"></i></div>
       <h3>Lanzamientos</h3>
       <p>Descubre todos los sencillos y álbumes oficiales.</p>
-      <button onclick="switchTab('lanzamientos', document.getElementById('link-lanzamientos'))" class="btn-home-nav" style="background: linear-gradient(135deg, #38bdf8, #2563eb); padding: 8px 0; border-radius: 20px; width: 100%;">
+      <button onclick="switchTab('lanzamientos', document.getElementById('link-lanzamientos'))" class="btn-home-nav" style="background: linear-gradient(135deg, #4ade80, #16a34a); color: #0b0c10; font-weight: bold; padding: 8px 0; border-radius: 20px; width: 100%;">
         <i class="fa-solid fa-arrow-right"></i> VER
       </button>
     </div>
 
-    <div class="home-card">
-      <div class="home-card-icon" style="background: linear-gradient(135deg, #ff3366, #e11d48);"><i class="fa-solid fa-video"></i></div>
+    <div class="home-card home-card-videoclips">
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #c084fc, #7e22ce);"><i class="fa-solid fa-video"></i></div>
       <h3>Videoclips</h3>
       <p>Sumerge tus sentidos en los videos oficiales.</p>
-      <button onclick="switchTab('videoclips', document.getElementById('link-videoclips'))" class="btn-home-nav" style="background: linear-gradient(135deg, #ff3366, #e11d48); padding: 8px 0; border-radius: 20px; width: 100%;">
+      <button onclick="switchTab('videoclips', document.getElementById('link-videoclips'))" class="btn-home-nav" style="background: linear-gradient(135deg, #c084fc, #7e22ce); padding: 8px 0; border-radius: 20px; width: 100%;">
         <i class="fa-solid fa-arrow-right"></i> VER
       </button>
     </div>
 
-    <div class="home-card">
-      <div class="home-card-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);"><i class="fa-solid fa-share-nodes"></i></div>
+    <div class="home-card home-card-redes">
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #38bdf8, #0284c7);"><i class="fa-solid fa-share-nodes"></i></div>
       <h3>Redes Sociales</h3>
       <p>Conecta conmigo en Instagram, TikTok y más.</p>
-      <button onclick="switchTab('redes', document.getElementById('link-redes'))" class="btn-home-nav" style="background: linear-gradient(135deg, #a855f7, #7c3aed); padding: 8px 0; border-radius: 20px; width: 100%;">
+      <button onclick="switchTab('redes', document.getElementById('link-redes'))" class="btn-home-nav" style="background: linear-gradient(135deg, #38bdf8, #0284c7); padding: 8px 0; border-radius: 20px; width: 100%;">
         <i class="fa-solid fa-arrow-right"></i> SEGUIR
       </button>
     </div>
 
-    <div class="home-card">
+    <div class="home-card home-card-sobremi">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #ffcc00, #f59e0b);"><i class="fa-solid fa-user"></i></div>
       <h3>Sobre Mí</h3>
       <p>Conoce mi historia y mis raíces en Manzanares.</p>
@@ -467,7 +509,7 @@ body {
       </button>
     </div>
 
-    <div class="home-card">
+    <div class="home-card home-card-contrataciones">
       <div class="home-card-icon" style="background: linear-gradient(135deg, #fb923c, #c2410c);"><i class="fa-solid fa-briefcase"></i></div>
       <h3>Contrataciones</h3>
       <p>Contáctanos para conciertos, bolos y eventos.</p>
@@ -584,25 +626,25 @@ body {
 <div id="videoclips" class="content-section">
   <h2 class="videoclips-title">Videoclips</h2>
   <main class="grid-container">
-    <div class="card">
+    <div class="card videoclip-card">
       <div class="card-cover" style="background: linear-gradient(135deg, #a855f7 100%, #38bdf8 0%);"><span>⭐</span></div>
-      <span class="tag tag-new">VIDEOCLIP</span>
+      <span class="tag tag-new" style="background-color: #ef4444; color: #ffffff;">VIDEOCLIP</span>
       <h3 class="title">La Noche Brilla (video oficial)</h3>
       <a href="https://youtu.be/B9N1HSqxA-4?is=lmBTaFIonI-QUbTx" target="_blank" class="btn-youtube-clip">
         <i class="fa-brands fa-youtube"></i> VER
       </a>
     </div>
-    <div class="card">
+    <div class="card videoclip-card">
       <div class="card-cover"><span>🎥</span></div>
-      <span class="tag">VIDEOCLIP</span>
+      <span class="tag" style="background-color: #ef4444; color: #ffffff;">VIDEOCLIP</span>
       <h3 class="title">Eclipse (oficial)</h3>
       <a href="https://youtu.be/Jn6LCf2BHMA?is=kEjFthzcIHttZxjx" target="_blank" class="btn-youtube-clip">
         <i class="fa-brands fa-youtube"></i> VER
       </a>
     </div>
-    <div class="card">
+    <div class="card videoclip-card">
       <div class="card-cover" style="background: linear-gradient(135deg, #ff3366 100%, #ffcc00 0%);"><span>🔥</span></div>
-      <span class="tag">VIDEOCLIP</span>
+      <span class="tag" style="background-color: #ef4444; color: #ffffff;">VIDEOCLIP</span>
       <h3 class="title">Bellakeo</h3>
       <a href="https://youtu.be/SzLa2j3Sc0Q?is=18RD0oJE0DL-mQtK" target="_blank" class="btn-youtube-clip">
         <i class="fa-brands fa-youtube"></i> VER
@@ -615,39 +657,39 @@ body {
 <div id="redes" class="content-section">
   <h2 class="section-title elegant-title">Sígueme en mis redes</h2>
   <main class="grid-container">
-    <div class="card">
+    <div class="card redes-card">
       <div class="card-cover" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><span style="font-size: 30px;"><i class="fa-brands fa-instagram"></i></span></div>
-      <span class="tag">INSTAGRAM</span>
+      <span class="tag" style="background-color: #a855f7; color: #ffffff;">INSTAGRAM</span>
       <h3 class="title">@pablox_oficial</h3>
       <a href="https://instagram.com/pablox_oficial" target="_blank" class="btn-listen" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fa-brands fa-instagram"></i> SEGUIR</a>
     </div>
-    <div class="card">
+    <div class="card redes-card">
       <div class="card-cover" style="background-color: #000000; border: 2px solid #fe2c55;"><span style="font-size: 30px;"><i class="fa-brands fa-tiktok"></i></span></div>
-      <span class="tag">TIKTOK</span>
+      <span class="tag" style="background-color: #a855f7; color: #ffffff;">TIKTOK</span>
       <h3 class="title">@oficial_pablox</h3>
       <a href="https://tiktok.com/@oficial_pablox" target="_blank" class="btn-listen" style="background-color: #000000; border: 2px solid #fe2c55;"><i class="fa-brands fa-tiktok"></i> SEGUIR</a>
     </div>
-    <div class="card">
+    <div class="card redes-card">
       <div class="card-cover" style="background-color: #FF0000;"><span style="font-size: 30px;"><i class="fa-brands fa-youtube"></i></span></div>
-      <span class="tag">YOUTUBE</span>
+      <span class="tag" style="background-color: #a855f7; color: #ffffff;">YOUTUBE</span>
       <h3 class="title">pablox25</h3>
       <a href="https://youtube.com/@pablox25" target="_blank" class="btn-youtube-clip"><i class="fa-brands fa-youtube"></i> SUSCRIBIRME</a>
     </div>
-    <div class="card">
+    <div class="card redes-card">
       <div class="card-cover" style="background-color: #1DB954;"><span style="font-size: 30px;"><i class="fa-brands fa-spotify"></i></span></div>
-      <span class="tag">SPOTIFY</span>
+      <span class="tag" style="background-color: #a855f7; color: #ffffff;">SPOTIFY</span>
       <h3 class="title">pablox</h3>
       <a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8?si=_PSnFyMEShyYpzuntSRMUA&utm_source=copy-link" target="_blank" class="btn-listen"><i class="fa-brands fa-spotify"></i> SEGUIR</a>
     </div>
-    <div class="card card-amazon-blue">
+    <div class="card card-amazon-blue redes-card">
       <div class="card-cover" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);"><span style="font-size: 30px;"><i class="fa-brands fa-amazon"></i></span></div>
       <span class="tag" style="background-color: #38bdf8; color: #0b0c10;">AMAZON MUSIC</span>
       <h3 class="title">pablox</h3>
       <a href="https://music.amazon.com/artists/B0HF6CPZMG/pablox?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_59NUeI4PQvBZo2LE1mRBvNXkC" target="_blank" class="btn-amazon-listen"><i class="fa-brands fa-amazon"></i> SEGUIR</a>
     </div>
-    <div class="card">
+    <div class="card redes-card">
       <div class="card-cover" style="background-color: #25D366;"><span style="font-size: 30px;"><i class="fa-brands fa-whatsapp"></i></span></div>
-      <span class="tag" style="background-color: #25D366; color: #0b0c10;">WHATSAPP</span>
+      <span class="tag" style="background-color: #a855f7; color: #ffffff;">WHATSAPP</span>
       <h3 class="title">X-GANG</h3>
       <a href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn-listen" style="background-color: #25D366;"><i class="fa-brands fa-whatsapp"></i> UNIRME</a>
     </div>
