@@ -418,6 +418,17 @@ body {
   transform: translateY(-5px);
 }
 
+/* NUEVA TARJETA ENTRADAS */
+.home-card-entradas {
+  border: 2px solid rgba(168, 85, 247, 0.5);
+}
+
+.home-card-entradas:hover {
+  border-color: #a855f7;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+  transform: translateY(-5px);
+}
+
 .home-card-icon {
   width: 60px;
   height: 60px;
@@ -829,7 +840,6 @@ body {
   text-align: center;
 }
 
-/* Ocultar elementos que no corresponden al panel */
 .hidden {
   display: none !important;
 }
@@ -924,6 +934,26 @@ body {
       </button>
     </div>
 
+    <!-- TARJETA ENTRADAS -->
+    <div class="home-card home-card-entradas">
+      <div class="home-card-icon" style="background: linear-gradient(135deg, #a855f7, #38bdf8);">
+        <i class="fa-solid fa-ticket"></i>
+      </div>
+
+      <h3>Entradas</h3>
+
+      <p>
+        Compra tus entradas para los próximos conciertos y eventos de pablox.
+      </p>
+
+      <button
+        onclick="switchTab('entradas', document.getElementById('link-entradas'))"
+        class="btn-home-nav"
+        style="background: linear-gradient(135deg, #a855f7, #38bdf8); padding: 8px 0; border-radius: 20px; width: 100%;">
+        <i class="fa-solid fa-ticket"></i> VER ENTRADAS
+      </button>
+    </div>
+
   </div>
 </div>
 
@@ -958,7 +988,7 @@ body {
       <div class="card-cover"><span>👑</span></div>
       <span class="tag">SENCILLO</span>
       <h3 class="title">Mi Presencia</h3>
-      <a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw&utm_source=copy-link"
+      <a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw"
       target="_blank" class="btn-listen">
         <i class="fa-brands fa-spotify"></i> ESCUCHAR
       </a>
@@ -1326,10 +1356,7 @@ body {
   </div>
 </div>
 
-<!-- =========================================================
-     NUEVA SECCIÓN ENTRADAS
-     ========================================================= -->
-
+<!-- SECCIÓN ENTRADAS -->
 <div id="entradas" class="content-section">
 
   <h2 class="entradas-title">ENTRADAS</h2>
@@ -1340,7 +1367,6 @@ body {
 
   <div class="entradas-wrapper">
 
-    <!-- EVENTOS PÚBLICOS -->
     <div class="entradas-panel">
 
       <h3>
@@ -1352,7 +1378,6 @@ body {
 
     </div>
 
-    <!-- MIS ENTRADAS -->
     <div class="entradas-panel">
 
       <h3>
@@ -1364,7 +1389,6 @@ body {
 
     </div>
 
-    <!-- ACCESO ADMIN -->
     <div class="entradas-panel">
 
       <h3>
@@ -1408,7 +1432,6 @@ body {
 
       </div>
 
-      <!-- PANEL ADMIN -->
       <div id="admin-dashboard" class="admin-dashboard">
 
         <div class="admin-actions">
@@ -1447,7 +1470,6 @@ body {
 
         </div>
 
-        <!-- CREAR EVENTO -->
         <div id="admin-create" class="hidden">
 
           <h3>
@@ -1633,7 +1655,6 @@ body {
 
         </div>
 
-        <!-- ESCÁNER -->
         <div id="admin-scanner" class="hidden">
 
           <h3>
@@ -1690,7 +1711,6 @@ body {
 
         </div>
 
-        <!-- LISTADO DE ENTRADAS -->
         <div id="admin-tickets" class="hidden">
 
           <h3>
@@ -1702,7 +1722,6 @@ body {
 
         </div>
 
-        <!-- CAMBIAR CONTRASEÑA -->
         <div style="margin-top:25px;">
 
           <h3>
@@ -1745,7 +1764,6 @@ body {
 
     </div>
 
-    <!-- VISTA DE ENTRADA -->
     <div id="ticket-preview" class="ticket-preview">
 
       <h2>ENTRADA OFICIAL</h2>
@@ -1798,8 +1816,6 @@ body {
 
 </div>
 
-
-<!-- SCRIPT DE NAVEGACIÓN -->
 <script>
 
 function switchTab(sectionId, element) {
@@ -1837,10 +1853,6 @@ function switchTab(sectionId, element) {
 }
 
 
-/* =========================================================
-   SISTEMA DE ENTRADAS
-   ========================================================= */
-
 const EVENTS_KEY = "pablox_events_v1";
 const TICKETS_KEY = "pablox_tickets_v1";
 const PASSWORD_KEY = "pablox_admin_password_v1";
@@ -1849,10 +1861,6 @@ let scannerStream = null;
 let scannerRunning = false;
 let scannerTimer = null;
 
-
-/* -------------------------
-   UTILIDADES
-------------------------- */
 
 function getEvents() {
 
@@ -1919,7 +1927,6 @@ function euro(value) {
 
 
 function getAdminPassword() {
-
     return localStorage.getItem(PASSWORD_KEY);
 }
 
@@ -1927,19 +1934,10 @@ function getAdminPassword() {
 function ensureAdminPassword() {
 
     if (!getAdminPassword()) {
-
-        /*
-         * Primera contraseña provisional.
-         * Puedes cambiarla inmediatamente desde ADMIN.
-         */
         localStorage.setItem(PASSWORD_KEY, "CAMBIAR-ESTA-CONTRASENA");
     }
 }
 
-
-/* -------------------------
-   EVENTOS
-------------------------- */
 
 function renderEvents() {
 
@@ -2070,10 +2068,6 @@ function escapeHTML(value) {
 }
 
 
-/* -------------------------
-   CREAR EVENTO
-------------------------- */
-
 document
 .getElementById("create-event-form")
 .addEventListener("submit", function(e) {
@@ -2180,10 +2174,6 @@ document
 });
 
 
-/* -------------------------
-   COMPRAR ENTRADA
-------------------------- */
-
 function buyTicket(eventId) {
 
     const events = getEvents();
@@ -2232,35 +2222,20 @@ function buyTicket(eventId) {
     const ticket = {
 
         id: code,
-
         eventId: event.id,
-
         code: code,
-
         fullName: fullName.trim(),
-
         eventName: event.name,
-
         organizer: event.organizer,
-
         date: event.date,
-
         start: event.start,
-
         end: event.end,
-
         city: event.city,
-
         place: event.place,
-
         price: event.price,
-
         createdAt: new Date().toISOString(),
-
         status: "active",
-
         validatedAt: null
-
     };
 
     tickets.push(ticket);
@@ -2270,7 +2245,7 @@ function buyTicket(eventId) {
     renderEvents();
     renderMyTickets();
 
-    showTicket(ticket);
+    showTicket(ticket.code);
 
     alert(
         "Entrada creada correctamente.\n\n" +
@@ -2278,10 +2253,6 @@ function buyTicket(eventId) {
     );
 }
 
-
-/* -------------------------
-   MIS ENTRADAS
-------------------------- */
 
 function renderMyTickets() {
 
@@ -2356,27 +2327,12 @@ function renderMyTickets() {
                     VER ENTRADA
                 </button>
 
-                ${
-                    ticket.status === "active"
-                    ?
-                    `
-                    <button
-                        class="entrada-button green"
-                        onclick="downloadTicketPDF('${ticket.code}')">
-                        <i class="fa-solid fa-file-pdf"></i>
-                        DESCARGAR PDF
-                    </button>
-                    `
-                    :
-                    `
-                    <button
-                        class="entrada-button"
-                        onclick="downloadTicketPDF('${ticket.code}')">
-                        <i class="fa-solid fa-file-pdf"></i>
-                        DESCARGAR PDF
-                    </button>
-                    `
-                }
+                <button
+                    class="entrada-button green"
+                    onclick="downloadTicketPDF('${ticket.code}')">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    DESCARGAR PDF
+                </button>
 
             </div>
 
@@ -2386,10 +2342,6 @@ function renderMyTickets() {
     });
 }
 
-
-/* -------------------------
-   MOSTRAR ENTRADA
-------------------------- */
 
 function showTicket(code) {
 
@@ -2453,10 +2405,6 @@ function showTicket(code) {
     });
 }
 
-
-/* -------------------------
-   PDF
-------------------------- */
 
 function downloadTicketPDF(code) {
 
@@ -2625,10 +2573,6 @@ function downloadTicketPDF(code) {
 }
 
 
-/* -------------------------
-   ADMIN LOGIN
-------------------------- */
-
 document
 .getElementById("admin-login-form")
 .addEventListener("submit", function(e) {
@@ -2693,10 +2637,6 @@ function adminLogout() {
 }
 
 
-/* -------------------------
-   ADMIN PANELES
-------------------------- */
-
 function hideAdminPanels() {
 
     document
@@ -2745,10 +2685,6 @@ function showAdminTickets() {
 }
 
 
-/* -------------------------
-   CAMBIAR CONTRASEÑA
-------------------------- */
-
 document
 .getElementById("change-password-form")
 .addEventListener("submit", function(e) {
@@ -2788,10 +2724,6 @@ document
     }, 3000);
 });
 
-
-/* -------------------------
-   ADMIN ENTRADAS
-------------------------- */
 
 function renderAdminTickets() {
 
@@ -2909,10 +2841,6 @@ function renderAdminTickets() {
 }
 
 
-/* -------------------------
-   VALIDAR ENTRADA
-------------------------- */
-
 function validateTicket(code) {
 
     code = String(code || "").trim();
@@ -2963,9 +2891,6 @@ function validateTicket(code) {
         return false;
     }
 
-    /*
-     * AQUÍ SE DESACTIVA LA ENTRADA.
-     */
     ticket.status = "used";
 
     ticket.validatedAt =
@@ -3031,10 +2956,6 @@ function showScanResult(valid, html) {
 }
 
 
-/* -------------------------
-   CÁMARA / QR
-------------------------- */
-
 async function startScanner() {
 
     const video =
@@ -3081,9 +3002,6 @@ async function startScanner() {
 
         scannerRunning = true;
 
-        /*
-         * BarcodeDetector funciona en navegadores compatibles.
-         */
         if ("BarcodeDetector" in window) {
 
             const detector =
@@ -3200,10 +3118,6 @@ function stopScanner() {
     .classList.add("hidden");
 }
 
-
-/* -------------------------
-   INICIO
-------------------------- */
 
 ensureAdminPassword();
 
