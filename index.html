@@ -1,0 +1,3044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Last-Modified" content="0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>pablox - Sitio Oficial</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Chakra+Petch:wght@400;500;600;700&family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800&display=swap"
+rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:"Chakra Petch",Arial,sans-serif;
+    color:white;
+    background:
+        radial-gradient(circle at top left,rgba(124,58,237,.28),transparent 35%),
+        radial-gradient(circle at bottom right,rgba(168,85,247,.18),transparent 35%),
+        linear-gradient(135deg,#05010d,#10051d,#08030f);
+}
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:9999;
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+
+    padding:14px 10px;
+
+    background:rgba(5,1,13,.94);
+    border-bottom:1px solid rgba(168,85,247,.35);
+
+    backdrop-filter:blur(12px);
+}
+
+.navbar a{
+    display:block;
+
+    color:#ddd;
+    text-decoration:none;
+
+    font-family:"Orbitron",sans-serif;
+    font-size:12px;
+    font-weight:700;
+
+    padding:10px 13px;
+    border-radius:20px;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.navbar a:hover{
+    color:white;
+    background:rgba(168,85,247,.18);
+}
+
+.navbar a.active-link{
+    color:white;
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    box-shadow:0 0 18px rgba(168,85,247,.35);
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+.content-section{
+    display:none;
+    width:100%;
+    min-height:calc(100vh - 70px);
+    padding:45px 20px 70px;
+}
+
+.content-section.active-section{
+    display:block;
+}
+
+.section-inner{
+    width:100%;
+    max-width:1250px;
+    margin:auto;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+
+.main-title{
+    text-align:center;
+    font-family:"Bungee",sans-serif;
+    font-size:clamp(42px,8vw,90px);
+    letter-spacing:4px;
+
+    background:linear-gradient(
+        135deg,
+        #ffffff,
+        #d8b4fe,
+        #a855f7
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    text-shadow:0 0 35px rgba(168,85,247,.25);
+}
+
+.main-subtitle{
+    text-align:center;
+    color:#d8cce8;
+    margin-top:10px;
+    font-size:17px;
+}
+
+.section-title{
+    text-align:center;
+    font-family:"Bungee",sans-serif;
+    font-size:clamp(30px,6vw,58px);
+    margin-bottom:10px;
+    color:white;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:#c8b8d8;
+    margin-bottom:35px;
+}
+
+/* =========================
+   INICIO
+========================= */
+
+.home-container{
+    max-width:1250px;
+    margin:45px auto 0;
+}
+
+.home-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.home-card{
+    min-height:250px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:28px 22px;
+
+    border:1px solid rgba(168,85,247,.25);
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:0 15px 50px rgba(0,0,0,.25);
+
+    transition:.3s ease;
+}
+
+.home-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(168,85,247,.65);
+    box-shadow:0 18px 55px rgba(124,58,237,.2);
+}
+
+.home-card-icon{
+    width:75px;
+    height:75px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:22px;
+
+    margin-bottom:18px;
+
+    font-size:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.home-card h3{
+    font-family:"Orbitron",sans-serif;
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.home-card p{
+    color:#cfc2da;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.btn-home-nav{
+    border:0;
+    color:white;
+    font-family:"Orbitron",sans-serif;
+    font-weight:700;
+    cursor:pointer;
+    padding:10px 18px;
+    transition:.25s ease;
+}
+
+.btn-home-nav:hover{
+    transform:scale(1.03);
+    filter:brightness(1.15);
+}
+
+.home-card-entradas{
+    border:2px solid rgba(168,85,247,.55);
+}
+
+.home-card-entradas:hover{
+    border-color:#a855f7;
+    transform:translateY(-5px);
+}
+
+/* =========================
+   TARJETAS GENERALES
+========================= */
+
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+}
+
+.card{
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(168,85,247,.22);
+    border-radius:22px;
+    padding:25px;
+    transition:.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(168,85,247,.6);
+}
+
+.card h3{
+    font-family:"Orbitron",sans-serif;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#cfc2da;
+    line-height:1.55;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+
+    margin-top:15px;
+
+    padding:12px 18px;
+
+    color:white;
+    text-decoration:none;
+
+    border:0;
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+
+    font-family:"Orbitron",sans-serif;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.12);
+}
+
+.btn-danger{
+    background:linear-gradient(135deg,#991b1b,#dc2626);
+}
+
+.btn-secondary{
+    background:linear-gradient(135deg,#312e81,#4c1d95);
+}
+
+/* =========================
+   LANZAMIENTOS
+========================= */
+
+.release-card{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:210px;
+}
+
+.release-platform{
+    font-size:12px;
+    color:#bfa8d5;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:10px;
+}
+
+.release-card i{
+    font-size:28px;
+    margin-bottom:15px;
+    color:#c084fc;
+}
+
+/* =========================
+   VIDEOCLIPS
+========================= */
+
+.video-card{
+    overflow:hidden;
+}
+
+.video-card iframe{
+    width:100%;
+    aspect-ratio:16/9;
+    border:0;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+/* =========================
+   REDES
+========================= */
+
+.social-card{
+    text-align:center;
+}
+
+.social-card i{
+    font-size:42px;
+    margin-bottom:15px;
+    color:#c084fc;
+}
+
+.social-card h3{
+    margin-bottom:8px;
+}
+
+.social-card a{
+    color:white;
+}
+
+/* =========================
+   SOBRE MÍ
+========================= */
+
+.about-panel{
+    max-width:950px;
+    margin:auto;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(168,85,247,.25);
+
+    line-height:1.8;
+    color:#e5dced;
+}
+
+.about-panel p{
+    margin-bottom:20px;
+}
+
+.about-panel strong{
+    color:white;
+}
+
+/* =========================
+   CONTRATACIONES
+========================= */
+
+.contract-panel{
+    max-width:800px;
+    margin:auto;
+
+    padding:40px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(168,85,247,.3);
+}
+
+.contract-panel p{
+    color:#d5c8df;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+/* =========================
+   ENTRADAS
+========================= */
+
+.entradas-title{
+    cursor:pointer;
+    user-select:none;
+}
+
+.entradas-subtitle{
+    text-align:center;
+    color:#cfc2da;
+    margin-bottom:30px;
+}
+
+.entradas-wrapper{
+    max-width:1200px;
+    margin:auto;
+}
+
+.entradas-panel{
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(168,85,247,.25);
+    border-radius:25px;
+    padding:28px;
+    margin-bottom:25px;
+}
+
+.entradas-panel h3{
+    font-family:"Orbitron",sans-serif;
+    margin-bottom:20px;
+}
+
+.events-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:20px;
+}
+
+.event-card{
+    background:rgba(0,0,0,.22);
+    border:1px solid rgba(168,85,247,.25);
+    border-radius:20px;
+    padding:22px;
+}
+
+.event-card h4{
+    font-family:"Orbitron",sans-serif;
+    font-size:20px;
+    margin-bottom:12px;
+}
+
+.event-info{
+    color:#cfc2da;
+    line-height:1.7;
+}
+
+.event-price{
+    font-size:25px;
+    font-weight:bold;
+    color:#d8b4fe;
+    margin:15px 0;
+}
+
+.empty-message{
+    text-align:center;
+    color:#a99bb4;
+    padding:25px;
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    color:#d9c9e7;
+    font-size:14px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+
+    padding:12px 14px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(168,85,247,.3);
+
+    background:#100817;
+    color:white;
+
+    outline:none;
+
+    font-family:inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#a855f7;
+    box-shadow:0 0 0 2px rgba(168,85,247,.1);
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+.admin-panel{
+    display:none;
+}
+
+.admin-panel.visible{
+    display:block;
+}
+
+.admin-login{
+    max-width:500px;
+    margin:auto;
+}
+
+.admin-dashboard{
+    display:none;
+}
+
+.admin-dashboard.visible{
+    display:block;
+}
+
+.admin-box{
+    padding:25px;
+    border-radius:20px;
+    background:rgba(0,0,0,.2);
+    border:1px solid rgba(168,85,247,.2);
+    margin-bottom:20px;
+}
+
+.admin-box h4{
+    font-family:"Orbitron",sans-serif;
+    margin-bottom:18px;
+}
+
+.admin-event-list{
+    display:grid;
+    gap:12px;
+}
+
+.admin-event{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+
+    padding:15px;
+
+    background:rgba(255,255,255,.04);
+    border-radius:15px;
+}
+
+/* =========================
+   TICKETS
+========================= */
+
+.ticket-list{
+    display:grid;
+    gap:15px;
+}
+
+.ticket-card{
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(168,85,247,.25);
+    border-radius:20px;
+    padding:20px;
+}
+
+.ticket-card.used{
+    opacity:.55;
+    border-color:#666;
+}
+
+.ticket-status{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:15px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.ticket-status.active{
+    background:rgba(34,197,94,.15);
+    color:#86efac;
+}
+
+.ticket-status.used{
+    background:rgba(239,68,68,.15);
+    color:#fca5a5;
+}
+
+.ticket-code{
+    font-family:"Orbitron",sans-serif;
+    color:#d8b4fe;
+    font-size:18px;
+    word-break:break-all;
+}
+
+.ticket-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
+}
+
+/* =========================
+   QR
+========================= */
+
+.qr-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:20px 0;
+}
+
+.qr-container canvas,
+.qr-container img{
+    background:white;
+    padding:10px;
+    border-radius:10px;
+}
+
+/* =========================
+   PREVISUALIZACIÓN
+========================= */
+
+.ticket-preview{
+    display:none;
+    max-width:500px;
+    margin:25px auto;
+}
+
+.ticket-preview.visible{
+    display:block;
+}
+
+.ticket-paper{
+    background:white;
+    color:#111;
+    border-radius:20px;
+    padding:25px;
+}
+
+.ticket-paper h3{
+    font-family:"Orbitron",sans-serif;
+    margin-bottom:15px;
+}
+
+.ticket-paper .ticket-data{
+    line-height:1.7;
+}
+
+/* =========================
+   SCANNER
+========================= */
+
+.scanner-box{
+    max-width:650px;
+    margin:auto;
+}
+
+#scanner-video{
+    width:100%;
+    max-height:450px;
+    object-fit:cover;
+    border-radius:20px;
+    background:black;
+    display:none;
+}
+
+.scanner-result{
+    margin-top:15px;
+    padding:15px;
+    border-radius:15px;
+    display:none;
+}
+
+.scanner-result.success{
+    display:block;
+    background:rgba(34,197,94,.15);
+    color:#86efac;
+}
+
+.scanner-result.error{
+    display:block;
+    background:rgba(239,68,68,.15);
+    color:#fca5a5;
+}
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden{
+    display:none !important;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .home-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .navbar{
+        gap:3px;
+    }
+
+    .navbar a{
+        font-size:10px;
+        padding:9px 9px;
+    }
+}
+
+@media(max-width:650px){
+
+    .content-section{
+        padding:30px 12px 50px;
+    }
+
+    .home-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        scrollbar-width:none;
+    }
+
+    .navbar::-webkit-scrollbar{
+        display:none;
+    }
+
+    .navbar a{
+        flex:0 0 auto;
+        white-space:nowrap;
+    }
+
+    .entradas-panel{
+        padding:20px;
+    }
+
+    .about-panel,
+    .contract-panel{
+        padding:25px 20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVEGACIÓN
+===================================================== -->
+
+<nav class="navbar">
+
+    <a onclick="switchTab('inicio',this)"
+       id="link-inicio"
+       class="active-link">
+       INICIO
+    </a>
+
+    <a onclick="switchTab('lanzamientos',this)"
+       id="link-lanzamientos">
+       LANZAMIENTOS
+    </a>
+
+    <a onclick="switchTab('videoclips',this)"
+       id="link-videoclips">
+       VIDEOCLIPS
+    </a>
+
+    <a onclick="switchTab('redes',this)"
+       id="link-redes">
+       REDES SOCIALES
+    </a>
+
+    <a onclick="switchTab('sobre-mi',this)"
+       id="link-sobre-mi">
+       SOBRE MÍ
+    </a>
+
+    <a onclick="switchTab('contrataciones',this)"
+       id="link-contrataciones">
+       CONTRATACIONES
+    </a>
+
+    <a onclick="switchTab('entradas',this)"
+       id="link-entradas">
+       ENTRADAS
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     INICIO
+===================================================== -->
+
+<section id="inicio" class="content-section active-section">
+
+    <div class="section-inner">
+
+        <h1 class="main-title">pablox</h1>
+
+        <p class="main-subtitle">
+            Bienvenidos a la página web oficial del artista
+        </p>
+
+        <div class="home-container">
+
+            <div class="home-grid">
+
+                <!-- LANZAMIENTOS -->
+
+                <div class="home-card">
+
+                    <div class="home-card-icon"
+                    style="background:linear-gradient(135deg,#1db954,#15883c);">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+
+                    <h3>Lanzamientos</h3>
+
+                    <p>
+                        Descubre todos los lanzamientos de pablox.
+                    </p>
+
+                    <button
+                    onclick="goToSection('lanzamientos')"
+                    class="btn-home-nav"
+                    style="background:linear-gradient(135deg,#1db954,#15883c);width:100%;border-radius:20px;">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        VER LANZAMIENTOS
+                    </button>
+
+                </div>
+
+
+                <!-- VIDEOCLIPS -->
+
+                <div class="home-card">
+
+                    <div class="home-card-icon"
+                    style="background:linear-gradient(135deg,#ef4444,#991b1b);">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+
+                    <h3>Videoclips</h3>
+
+                    <p>
+                        Mira los videoclips oficiales de pablox.
+                    </p>
+
+                    <button
+                    onclick="goToSection('videoclips')"
+                    class="btn-home-nav"
+                    style="background:linear-gradient(135deg,#ef4444,#991b1b);width:100%;border-radius:20px;">
+                        <i class="fa-solid fa-play"></i>
+                        VER VIDEOCLIPS
+                    </button>
+
+                </div>
+
+
+                <!-- REDES -->
+
+                <div class="home-card">
+
+                    <div class="home-card-icon"
+                    style="background:linear-gradient(135deg,#ec4899,#7c3aed);">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+
+                    <h3>Redes Sociales</h3>
+
+                    <p>
+                        Sigue a pablox en sus redes sociales.
+                    </p>
+
+                    <button
+                    onclick="goToSection('redes')"
+                    class="btn-home-nav"
+                    style="background:linear-gradient(135deg,#ec4899,#7c3aed);width:100%;border-radius:20px;">
+                        <i class="fa-solid fa-users"></i>
+                        VER REDES
+                    </button>
+
+                </div>
+
+
+                <!-- SOBRE MÍ -->
+
+                <div class="home-card">
+
+                    <div class="home-card-icon"
+                    style="background:linear-gradient(135deg,#6366f1,#4338ca);">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <h3>Sobre Mí</h3>
+
+                    <p>
+                        Conoce más sobre pablox y su trayectoria musical.
+                    </p>
+
+                    <button
+                    onclick="goToSection('sobre-mi')"
+                    class="btn-home-nav"
+                    style="background:linear-gradient(135deg,#6366f1,#4338ca);width:100%;border-radius:20px;">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        SOBRE MÍ
+                    </button>
+
+                </div>
+
+
+                <!-- CONTRATACIONES -->
+
+                <div class="home-card">
+
+                    <div class="home-card-icon"
+                    style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <h3>Contrataciones</h3>
+
+                    <p>
+                        Contacta para conciertos, eventos y actuaciones.
+                    </p>
+
+                    <button
+                    onclick="goToSection('contrataciones')"
+                    class="btn-home-nav"
+                    style="background:linear-gradient(135deg,#f59e0b,#d97706);width:100%;border-radius:20px;">
+                        <i class="fa-solid fa-envelope"></i>
+                        CONTRATACIONES
+                    </button>
+
+                </div>
+
+
+                <!-- ENTRADAS -->
+
+                <div class="home-card home-card-entradas">
+
+                    <div class="home-card-icon"
+                    style="background:linear-gradient(135deg,#a855f7,#7c3aed);">
+                        <i class="fa-solid fa-ticket"></i>
+                    </div>
+
+                    <h3>Entradas</h3>
+
+                    <p>
+                        Consulta eventos disponibles y compra tus entradas.
+                    </p>
+
+                    <button
+                    onclick="goToSection('entradas')"
+                    class="btn-home-nav"
+                    style="background:linear-gradient(135deg,#a855f7,#7c3aed);width:100%;border-radius:20px;">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        VER ENTRADAS
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LANZAMIENTOS
+===================================================== -->
+
+<section id="lanzamientos" class="content-section">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">LANZAMIENTOS</h2>
+
+        <p class="section-subtitle">
+            Música de pablox
+        </p>
+
+        <div class="cards-grid">
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Eclipse</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/1PJK1UJJZYOkRZiymCbGzI?si=PZi2FNZYQBWjZ7ppHnTWRg&utm_source=copy-link"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Bellakeo</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Mi Presencia</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Prueba</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>La roja en del Mundial</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Tiempo atrás</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Triste</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>La Feria (Cumbia)</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Fin del Verano</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Destino</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>La noche Brilla</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Feria</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Luminoche</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+
+            <div class="card release-card">
+                <div>
+                    <i class="fa-brands fa-spotify"></i>
+                    <div class="release-platform">Spotify</div>
+                    <h3>Desde Cero</h3>
+                </div>
+                <a class="btn"
+                href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA"
+                target="_blank">
+                    ESCUCHAR
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     VIDEOCLIPS
+===================================================== -->
+
+<section id="videoclips" class="content-section">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">VIDEOCLIPS</h2>
+
+        <p class="section-subtitle">
+            Videoclips oficiales de pablox
+        </p>
+
+        <div class="cards-grid">
+
+            <div class="card video-card">
+
+                <iframe
+                src="https://www.youtube.com/embed/B9N1HSqxA-4"
+                title="La Noche Brilla"
+                allowfullscreen>
+                </iframe>
+
+                <h3>La Noche Brilla</h3>
+
+                <a
+                class="btn"
+                href="https://youtu.be/B9N1HSqxA-4"
+                target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                    VER EN YOUTUBE
+                </a>
+
+            </div>
+
+
+            <div class="card video-card">
+
+                <iframe
+                src="https://www.youtube.com/embed/Jn6LCf2BHMA"
+                title="Eclipse"
+                allowfullscreen>
+                </iframe>
+
+                <h3>Eclipse</h3>
+
+                <a
+                class="btn"
+                href="https://youtu.be/Jn6LCf2BHMA"
+                target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                    VER EN YOUTUBE
+                </a>
+
+            </div>
+
+
+            <div class="card video-card">
+
+                <iframe
+                src="https://www.youtube.com/embed/SzLa2j3Sc0Q"
+                title="Bellakeo"
+                allowfullscreen>
+                </iframe>
+
+                <h3>Bellakeo</h3>
+
+                <a
+                class="btn"
+                href="https://youtu.be/SzLa2j3Sc0Q"
+                target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                    VER EN YOUTUBE
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REDES SOCIALES
+===================================================== -->
+
+<section id="redes" class="content-section">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">REDES SOCIALES</h2>
+
+        <p class="section-subtitle">
+            Sigue a pablox
+        </p>
+
+        <div class="cards-grid">
+
+            <div class="card social-card">
+                <i class="fa-brands fa-instagram"></i>
+                <h3>Instagram</h3>
+                <p>@pablox_oficial</p>
+                <a
+                class="btn"
+                href="https://instagram.com/pablox_oficial"
+                target="_blank">
+                    INSTAGRAM
+                </a>
+            </div>
+
+
+            <div class="card social-card">
+                <i class="fa-brands fa-tiktok"></i>
+                <h3>TikTok</h3>
+                <p>@oficial_pablox</p>
+                <a
+                class="btn"
+                href="https://tiktok.com/@oficial_pablox"
+                target="_blank">
+                    TIKTOK
+                </a>
+            </div>
+
+
+            <div class="card social-card">
+                <i class="fa-brands fa-youtube"></i>
+                <h3>YouTube</h3>
+                <p>pablox25</p>
+                <a
+                class="btn"
+                href="https://youtube.com/@pablox25"
+                target="_blank">
+                    YOUTUBE
+                </a>
+            </div>
+
+
+            <div class="card social-card">
+                <i class="fa-brands fa-spotify"></i>
+                <h3>Spotify</h3>
+                <p>pablox</p>
+                <a
+                class="btn"
+                href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8"
+                target="_blank">
+                    SPOTIFY
+                </a>
+            </div>
+
+
+            <div class="card social-card">
+                <i class="fa-brands fa-amazon"></i>
+                <h3>Amazon Music</h3>
+                <p>pablox</p>
+                <a
+                class="btn"
+                href="https://music.amazon.com/artists/B0HF6CPZMG/pablox"
+                target="_blank">
+                    AMAZON MUSIC
+                </a>
+            </div>
+
+
+            <div class="card social-card">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h3>X-GANG</h3>
+                <p>Únete a la familia X-GANG 💜</p>
+                <a
+                class="btn"
+                href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r"
+                target="_blank">
+                    WHATSAPP
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SOBRE MÍ
+===================================================== -->
+
+<section id="sobre-mi" class="content-section">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">SOBRE MÍ</h2>
+
+        <p class="section-subtitle">
+            Conoce a pablox
+        </p>
+
+        <div class="about-panel">
+
+            <p>
+                Soy de <strong>Manzanares (Ciudad Real, España)</strong>
+                y llevo unos <strong>7 años haciendo música</strong>.
+                Exploro casi todos los estilos, excepto el rock y el pop.
+            </p>
+
+            <p>
+                Hago mis propias canciones, edición y videoclips,
+                hablando siempre de historias reales y de lo que siento.
+            </p>
+
+            <p>
+                Mi objetivo es llegar a ser un grandísimo artista y
+                conectar con personas de todo el mundo a través de su música.
+            </p>
+
+            <p>
+                <strong>
+                    Producido por la familia X-GANG.
+                    ¡Gracias por apoyar mi carrera!
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTRATACIONES
+===================================================== -->
+
+<section id="contrataciones" class="content-section">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">CONTRATACIONES</h2>
+
+        <p class="section-subtitle">
+            Contacta con pablox
+        </p>
+
+        <div class="contract-panel">
+
+            <p>
+                ¿Quieres contar con pablox para un concierto,
+                festival, bolo o evento privado?
+            </p>
+
+            <p>
+                Para contrataciones directas, disponibilidad de fechas
+                y propuestas, puedes ponerte en contacto enviando
+                un mensaje directo en Instagram.
+            </p>
+
+            <a
+            class="btn"
+            href="https://instagram.com/pablox_oficial"
+            target="_blank">
+
+                <i class="fa-brands fa-instagram"></i>
+                CONTACTAR POR INSTAGRAM
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ENTRADAS
+===================================================== -->
+
+<section id="entradas" class="content-section">
+
+    <div class="section-inner">
+
+        <h2
+        id="entradas-title"
+        class="section-title entradas-title">
+            ENTRADAS
+        </h2>
+
+        <p class="entradas-subtitle">
+            Consulta los eventos disponibles y gestiona tus entradas.
+        </p>
+
+
+        <div class="entradas-wrapper">
+
+            <!-- EVENTOS -->
+
+            <div class="entradas-panel">
+
+                <h3>
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Eventos disponibles
+                </h3>
+
+                <div
+                id="events-container"
+                class="events-container">
+                </div>
+
+            </div>
+
+
+            <!-- MIS ENTRADAS -->
+
+            <div class="entradas-panel">
+
+                <h3>
+                    <i class="fa-solid fa-ticket"></i>
+                    Mis entradas
+                </h3>
+
+                <div
+                id="my-tickets-container"
+                class="ticket-list">
+                </div>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div
+            id="admin-panel"
+            class="entradas-panel admin-panel">
+
+                <h3>
+                    <i class="fa-solid fa-lock"></i>
+                    Administración
+                </h3>
+
+
+                <!-- CREAR CONTRASEÑA -->
+
+                <div
+                id="admin-first-setup"
+                class="admin-login">
+
+                    <div class="admin-box">
+
+                        <h4>Crear contraseña de administrador</h4>
+
+                        <p style="color:#cfc2da;margin-bottom:15px;">
+                            Crea una contraseña para acceder al panel
+                            de administración de entradas.
+                        </p>
+
+                        <div class="form-group">
+
+                            <label>
+                                Nueva contraseña
+                            </label>
+
+                            <input
+                            id="admin-new-password"
+                            type="password"
+                            autocomplete="new-password">
+
+                        </div>
+
+                        <button
+                        class="btn"
+                        onclick="createAdminPassword()">
+
+                            CREAR CONTRASEÑA
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <div
+                id="admin-login"
+                class="admin-login hidden">
+
+                    <div class="admin-box">
+
+                        <h4>Acceso administrador</h4>
+
+                        <div class="form-group">
+
+                            <label>
+                                Contraseña
+                            </label>
+
+                            <input
+                            id="admin-password"
+                            type="password"
+                            autocomplete="current-password">
+
+                        </div>
+
+                        <button
+                        class="btn"
+                        onclick="loginAdmin()">
+
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            ENTRAR
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD -->
+
+                <div
+                id="admin-dashboard"
+                class="admin-dashboard">
+
+
+                    <!-- CREAR EVENTO -->
+
+                    <div class="admin-box">
+
+                        <h4>
+                            <i class="fa-solid fa-plus"></i>
+                            Crear evento
+                        </h4>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label>
+                                    Nombre del evento
+                                </label>
+
+                                <input
+                                id="event-name"
+                                type="text"
+                                placeholder="Concierto pablox">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Organizador
+                                </label>
+
+                                <input
+                                id="event-organizer"
+                                type="text"
+                                placeholder="pablox">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Fecha
+                                </label>
+
+                                <input
+                                id="event-date"
+                                type="date">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Ciudad
+                                </label>
+
+                                <input
+                                id="event-city"
+                                type="text"
+                                placeholder="Manzanares">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Hora de inicio
+                                </label>
+
+                                <input
+                                id="event-start"
+                                type="time">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Hora de finalización
+                                </label>
+
+                                <input
+                                id="event-end"
+                                type="time">
+
+                            </div>
+
+
+                            <div class="form-group full">
+
+                                <label>
+                                    Lugar
+                                </label>
+
+                                <input
+                                id="event-place"
+                                type="text"
+                                placeholder="Lugar del evento">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Precio (€)
+                                </label>
+
+                                <input
+                                id="event-price"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                value="0">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Aforo
+                                </label>
+
+                                <input
+                                id="event-capacity"
+                                type="number"
+                                min="1"
+                                value="100">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Fin de venta
+                                </label>
+
+                                <input
+                                id="event-sale-date"
+                                type="date">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Hora fin de venta
+                                </label>
+
+                                <input
+                                id="event-sale-time"
+                                type="time"
+                                value="23:59">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button
+                            class="btn"
+                            onclick="createEvent()">
+
+                                <i class="fa-solid fa-plus"></i>
+                                CREAR EVENTO
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EVENTOS ADMIN -->
+
+                    <div class="admin-box">
+
+                        <h4>
+                            <i class="fa-solid fa-list"></i>
+                            Eventos creados
+                        </h4>
+
+                        <div
+                        id="admin-events-container"
+                        class="admin-event-list">
+                        </div>
+
+                    </div>
+
+
+                    <!-- VALIDACIÓN -->
+
+                    <div class="admin-box scanner-box">
+
+                        <h4>
+                            <i class="fa-solid fa-qrcode"></i>
+                            Validar entrada
+                        </h4>
+
+                        <p style="color:#cfc2da;margin-bottom:15px;">
+                            Escanea el QR de la entrada o introduce
+                            manualmente el código.
+                        </p>
+
+                        <video
+                        id="scanner-video"
+                        playsinline>
+                        </video>
+
+                        <div class="form-actions">
+
+                            <button
+                            class="btn"
+                            onclick="startScanner()">
+
+                                <i class="fa-solid fa-camera"></i>
+                                ESCANEAR QR
+
+                            </button>
+
+                            <button
+                            class="btn btn-secondary"
+                            onclick="stopScanner()">
+
+                                DETENER CÁMARA
+
+                            </button>
+
+                        </div>
+
+
+                        <div
+                        class="form-group"
+                        style="margin-top:20px;">
+
+                            <label>
+                                Código de entrada
+                            </label>
+
+                            <input
+                            id="manual-ticket-code"
+                            type="text"
+                            placeholder="PX-...">
+
+                        </div>
+
+
+                        <button
+                        class="btn"
+                        onclick="validateManualTicket()">
+
+                            <i class="fa-solid fa-check"></i>
+                            VALIDAR ENTRADA
+
+                        </button>
+
+
+                        <div
+                        id="scanner-result"
+                        class="scanner-result">
+                        </div>
+
+                    </div>
+
+
+                    <!-- TODAS LAS ENTRADAS -->
+
+                    <div class="admin-box">
+
+                        <h4>
+                            <i class="fa-solid fa-ticket"></i>
+                            Entradas vendidas
+                        </h4>
+
+                        <div
+                        id="admin-tickets-container"
+                        class="ticket-list">
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTRASEÑA -->
+
+                    <div class="admin-box">
+
+                        <h4>
+                            <i class="fa-solid fa-key"></i>
+                            Cambiar contraseña
+                        </h4>
+
+                        <div class="form-group">
+
+                            <label>
+                                Nueva contraseña
+                            </label>
+
+                            <input
+                            id="change-password"
+                            type="password">
+
+                        </div>
+
+                        <button
+                        class="btn"
+                        onclick="changeAdminPassword()">
+
+                            CAMBIAR CONTRASEÑA
+
+                        </button>
+
+                    </div>
+
+
+                    <button
+                    class="btn btn-danger"
+                    onclick="logoutAdmin()">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        CERRAR SESIÓN
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREVISUALIZACIÓN -->
+
+            <div
+            id="ticket-preview"
+            class="ticket-preview">
+
+                <div class="ticket-paper">
+
+                    <h3>
+                        ENTRADA pablox
+                    </h3>
+
+                    <div
+                    id="ticket-preview-content"
+                    class="ticket-data">
+                    </div>
+
+                    <div
+                    id="ticket-preview-qr"
+                    class="qr-container">
+                    </div>
+
+                    <button
+                    class="btn"
+                    onclick="downloadCurrentTicketPDF()">
+
+                        <i class="fa-solid fa-file-pdf"></i>
+                        DESCARGAR PDF
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+function switchTab(sectionId, clickedLink){
+
+    const sections =
+        document.querySelectorAll(".content-section");
+
+    sections.forEach(section => {
+        section.classList.remove("active-section");
+    });
+
+    const target =
+        document.getElementById(sectionId);
+
+    if(target){
+        target.classList.add("active-section");
+    }
+
+    const links =
+        document.querySelectorAll(".navbar a");
+
+    links.forEach(link => {
+        link.classList.remove("active-link");
+    });
+
+    if(clickedLink){
+        clickedLink.classList.add("active-link");
+    }else{
+
+        const link =
+            document.getElementById("link-" + sectionId);
+
+        if(link){
+            link.classList.add("active-link");
+        }
+
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    if(sectionId === "entradas"){
+        renderEvents();
+        renderMyTickets();
+    }
+}
+
+
+function goToSection(sectionId){
+
+    const link =
+        document.getElementById("link-" + sectionId);
+
+    switchTab(sectionId,link);
+
+}
+
+
+/* =====================================================
+   ENTRADAS
+===================================================== */
+
+const EVENTS_KEY = "pablox_events_v1";
+const TICKETS_KEY = "pablox_tickets_v1";
+const ADMIN_PASSWORD_KEY = "pablox_admin_password_v2";
+
+let currentTicket = null;
+let scannerStream = null;
+let scannerInterval = null;
+
+
+/* =========================
+   STORAGE
+========================= */
+
+function getEvents(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(EVENTS_KEY)
+        ) || [];
+
+    }catch(e){
+
+        return [];
+
+    }
+
+}
+
+
+function saveEvents(events){
+
+    localStorage.setItem(
+        EVENTS_KEY,
+        JSON.stringify(events)
+    );
+
+}
+
+
+function getTickets(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(TICKETS_KEY)
+        ) || [];
+
+    }catch(e){
+
+        return [];
+
+    }
+
+}
+
+
+function saveTickets(tickets){
+
+    localStorage.setItem(
+        TICKETS_KEY,
+        JSON.stringify(tickets)
+    );
+
+}
+
+
+/* =========================
+   ID
+========================= */
+
+function generateId(prefix){
+
+    return prefix + "-" +
+        Date.now() + "-" +
+        Math.random()
+        .toString(36)
+        .substring(2,8);
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   FECHAS
+========================= */
+
+function formatDate(date){
+
+    if(!date){
+        return "";
+    }
+
+    const parts = date.split("-");
+
+    if(parts.length !== 3){
+        return date;
+    }
+
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+}
+
+
+function formatPrice(price){
+
+    const number = Number(price);
+
+    if(!Number.isFinite(number)){
+        return "0,00 €";
+    }
+
+    return number.toFixed(2).replace(".",",") + " €";
+
+}
+
+
+/* =========================
+   EVENTOS PÚBLICOS
+========================= */
+
+function renderEvents(){
+
+    const container =
+        document.getElementById("events-container");
+
+    if(!container){
+        return;
+    }
+
+    const events = getEvents();
+
+    if(events.length === 0){
+
+        container.innerHTML = `
+            <div class="empty-message">
+                No hay eventos disponibles actualmente.
+            </div>
+        `;
+
+        return;
+    }
+
+    const tickets = getTickets();
+
+    container.innerHTML = "";
+
+    events.forEach(event => {
+
+        const sold =
+            tickets.filter(
+                ticket => ticket.eventId === event.id
+            ).length;
+
+        const capacity =
+            Number(event.capacity) || 0;
+
+        const available =
+            Math.max(0,capacity - sold);
+
+        const saleFinished =
+            event.saleEnd &&
+            Date.now() > new Date(event.saleEnd).getTime();
+
+        const unavailable =
+            available <= 0 || saleFinished;
+
+        const card =
+            document.createElement("div");
+
+        card.className = "event-card";
+
+        card.innerHTML = `
+
+            <h4>${escapeHTML(event.name)}</h4>
+
+            <div class="event-info">
+
+                <div>
+                    <i class="fa-solid fa-calendar"></i>
+                    ${escapeHTML(formatDate(event.date))}
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-clock"></i>
+                    ${escapeHTML(event.start || "")}
+                    ${event.end ? " - " + escapeHTML(event.end) : ""}
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-location-dot"></i>
+                    ${escapeHTML(event.place || "")}
+                    ${event.city ? ", " + escapeHTML(event.city) : ""}
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-chair"></i>
+                    ${available} entradas disponibles
+                </div>
+
+            </div>
+
+            <div class="event-price">
+                ${formatPrice(event.price)}
+            </div>
+
+            ${
+                unavailable
+                ?
+                `<button class="btn btn-secondary" disabled>
+                    ${saleFinished ? "VENTA FINALIZADA" : "AGOTADAS"}
+                 </button>`
+                :
+                `<button
+                    class="btn"
+                    onclick="buyTicket('${event.id}')">
+                    <i class="fa-solid fa-ticket"></i>
+                    COMPRAR ENTRADA
+                 </button>`
+            }
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   COMPRAR ENTRADA
+========================= */
+
+function buyTicket(eventId){
+
+    const events = getEvents();
+
+    const event =
+        events.find(
+            item => item.id === eventId
+        );
+
+    if(!event){
+        alert("El evento no existe.");
+        return;
+    }
+
+    const tickets = getTickets();
+
+    const sold =
+        tickets.filter(
+            ticket => ticket.eventId === eventId
+        ).length;
+
+    if(sold >= Number(event.capacity)){
+        alert("Las entradas están agotadas.");
+        renderEvents();
+        return;
+    }
+
+    if(
+        event.saleEnd &&
+        Date.now() > new Date(event.saleEnd).getTime()
+    ){
+        alert("La venta de entradas ha finalizado.");
+        renderEvents();
+        return;
+    }
+
+    const name =
+        prompt("Escribe tu nombre completo:");
+
+    if(!name || !name.trim()){
+        return;
+    }
+
+    const code =
+        "PX-" +
+        Date.now() +
+        "-" +
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+    const ticket = {
+
+        id:generateId("ticket"),
+
+        code:code,
+
+        eventId:event.id,
+
+        eventName:event.name,
+
+        name:name.trim(),
+
+        organizer:event.organizer,
+
+        date:event.date,
+
+        start:event.start,
+
+        end:event.end,
+
+        city:event.city,
+
+        place:event.place,
+
+        price:event.price,
+
+        status:"active",
+
+        createdAt:new Date().toISOString(),
+
+        validatedAt:null
+
+    };
+
+    tickets.push(ticket);
+
+    saveTickets(tickets);
+
+    currentTicket = ticket;
+
+    renderEvents();
+    renderMyTickets();
+
+    showTicket(ticket);
+
+    alert(
+        "Entrada creada correctamente.\n\n" +
+        "Código: " + ticket.code
+    );
+
+}
+
+
+/* =========================
+   MIS ENTRADAS
+========================= */
+
+function renderMyTickets(){
+
+    const container =
+        document.getElementById("my-tickets-container");
+
+    if(!container){
+        return;
+    }
+
+    const tickets = getTickets();
+
+    if(tickets.length === 0){
+
+        container.innerHTML = `
+            <div class="empty-message">
+                Todavía no tienes entradas.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    tickets.forEach(ticket => {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "ticket-card " +
+            (ticket.status === "used" ? "used" : "");
+
+        card.innerHTML = `
+
+            <span class="ticket-status ${
+                ticket.status === "used"
+                ? "used"
+                : "active"
+            }">
+
+                ${
+                    ticket.status === "used"
+                    ? "ENTRADA UTILIZADA"
+                    : "ENTRADA ACTIVA"
+                }
+
+            </span>
+
+            <h4>
+                ${escapeHTML(ticket.eventName)}
+            </h4>
+
+            <p>
+                <strong>Nombre:</strong>
+                ${escapeHTML(ticket.name)}
+            </p>
+
+            <p>
+                <strong>Fecha:</strong>
+                ${escapeHTML(formatDate(ticket.date))}
+            </p>
+
+            <p>
+                <strong>Lugar:</strong>
+                ${escapeHTML(ticket.place)}
+                ${ticket.city ? ", " + escapeHTML(ticket.city) : ""}
+            </p>
+
+            <p class="ticket-code">
+                ${escapeHTML(ticket.code)}
+            </p>
+
+            <div class="ticket-actions">
+
+                <button
+                class="btn"
+                onclick="showTicketById('${ticket.id}')">
+
+                    <i class="fa-solid fa-eye"></i>
+                    VER ENTRADA
+
+                </button>
+
+                <button
+                class="btn btn-secondary"
+                onclick="downloadTicketPDFById('${ticket.id}')">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+                    PDF
+
+                </button>
+
+            </div>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   MOSTRAR ENTRADA
+========================= */
+
+function showTicketById(ticketId){
+
+    const tickets = getTickets();
+
+    const ticket =
+        tickets.find(
+            item => item.id === ticketId
+        );
+
+    if(!ticket){
+        alert("No se encontró la entrada.");
+        return;
+    }
+
+    currentTicket = ticket;
+
+    showTicket(ticket);
+
+}
+
+
+function showTicket(ticket){
+
+    currentTicket = ticket;
+
+    const preview =
+        document.getElementById("ticket-preview");
+
+    const content =
+        document.getElementById("ticket-preview-content");
+
+    const qr =
+        document.getElementById("ticket-preview-qr");
+
+    if(!preview || !content || !qr){
+        return;
+    }
+
+    content.innerHTML = `
+
+        <p>
+            <strong>Evento:</strong>
+            ${escapeHTML(ticket.eventName)}
+        </p>
+
+        <p>
+            <strong>Nombre:</strong>
+            ${escapeHTML(ticket.name)}
+        </p>
+
+        <p>
+            <strong>Fecha:</strong>
+            ${escapeHTML(formatDate(ticket.date))}
+        </p>
+
+        <p>
+            <strong>Hora:</strong>
+            ${escapeHTML(ticket.start || "")}
+            ${ticket.end ? " - " + escapeHTML(ticket.end) : ""}
+        </p>
+
+        <p>
+            <strong>Lugar:</strong>
+            ${escapeHTML(ticket.place || "")}
+        </p>
+
+        <p>
+            <strong>Ciudad:</strong>
+            ${escapeHTML(ticket.city || "")}
+        </p>
+
+        <p>
+            <strong>Precio:</strong>
+            ${formatPrice(ticket.price)}
+        </p>
+
+        <p>
+            <strong>Código:</strong>
+            ${escapeHTML(ticket.code)}
+        </p>
+
+        <p>
+            <strong>Estado:</strong>
+            ${
+                ticket.status === "used"
+                ? "UTILIZADA"
+                : "ACTIVA"
+            }
+        </p>
+
+    `;
+
+    qr.innerHTML = "";
+
+    new QRCode(qr,{
+        text:ticket.code,
+        width:190,
+        height:190,
+        correctLevel:QRCode.CorrectLevel.H
+    });
+
+    preview.classList.add("visible");
+
+    preview.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+/* =========================
+   PDF
+========================= */
+
+async function downloadTicketPDFById(ticketId){
+
+    const tickets = getTickets();
+
+    const ticket =
+        tickets.find(
+            item => item.id === ticketId
+        );
+
+    if(!ticket){
+        alert("No se encontró la entrada.");
+        return;
+    }
+
+    await createTicketPDF(ticket);
+
+}
+
+
+async function downloadCurrentTicketPDF(){
+
+    if(!currentTicket){
+        alert("No hay ninguna entrada seleccionada.");
+        return;
+    }
+
+    await createTicketPDF(currentTicket);
+
+}
+
+
+async function createTicketPDF(ticket){
+
+    if(!window.jspdf){
+        alert("No se pudo cargar el generador PDF.");
+        return;
+    }
+
+    const {jsPDF} = window.jspdf;
+
+    const pdf =
+        new jsPDF({
+            unit:"mm",
+            format:"a4"
+        });
+
+    pdf.setFontSize(24);
+    pdf.text("ENTRADA pablox",20,25);
+
+    pdf.setFontSize(13);
+
+    pdf.text(
+        "Evento: " + ticket.eventName,
+        20,
+        40
+    );
+
+    pdf.text(
+        "Nombre: " + ticket.name,
+        20,
+        50
+    );
+
+    pdf.text(
+        "Fecha: " + formatDate(ticket.date),
+        20,
+        60
+    );
+
+    pdf.text(
+        "Hora: " + ticket.start +
+        (ticket.end ? " - " + ticket.end : ""),
+        20,
+        70
+    );
+
+    pdf.text(
+        "Lugar: " + ticket.place,
+        20,
+        80
+    );
+
+    pdf.text(
+        "Ciudad: " + ticket.city,
+        20,
+        90
+    );
+
+    pdf.text(
+        "Precio: " + formatPrice(ticket.price),
+        20,
+        100
+    );
+
+    pdf.text(
+        "Código: " + ticket.code,
+        20,
+        110
+    );
+
+    pdf.text(
+        "Estado: " +
+        (
+            ticket.status === "used"
+            ? "UTILIZADA"
+            : "ACTIVA"
+        ),
+        20,
+        120
+    );
+
+
+    const qrCanvas =
+        document.createElement("canvas");
+
+    new QRCode(qrCanvas,{
+        text:ticket.code,
+        width:250,
+        height:250
+    });
+
+    setTimeout(() => {
+
+        const image =
+            qrCanvas.querySelector("img");
+
+        if(image){
+
+            pdf.addImage(
+                image.src,
+                "PNG",
+                60,
+                135,
+                90,
+                90
+            );
+
+        }else{
+
+            const canvas =
+                qrCanvas.querySelector("canvas");
+
+            if(canvas){
+
+                pdf.addImage(
+                    canvas.toDataURL("image/png"),
+                    "PNG",
+                    60,
+                    135,
+                    90,
+                    90
+                );
+
+            }
+
+        }
+
+        pdf.save(
+            "entrada-" +
+            ticket.code +
+            ".pdf"
+        );
+
+    },300);
+
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+let titleClickCount = 0;
+let titleClickTimer = null;
+
+
+function prepareAdminAccess(){
+
+    const password =
+        localStorage.getItem(
+            ADMIN_PASSWORD_KEY
+        );
+
+    const setup =
+        document.getElementById("admin-first-setup");
+
+    const login =
+        document.getElementById("admin-login");
+
+    const dashboard =
+        document.getElementById("admin-dashboard");
+
+    if(password){
+
+        setup.classList.add("hidden");
+        login.classList.remove("hidden");
+
+    }else{
+
+        setup.classList.remove("hidden");
+        login.classList.add("hidden");
+
+    }
+
+    dashboard.classList.remove("visible");
+
+}
+
+
+function openAdminAccess(){
+
+    const panel =
+        document.getElementById("admin-panel");
+
+    panel.classList.add("visible");
+
+    prepareAdminAccess();
+
+    panel.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* =========================
+   7 CLICS
+========================= */
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    const title =
+        document.getElementById("entradas-title");
+
+    if(title){
+
+        title.addEventListener("click",function(){
+
+            titleClickCount++;
+
+            clearTimeout(titleClickTimer);
+
+            titleClickTimer =
+                setTimeout(() => {
+                    titleClickCount = 0;
+                },1500);
+
+            if(titleClickCount >= 7){
+
+                titleClickCount = 0;
+
+                openAdminAccess();
+
+            }
+
+        });
+
+    }
+
+    renderEvents();
+    renderMyTickets();
+
+});
+
+
+/* =========================
+   CREAR CONTRASEÑA
+========================= */
+
+function createAdminPassword(){
+
+    const input =
+        document.getElementById("admin-new-password");
+
+    const password =
+        input.value.trim();
+
+    if(password.length < 4){
+
+        alert(
+            "La contraseña debe tener al menos 4 caracteres."
+        );
+
+        return;
+    }
+
+    localStorage.setItem(
+        ADM
