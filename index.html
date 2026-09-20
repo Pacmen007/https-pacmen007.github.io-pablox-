@@ -1,0 +1,3785 @@
+<!DOCTYPE html>  <html lang="es">      <head>      
+<meta charset="UTF-8">      
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <meta http-equiv="Expires" content="0">      
+<meta http-equiv="Last-Modified" content="0">      
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">      
+<meta http-equiv="Pragma" content="no-cache">  <title>pablox - Sitio Oficial</title>  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Bungee&family=Bungee+Shade&family=Playfair+Display:ital,wght@0,700;1,600&family=Orbitron:wght@700;900&family=Chakra+Petch:wght@700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>  <style>      {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+
+body {
+background: linear-gradient(135deg, #090a0f 0%, #1a0b2e 35%, #2b0d1a 70%, #0d0f18 100%);
+background-size: cover;
+background-attachment: fixed;
+color: #ffffff;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+padding-bottom: 50px;
+min-height: 100vh;
+}
+
+.navbar {
+display: flex;
+justify-content: flex-start;
+align-items: center;
+gap: 25px;
+padding: 15px 20px;
+background-color: rgba(13, 17, 23, 0.85);
+backdrop-filter: blur(10px);
+border-bottom: 2px solid #8b5cf6;
+position: sticky;
+top: 0;
+z-index: 1000;
+overflow-x: auto;
+white-space: nowrap;
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none;
+}
+
+.navbar::-webkit-scrollbar {
+display: none;
+}
+
+.navbar a {
+color: #ffffff;
+text-decoration: none;
+font-weight: bold;
+font-size: 14px;
+letter-spacing: 1px;
+flex-shrink: 0;
+cursor: pointer;
+transition: color 0.2s ease;
+}
+
+.navbar a:hover,
+.navbar a.active-link {
+color: #ff3366;
+}
+
+.header {
+text-align: center;
+padding: 40px 20px 20px 20px;
+}
+
+.header h1 {
+font-family: 'Orbitron', sans-serif !important;
+font-size: 58px !important;
+font-weight: 900 !important;
+text-transform: none !important;
+letter-spacing: 3px;
+margin-bottom: 10px;
+background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 35%, #dc2626 70%, #ffffff 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
+}
+
+.header p {
+color: #ffb3c6;
+font-size: 16px;
+font-weight: 500;
+letter-spacing: 1px;
+}
+
+.amazon-title {
+font-family: 'Bungee Shade', cursive !important;
+font-size: 30px !important;
+text-align: center !important;
+display: block !important;
+width: 100% !important;
+color: #38bdf8 !important;
+margin: 45px 0 20px 0;
+text-shadow: 0 0 15px rgba(56, 189, 248, 0.9), 0 0 30px rgba(2, 132, 199, 0.7);
+letter-spacing: 2px;
+}
+
+.contrataciones-title {
+font-family: 'Chakra Petch', sans-serif !important;
+font-size: 34px !important;
+font-weight: 700 !important;
+text-transform: uppercase;
+letter-spacing: 3px;
+margin: 45px 0 25px 0;
+text-align: center;
+background: linear-gradient(135deg, #ffedd5 0%, #fb923c 50%, #c2410c 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 20px rgba(251, 146, 60, 0.7), 0 0 40px rgba(194, 65, 12, 0.5);
+}
+
+.sobremi-title {
+font-family: 'Orbitron', sans-serif !important;
+font-size: 32px !important;
+font-weight: 900 !important;
+text-transform: uppercase;
+letter-spacing: 4px;
+margin: 45px 0 25px 0;
+text-align: center;
+background: linear-gradient(135deg, #fef08a 0%, #facc15 50%, #ca8a04 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 20px rgba(250, 204, 21, 0.7), 0 0 40px rgba(202, 138, 4, 0.5);
+}
+
+.videoclips-title {
+font-family: 'Bungee', cursive !important;
+font-size: 32px !important;
+text-transform: uppercase;
+letter-spacing: 2px;
+margin: 45px 0 25px 0;
+text-align: center;
+background: linear-gradient(135deg, #c084fc 0%, #9333ea 50%, #581c87 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 20px rgba(168, 85, 247, 0.7), 0 0 40px rgba(147, 51, 234, 0.5);
+}
+
+.lanzamientos-title {
+font-family: 'Cinzel', serif !important;
+font-size: 38px !important;
+font-weight: 900 !important;
+text-transform: uppercase;
+letter-spacing: 4px !important;
+background: linear-gradient(135deg, #ffffff 0%, #4ade80 50%, #22c55e 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 25px rgba(74, 222, 128, 0.5);
+margin: 45px 0 25px 0;
+text-align: center;
+}
+
+.elegant-title {
+font-family: 'Playfair Display', serif !important;
+font-style: italic;
+font-weight: 700;
+font-size: 36px !important;
+text-transform: capitalize !important;
+background: linear-gradient(90deg, #ff3366, #ffcc00, #a855f7);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
+letter-spacing: 1px !important;
+margin: 45px 0 25px 0 !important;
+text-align: center !important;
+display: block !important;
+width: 100% !important;
+}
+
+.grid-container {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+gap: 15px;
+max-width: 900px;
+margin: 0 auto;
+padding: 10px 15px 25px 15px;
+}
+
+@media (min-width: 768px) {
+.grid-container {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+.card {
+width: 100%;
+background-color: rgba(20, 15, 35, 0.85);
+backdrop-filter: blur(8px);
+border: 2px solid rgba(74, 222, 128, 0.4);
+border-radius: 12px;
+padding: 10px;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 0 auto;
+box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+border-color: #4ade80;
+transform: translateY(-3px);
+}
+
+.videoclip-card {
+border: 2px solid rgba(239, 68, 68, 0.5) !important;
+box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2) !important;
+}
+
+.videoclip-card:hover {
+border-color: #ef4444 !important;
+}
+
+.redes-card {
+border: 2px solid rgba(168, 85, 247, 0.4) !important;
+box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+}
+
+.redes-card:hover {
+border-color: #a855f7 !important;
+}
+
+.card-amazon-blue {
+background-color: rgba(13, 27, 42, 0.9) !important;
+border: 2px solid #38bdf8 !important;
+box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3) !important;
+}
+
+.card-amazon-blue:hover {
+border-color: #0284c7 !important;
+}
+
+.card-cover {
+width: 100%;
+height: 110px;
+background: linear-gradient(135deg, #7000ff 0%, #ff4b72 100%);
+border-radius: 8px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 10px;
+}
+
+.card-cover span {
+color: white;
+font-size: 24px;
+}
+
+.tag {
+background-color: #4ade80;
+color: #0b0c10;
+font-size: 8px;
+font-weight: bold;
+text-transform: uppercase;
+padding: 3px 8px;
+border-radius: 20px;
+margin-bottom: 6px;
+}
+
+.tag-new {
+background-color: #ffcc00;
+color: #0b0c10;
+}
+
+.title {
+color: #ffffff;
+font-size: 12px;
+font-weight: bold;
+margin: 2px 0 10px 0;
+line-height: 1.2;
+}
+
+.btn-listen,
+.btn-youtube-clip,
+.btn-amazon-listen,
+.btn-home-nav {
+color: #ffffff;
+text-decoration: none;
+font-weight: bold;
+font-size: 10px;
+padding: 6px 0;
+border-radius: 20px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 5px;
+cursor: pointer;
+transition: transform 0.2s ease, background-color 0.2s ease;
+border: none;
+}
+
+.btn-listen {
+background-color: #1DB954;
+}
+
+.btn-listen:hover {
+transform: scale(1.03);
+background-color: #1ed760;
+}
+
+.btn-youtube-clip {
+background-color: #FF0000;
+}
+
+.btn-youtube-clip:hover {
+transform: scale(1.03);
+background-color: #cc0000;
+}
+
+.btn-amazon-listen {
+background-color: #0284c7;
+}
+
+.btn-amazon-listen:hover {
+transform: scale(1.03);
+background-color: #0369a1;
+}
+
+.home-cards-container {
+display: grid;
+grid-template-columns: 1fr;
+gap: 20px;
+max-width: 1100px;
+margin: 25px auto 0 auto;
+padding: 0 15px;
+}
+
+@media (min-width: 600px) {
+.home-cards-container {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (min-width: 900px) {
+.home-cards-container {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+@media (min-width: 1150px) {
+.home-cards-container {
+grid-template-columns: repeat(5, 1fr);
+}
+}
+
+.home-card {
+background: rgba(20, 15, 35, 0.9);
+border-radius: 16px;
+padding: 25px 15px;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+transition: all 0.3s ease;
+}
+
+.home-card-lanzamientos {
+border: 2px solid rgba(74, 222, 128, 0.5);
+}
+
+.home-card-lanzamientos:hover {
+border-color: #4ade80;
+transform: translateY(-5px);
+}
+
+.home-card-videoclips {
+border: 2px solid rgba(168, 85, 247, 0.5);
+}
+
+.home-card-videoclips:hover {
+border-color: #a855f7;
+transform: translateY(-5px);
+}
+
+.home-card-redes {
+border: 2px solid rgba(56, 189, 248, 0.5);
+}
+
+.home-card-redes:hover {
+border-color: #38bdf8;
+transform: translateY(-5px);
+}
+
+.home-card-sobremi {
+border: 2px solid rgba(250, 204, 21, 0.5);
+}
+
+.home-card-sobremi:hover {
+border-color: #facc15;
+transform: translateY(-5px);
+}
+
+.home-card-contrataciones {
+border: 2px solid rgba(251, 146, 60, 0.5);
+}
+
+.home-card-contrataciones:hover {
+border-color: #fb923c;
+transform: translateY(-5px);
+}
+
+/* NUEVA TARJETA ENTRADAS */
+
+.home-card-entradas {
+border: 2px solid rgba(168, 85, 247, 0.55);
+}
+
+.home-card-entradas:hover {
+border-color: #a855f7;
+transform: translateY(-5px);
+}
+
+.home-card-icon {
+width: 60px;
+height: 60px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 24px;
+color: white;
+margin-bottom: 15px;
+box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
+
+.home-card h3 {
+font-size: 16px;
+color: #ffffff;
+margin-bottom: 8px;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.home-card p {
+font-size: 13px;
+color: #cbd5e1;
+margin-bottom: 20px;
+line-height: 1.4;
+flex-grow: 1;
+}
+
+.about-container {
+max-width: 800px;
+margin: 0 auto;
+padding: 30px;
+background-color: rgba(20, 15, 35, 0.85);
+backdrop-filter: blur(8px);
+border: 2px solid rgba(250, 204, 21, 0.4);
+border-radius: 16px;
+text-align: center;
+line-height: 1.6;
+font-size: 16px;
+color: #e2e8f0;
+box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.about-container p {
+margin-bottom: 15px;
+}
+
+.about-highlight {
+color: #facc15;
+font-weight: bold;
+}
+
+.contrataciones-container {
+max-width: 800px;
+margin: 0 auto;
+padding: 30px;
+background-color: rgba(20, 15, 35, 0.85);
+backdrop-filter: blur(8px);
+border: 2px solid rgba(251, 146, 60, 0.4);
+border-radius: 16px;
+text-align: center;
+box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+line-height: 1.6;
+font-size: 16px;
+color: #e2e8f0;
+}
+
+.contrataciones-container p {
+margin-bottom: 20px;
+}
+
+.content-section {
+display: none;
+}
+
+.content-section.active-section {
+display: block;
+}
+
+/* =========================================================
+ENTRADAS
+========================================================= */
+
+.entradas-title {
+font-family: 'Orbitron', sans-serif;
+font-size: 38px;
+text-align: center;
+margin: 45px 0 10px;
+letter-spacing: 3px;
+background: linear-gradient(135deg, #ffffff, #a855f7, #38bdf8);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 25px rgba(168,85,247,.5);
+cursor: default;
+user-select: none;
+}
+
+.entradas-subtitle {
+text-align: center;
+color: #cbd5e1;
+margin-bottom: 30px;
+}
+
+.entradas-wrapper {
+max-width: 1050px;
+margin: 0 auto;
+padding: 0 15px 40px;
+}
+
+.entradas-panel {
+background: rgba(20,15,35,.9);
+border: 2px solid rgba(168,85,247,.45);
+border-radius: 18px;
+padding: 25px;
+box-shadow: 0 8px 30px rgba(0,0,0,.55);
+margin-bottom: 25px;
+}
+
+.entradas-panel h3 {
+text-align: center;
+font-family: 'Orbitron', sans-serif;
+margin-bottom: 20px;
+}
+
+.entradas-empty {
+text-align: center;
+color: #94a3b8;
+padding: 25px 10px;
+}
+
+.event-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+gap: 18px;
+}
+
+.event-card {
+background: rgba(9,10,15,.9);
+border: 2px solid rgba(139,92,246,.45);
+border-radius: 16px;
+padding: 20px;
+box-shadow: 0 5px 20px rgba(0,0,0,.4);
+}
+
+.event-card h3 {
+color: #ffffff;
+margin-bottom: 12px;
+}
+
+.event-data {
+color: #cbd5e1;
+font-size: 14px;
+line-height: 1.7;
+margin-bottom: 15px;
+}
+
+.event-price {
+color: #4ade80;
+font-size: 20px;
+font-weight: bold;
+margin-bottom: 15px;
+}
+
+.entrada-form {
+display: grid;
+gap: 14px;
+}
+
+.form-row {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 14px;
+}
+
+@media(max-width:650px) {
+.form-row {
+grid-template-columns: 1fr;
+}
+}
+
+.entrada-form label {
+display: block;
+color: #cbd5e1;
+font-size: 13px;
+font-weight: bold;
+margin-bottom: 6px;
+}
+
+.entrada-form input,
+.entrada-form select {
+width: 100%;
+padding: 12px;
+border-radius: 10px;
+border: 1px solid #475569;
+background: #0f172a;
+color: #ffffff;
+font-size: 16px;
+outline: none;
+}
+
+.entrada-form input:focus,
+.entrada-form select:focus {
+border-color: #a855f7;
+box-shadow: 0 0 0 2px rgba(168,85,247,.2);
+}
+
+.entrada-button {
+border: none;
+border-radius: 12px;
+padding: 13px 18px;
+color: #ffffff;
+background: linear-gradient(135deg,#7c3aed,#a855f7);
+font-weight: bold;
+cursor: pointer;
+font-size: 14px;
+transition: .2s;
+}
+
+.entrada-button:hover {
+transform: translateY(-2px);
+}
+
+.entrada-button.green {
+background: linear-gradient(135deg,#16a34a,#4ade80);
+color: #07130b;
+}
+
+.entrada-button.red {
+background: linear-gradient(135deg,#dc2626,#ef4444);
+}
+
+.entrada-button.blue {
+background: linear-gradient(135deg,#0284c7,#38bdf8);
+}
+
+.admin-login {
+max-width: 450px;
+margin: 0 auto;
+}
+
+.admin-setup {
+max-width: 450px;
+margin: 0 auto;
+}
+
+.admin-error {
+display: none;
+background: rgba(220,38,38,.15);
+border: 1px solid #ef4444;
+color: #fca5a5;
+padding: 10px;
+border-radius: 10px;
+text-align: center;
+margin-top: 10px;
+}
+
+.admin-success {
+display: none;
+background: rgba(34,197,94,.15);
+border: 1px solid #22c55e;
+color: #86efac;
+padding: 10px;
+border-radius: 10px;
+text-align: center;
+margin-top: 10px;
+}
+
+.admin-dashboard {
+display: none;
+}
+
+.admin-actions {
+display: grid;
+grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+gap: 12px;
+margin-bottom: 20px;
+}
+
+.ticket-item {
+background: rgba(9,10,15,.9);
+border: 1px solid #334155;
+border-radius: 12px;
+padding: 15px;
+margin-bottom: 10px;
+}
+
+.ticket-item.active {
+border-color: #22c55e;
+}
+
+.ticket-item.used {
+border-color: #ef4444;
+opacity: .75;
+}
+
+.ticket-status {
+display: inline-block;
+padding: 4px 10px;
+border-radius: 20px;
+font-size: 11px;
+font-weight: bold;
+margin-bottom: 8px;
+}
+
+.ticket-status.active {
+background: #14532d;
+color: #86efac;
+}
+
+.ticket-status.used {
+background: #450a0a;
+color: #fca5a5;
+}
+
+.ticket-actions {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-top: 12px;
+}
+
+.ticket-actions button {
+flex: 1;
+min-width: 130px;
+}
+
+.qr-reader-box {
+text-align: center;
+}
+
+#qr-video {
+width: 100%;
+max-width: 500px;
+border-radius: 15px;
+border: 2px solid #8b5cf6;
+background: #000;
+margin: 15px auto;
+display: none;
+}
+
+.scan-result {
+padding: 18px;
+border-radius: 14px;
+margin-top: 15px;
+display: none;
+text-align: center;
+}
+
+.scan-result.valid {
+display: block;
+background: rgba(34,197,94,.15);
+border: 2px solid #22c55e;
+color: #86efac;
+}
+
+.scan-result.invalid {
+display: block;
+background: rgba(239,68,68,.15);
+border: 2px solid #ef4444;
+color: #fca5a5;
+}
+
+.manual-code {
+margin-top: 20px;
+display: grid;
+grid-template-columns: 1fr auto;
+gap: 10px;
+}
+
+.manual-code input {
+padding: 12px;
+border-radius: 10px;
+border: 1px solid #475569;
+background: #0f172a;
+color: white;
+font-size: 16px;
+}
+
+.ticket-preview {
+max-width: 600px;
+margin: 25px auto;
+background: #ffffff;
+color: #111827;
+border-radius: 15px;
+padding: 25px;
+display: none;
+}
+
+.ticket-preview h2 {
+color: #111827;
+text-align: center;
+margin-bottom: 20px;
+}
+
+.ticket-preview .ticket-line {
+border-bottom: 1px solid #e5e7eb;
+padding: 10px 0;
+}
+
+.ticket-preview strong {
+color: #111827;
+}
+
+.ticket-qr {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+.admin-note {
+color: #94a3b8;
+font-size: 12px;
+line-height: 1.5;
+margin-top: 15px;
+text-align: center;
+}
+
+.admin-hidden-info {
+text-align: center;
+color: #64748b;
+font-size: 11px;
+margin-top: 12px;
+}
+
+.hidden {
+display: none !important;
+}
+
+</style>  </head>  <body>  <!-- MENÚ DE NAVEGACIÓN -->  <nav class="navbar">  <a onclick="switchTab('inicio', this)" id="link-inicio" class="active-link">INICIO</a>
+
+<a onclick="switchTab('lanzamientos', this)" id="link-lanzamientos">LANZAMIENTOS</a>
+
+<a onclick="switchTab('videoclips', this)" id="link-videoclips">VIDEOCLIPS</a>
+
+<a onclick="switchTab('redes', this)" id="link-redes">REDES SOCIALES</a>
+
+<a onclick="switchTab('sobre-mi', this)" id="link-sobre-mi">SOBRE MÍ</a>
+
+<a onclick="switchTab('contrataciones', this)" id="link-contrataciones">CONTRATACIONES</a>
+
+<a onclick="switchTab('entradas', this)" id="link-entradas">ENTRADAS</a>
+
+</nav>  <!-- =========================================================      
+     INICIO      
+     ========================================================= -->  <div id="inicio" class="content-section active-section">  <header class="header">  <h1>pablox</h1>  <p>Bienvenidos a la página web oficial del artista</p>  </header>  <div class="home-cards-container">  <!-- LANZAMIENTOS -->  <div class="home-card home-card-lanzamientos">  <div class="home-card-icon"      
+style="background: linear-gradient(135deg, #4ade80, #16a34a);">  <i class="fa-solid fa-compact-disc"></i>    </div>  <h3>Lanzamientos</h3>  <p>Descubre todos los sencillos y álbumes oficiales.</p>  <button      
+onclick="switchTab('lanzamientos', document.getElementById('link-lanzamientos'))"      
+class="btn-home-nav"      
+style="background: linear-gradient(135deg, #4ade80, #16a34a); color: #0b0c10; font-weight: bold; padding: 8px 0; border-radius: 20px; width: 100%;">    <i class="fa-solid fa-arrow-right"></i>
+VER
+
+</button>  </div>  <!-- VIDEOCLIPS -->  <div class="home-card home-card-videoclips">  <div class="home-card-icon"      
+style="background: linear-gradient(135deg, #c084fc, #7e22ce);">  <i class="fa-solid fa-video"></i>
+
+</div>  <h3>Videoclips</h3>  <p>Sumerge tus sentidos en los videos oficiales.</p>  <button      
+onclick="switchTab('videoclips', document.getElementById('link-videoclips'))"      
+class="btn-home-nav"      
+style="background: linear-gradient(135deg, #c084fc, #7e22ce); padding: 8px 0; border-radius: 20px; width: 100%;">    <i class="fa-solid fa-arrow-right"></i>
+VER
+
+</button>  </div>  <!-- REDES -->  <div class="home-card home-card-redes">  <div class="home-card-icon"      
+style="background: linear-gradient(135deg, #38bdf8, #0284c7);">  <i class="fa-solid fa-share-nodes"></i>
+
+</div>  <h3>Redes Sociales</h3>  <p>Conecta conmigo en Instagram, TikTok y más.</p>  <button      
+onclick="switchTab('redes', document.getElementById('link-redes'))"      
+class="btn-home-nav"      
+style="background: linear-gradient(135deg, #38bdf8, #0284c7); padding: 8px 0; border-radius: 20px; width: 100%;">    <i class="fa-solid fa-arrow-right"></i>
+SEGUIR
+
+</button>  </div>  <!-- SOBRE MÍ -->  <div class="home-card home-card-sobremi">  <div class="home-card-icon"      
+style="background: linear-gradient(135deg, #ffcc00, #f59e0b);">  <i class="fa-solid fa-user"></i>
+
+</div>  <h3>Sobre Mí</h3>  <p>Conoce mi historia y mis raíces en Manzanares.</p>  <button      
+onclick="switchTab('sobre-mi', document.getElementById('link-sobre-mi'))"      
+class="btn-home-nav"      
+style="background: linear-gradient(135deg, #ffcc00, #f59e0b); color: #0b0c10; padding: 8px 0; border-radius: 20px; width: 100%; font-weight: bold;">    <i class="fa-solid fa-arrow-right"></i>
+SABER MÁS
+
+</button>  </div>  <!-- CONTRATACIONES -->  <div class="home-card home-card-contrataciones">  <div class="home-card-icon"      
+style="background: linear-gradient(135deg, #fb923c, #c2410c);">  <i class="fa-solid fa-briefcase"></i>
+
+</div>  <h3>Contrataciones</h3>  <p>Contáctanos para conciertos, bolos y eventos.</p>  <button      
+onclick="switchTab('contrataciones', document.getElementById('link-contrataciones'))"      
+class="btn-home-nav"      
+style="background: linear-gradient(135deg, #fb923c, #c2410c); padding: 8px 0; border-radius: 20px; width: 100%;">    <i class="fa-solid fa-arrow-right"></i>
+CONTACTAR
+
+</button>  </div>  <!-- ENTRADAS -->  <div class="home-card home-card-entradas">  <div class="home-card-icon"      
+style="background: linear-gradient(135deg, #a855f7, #7c3aed);">  <i class="fa-solid fa-ticket"></i>
+
+</div>  <h3>Entradas</h3>  <p>Consulta eventos disponibles y compra tus entradas.</p>  <button      
+onclick="switchTab('entradas', document.getElementById('link-entradas'))"      
+class="btn-home-nav"      
+style="background: linear-gradient(135deg, #a855f7, #7c3aed); padding: 8px 0; border-radius: 20px; width: 100%;">    <i class="fa-solid fa-arrow-right"></i>
+VER ENTRADAS
+
+</button>  </div>  </div>
+
+</div>  <!-- =========================================================      
+     LANZAMIENTOS      
+     ========================================================= -->  <div id="lanzamientos" class="content-section">  <h2 class="lanzamientos-title">Lanzamientos</h2>  <main class="grid-container">  <div class="card">      
+<div class="card-cover"><span>🌙</span></div>      
+<span class="tag tag-new">ÚLTIMO</span>      
+<h3 class="title">Eclipse</h3>  <a href="https://open.spotify.com/track/1PJK1UJJZYOkRZiymCbGzI?si=PZi2FNZYQBWjZ7ppHnTWRg&utm_source=copy-link"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🔥</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Bellakeo</h3>  <a href="https://open.spotify.com/track/2QeHgJSDSuzcUtdWumCbCS?si=8juS2ZXERp-KI6V-ojIC6Q&utm_source=copy-link"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>👑</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Mi Presencia</h3>  <a href="https://open.spotify.com/track/1r2wOgMIONOUHTeMTlqQKH?si=jgFwe4euSduOYn40Fa_HFw"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🔥</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Prueba</h3>  <a href="https://open.spotify.com/track/45pw2ZBZO0Pj40uFJ7Q7eC?si=B25XRyxqRHaV2xPPKvpGLg"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>⚽</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">La roja en del Mundial</h3>  <a href="https://open.spotify.com/track/3o7nyhoCp0B2CcihsLSuOD?si=pbiGOEJ5QbKrqPmiqgDBrA"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>⏳</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Tiempo atrás</h3>  <a href="https://open.spotify.com/track/1z2HPm7IRcimK3M4e5WdYe?si=Wisz8t7fRv2Pxv8MLFg57w"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🖤</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Triste</h3>  <a href="https://open.spotify.com/track/3J39OT09LVw6CghFmfZDgh?si=TpTx-pztT_eaMh-p-C_GxQ"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🪗</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">La Feria (Cumbia)</h3>  <a href="https://open.spotify.com/track/305WZLmNEMW7bbZtTohAGr?si=17bnbFWSRC-HO5C0BGGPgQ"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🌅</span></div>      
+<span class="tag">EP</span>      
+<h3 class="title">Fin del Verano</h3>  <a href="https://open.spotify.com/album/2VNTj6eoZ2zhnq9pIZovb0?si=W_eVP3ULQK2UbwOP2m8QvA"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>✨</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Destino</h3>  <a href="https://open.spotify.com/album/12qWOJtLuU5ml5JLTcvi3h?si=VHzV1-uzQJyR3XLg_Dwpbg"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🌟</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">La noche Brilla</h3>  <a href="https://open.spotify.com/track/1eAZuNEaOoQ6rj7L8TpXHH?si=mOFs875VTgyFQttIXBbgoA"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🎡</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Feria</h3>  <a href="https://open.spotify.com/track/2eJYRWey5Pulbcrk40LpwP?si=WmMq8Du-SJu0OlHbWKS3lg"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>💿</span></div>      
+<span class="tag">ÁLBUM</span>      
+<h3 class="title">Luminoche</h3>  <a href="https://open.spotify.com/album/2sQOd55yA7MgdvVmrpTYJh?si=9r3QyJS3Qwy6G1NF2r0-WA"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card">      
+<div class="card-cover"><span>🚀</span></div>      
+<span class="tag">SENCILLO</span>      
+<h3 class="title">Desde Cero</h3>  <a href="https://open.spotify.com/track/60XDj7dDyUIuJ1pAznqXF9?si=wjajppNeTwiM98FOuRZ6yA"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+ESCUCHAR
+
+</a>      
+</div>  </main>  <h2 class="amazon-title">AMAZON MUSIC</h2>  <main class="grid-container">  <div class="card card-amazon-blue">      
+<div class="card-cover" style="background:linear-gradient(135deg,#0284c7,#0369a1);">      
+<span>🌙</span>      
+</div>  <span class="tag" style="background:#38bdf8;color:#0b0c10;">SENCILLO</span>    <h3 class="title">Eclipse</h3>  <a href="https://music.amazon.com/albums/B0HJSGZDV7?marketplaceId=ATVPDKIKX0DER&musicTerritory=US"      
+target="_blank"      
+class="btn-amazon-listen">    <i class="fa-brands fa-amazon"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card card-amazon-blue">      
+<div class="card-cover" style="background:linear-gradient(135deg,#0284c7,#0369a1);">      
+<span>🚀</span>      
+</div>  <span class="tag" style="background:#38bdf8;color:#0b0c10;">SENCILLO</span>    <h3 class="title">Desde Cero</h3>  <a href="https://music.amazon.com/tracks/B0HGGNSK4Z"      
+target="_blank"      
+class="btn-amazon-listen">    <i class="fa-brands fa-amazon"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card card-amazon-blue">      
+<div class="card-cover" style="background:linear-gradient(135deg,#0284c7,#0369a1);">      
+<span>🔥</span>      
+</div>  <span class="tag" style="background:#38bdf8;color:#0b0c10;">SENCILLO</span>    <h3 class="title">Bellakeo</h3>  <a href="https://music.amazon.com/tracks/B0HF1FJS4Y"      
+target="_blank"      
+class="btn-amazon-listen">    <i class="fa-brands fa-amazon"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card card-amazon-blue">      
+<div class="card-cover" style="background:linear-gradient(135deg,#0284c7,#0369a1);">      
+<span>🌟</span>      
+</div>  <span class="tag" style="background:#38bdf8;color:#0b0c10;">SENCILLO</span>    <h3 class="title">La Noche Brilla</h3>  <a href="https://music.amazon.com/tracks/B0H9V6KLS6"      
+target="_blank"      
+class="btn-amazon-listen">    <i class="fa-brands fa-amazon"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card card-amazon-blue">      
+<div class="card-cover" style="background:linear-gradient(135deg,#0284c7,#0369a1);">      
+<span>✨</span>      
+</div>  <span class="tag" style="background:#38bdf8;color:#0b0c10;">SENCILLO</span>    <h3 class="title">Destino</h3>  <a href="https://music.amazon.com/tracks/B0H96RJRRG"      
+target="_blank"      
+class="btn-amazon-listen">    <i class="fa-brands fa-amazon"></i>
+ESCUCHAR
+
+</a>      
+</div>  <div class="card card-amazon-blue">      
+<div class="card-cover" style="background:linear-gradient(135deg,#0284c7,#0369a1);">      
+<span>🎡</span>      
+</div>  <span class="tag" style="background:#38bdf8;color:#0b0c10;">SENCILLO</span>    <h3 class="title">Feria</h3>  <a href="https://music.amazon.com/tracks/B0HGBQGPND"      
+target="_blank"      
+class="btn-amazon-listen">    <i class="fa-brands fa-amazon"></i>
+ESCUCHAR
+
+</a>      
+</div>  </main>  </div>  <!-- =========================================================      
+     VIDEOCLIPS      
+     ========================================================= -->  <div id="videoclips" class="content-section">  <h2 class="videoclips-title">Videoclips</h2>  <main class="grid-container">  <div class="card videoclip-card">  <div class="card-cover">      
+<span>⭐</span>      
+</div>  <span class="tag" style="background:#ef4444;color:#fff;">      
+VIDEOCLIP      
+</span>  <h3 class="title">      
+La Noche Brilla (video oficial)      
+</h3>  <a href="https://youtu.be/B9N1HSqxA-4"      
+target="_blank"      
+class="btn-youtube-clip">    <i class="fa-brands fa-youtube"></i>
+VER
+
+</a>  </div>  <div class="card videoclip-card">  <div class="card-cover">
+<span>🎥</span>
+
+</div>  <span class="tag" style="background:#ef4444;color:#fff;">      
+VIDEOCLIP      
+</span>  <h3 class="title">      
+Eclipse (oficial)      
+</h3>  <a href="https://youtu.be/Jn6LCf2BHMA"      
+target="_blank"      
+class="btn-youtube-clip">    <i class="fa-brands fa-youtube"></i>
+VER
+
+</a>  </div>  <div class="card videoclip-card">  <div class="card-cover">
+<span>🔥</span>
+
+</div>  <span class="tag" style="background:#ef4444;color:#fff;">      
+VIDEOCLIP      
+</span>  <h3 class="title">      
+Bellakeo      
+</h3>  <a href="https://youtu.be/SzLa2j3Sc0Q"      
+target="_blank"      
+class="btn-youtube-clip">    <i class="fa-brands fa-youtube"></i>
+VER
+
+</a>  </div>  </main>  </div>  <!-- =========================================================      
+REDES SOCIALES      
+========================================================= -->  <div id="redes" class="content-section">  <h2 class="section-title elegant-title">
+Sígueme en mis redes
+
+</h2>  <main class="grid-container">  <div class="card redes-card">  <div class="card-cover"      
+style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">  <span style="font-size:30px;">      
+<i class="fa-brands fa-instagram"></i>      
+</span>  </div>  <span class="tag"      
+style="background:#dc2743;color:white;">    
+INSTAGRAM    
+</span>    <h3 class="title">      
+@pablox_oficial      
+</h3>  <a href="https://instagram.com/pablox_oficial"      
+target="_blank"      
+class="btn-listen"      
+style="background:#dc2743;">    <i class="fa-brands fa-instagram"></i>
+SEGUIR
+
+</a>  </div>  <div class="card redes-card">  <div class="card-cover"      
+style="background:#000;border:2px solid #fe2c55;">  <span style="font-size:30px;">
+<i class="fa-brands fa-tiktok"></i>
+</span>  </div>  <span class="tag"      
+style="background:#000;border:1px solid #fe2c55;color:white;">
+TIKTOK
+</span>
+
+<h3 class="title">      
+@oficial_pablox      
+</h3>  <a href="https://tiktok.com/@oficial_pablox"      
+target="_blank"      
+class="btn-listen"      
+style="background:#000;border:2px solid #fe2c55;">    <i class="fa-brands fa-tiktok"></i>
+SEGUIR
+
+</a>  </div>  <div class="card redes-card">  <div class="card-cover"      
+style="background:#ff0000;">  <span style="font-size:30px;">
+<i class="fa-brands fa-youtube"></i>
+</span>  </div>  <span class="tag"      
+style="background:#ff0000;color:white;">
+YOUTUBE
+</span>
+
+<h3 class="title">      
+pablox25      
+</h3>  <a href="https://youtube.com/@pablox25"      
+target="_blank"      
+class="btn-youtube-clip">    <i class="fa-brands fa-youtube"></i>
+SUSCRIBIRME
+
+</a>  </div>  <div class="card redes-card">  <div class="card-cover"      
+style="background:#1DB954;">  <span style="font-size:30px;">
+<i class="fa-brands fa-spotify"></i>
+</span>  </div>  <span class="tag"      
+style="background:#1DB954;color:white;">
+SPOTIFY
+</span>
+
+<h3 class="title">      
+pablox      
+</h3>  <a href="https://open.spotify.com/artist/1Z7znbFF5EgAxuguCezmc8"      
+target="_blank"      
+class="btn-listen">    <i class="fa-brands fa-spotify"></i>
+SEGUIR
+
+</a>  </div>  <div class="card card-amazon-blue redes-card">  <div class="card-cover"      
+style="background:linear-gradient(135deg,#0284c7,#0369a1);">  <span style="font-size:30px;">
+<i class="fa-brands fa-amazon"></i>
+</span>  </div>  <span class="tag"      
+style="background:#0284c7;color:white;">
+AMAZON MUSIC
+</span>
+
+<h3 class="title">      
+pablox      
+</h3>  <a href="https://music.amazon.com/artists/B0HF6CPZMG/pablox"      
+target="_blank"      
+class="btn-amazon-listen">    <i class="fa-brands fa-amazon"></i>
+SEGUIR
+
+</a>  </div>  <div class="card redes-card">  <div class="card-cover"      
+style="background:#25D366;">  <span style="font-size:30px;">
+<i class="fa-brands fa-whatsapp"></i>
+</span>  </div>  <span class="tag"      
+style="background:#25D366;color:white;">
+WHATSAPP
+</span>
+
+<h3 class="title">      
+X-GANG      
+</h3>  <a href="https://chat.whatsapp.com/HBavJHfRXeI1ZSyCpVv21r"      
+target="_blank"      
+class="btn-listen"      
+style="background:#25D366;">    <i class="fa-brands fa-whatsapp"></i>
+UNIRME
+
+</a>  </div>  </main>  </div>  <!-- =========================================================      
+SOBRE MÍ      
+========================================================= -->  <div id="sobre-mi" class="content-section">  <h2 class="sobremi-title">
+Sobre Mí
+
+</h2>  <div class="about-container">  <p>      
+Soy de      
+<span class="about-highlight">      
+Manzanares (Ciudad Real, España)      
+</span>      
+y llevo unos 7 años haciendo música.      
+Exploro casi todos los estilos, excepto el rock y el pop.      
+</p>  <p>      
+Hago mis propias canciones, edición y videoclips,      
+hablando siempre de      
+<span class="about-highlight">      
+historias reales y de lo que siento      
+</span>.      
+</p>  <p>      
+Mi objetivo es      
+<span class="about-highlight">      
+llegar a ser un grandísimo artista y conectar con personas de todo el mundo      
+</span>      
+a través de su música.      
+</p>  <p>      
+Producido por la      
+<span class="about-highlight">      
+familia X-GANG      
+</span>.      
+¡Gracias por apoyar mi carrera!      
+</p>  </div>  </div>  <!-- =========================================================      
+     CONTRATACIONES      
+     ========================================================= -->  <div id="contrataciones" class="content-section">  <h2 class="contrataciones-title">      
+Contrataciones      
+</h2>  <div class="contrataciones-container">  <p>      
+¿Quieres contar con      
+<span class="about-highlight" style="color:#fb923c;">      
+pablox      
+</span>      
+para un concierto, festival, bolo o evento privado?      
+</p>  <p>      
+Para contrataciones directas, disponibilidad de fechas y propuestas,      
+puedes ponerte en contacto enviando un mensaje directo en Instagram.      
+</p>  <div style="margin-top:25px;display:flex;justify-content:center;">  <a href="https://instagram.com/pablox_oficial"      
+target="_blank"      
+class="btn-listen"      
+style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);width:220px;padding:10px 0;">    <i class="fa-brands fa-instagram"></i>
+INSTAGRAM
+
+</a>  </div>  </div>  </div>  <!-- =========================================================      
+ENTRADAS      
+========================================================= -->  <div id="entradas" class="content-section">  <h2 class="entradas-title" id="entradas-title">
+ENTRADAS
+
+</h2>  <p class="entradas-subtitle">      
+Compra y gestiona tus entradas para los eventos de pablox      
+</p>  <div class="entradas-wrapper">  <!-- EVENTOS PÚBLICOS -->  <div class="entradas-panel">  <h3>      
+<i class="fa-solid fa-ticket"></i>      
+Eventos disponibles      
+</h3>  <div id="events-container" class="event-grid"></div>  </div>  <!-- MIS ENTRADAS -->  <div class="entradas-panel">  <h3>      
+<i class="fa-solid fa-ticket-simple"></i>      
+Mis entradas      
+</h3>  <div id="my-tickets-container"></div>  </div>  <!-- =====================================================      
+     ADMINISTRADOR      IMPORTANTE:      
+ ESTE BLOQUE ESTÁ OCULTO PARA LOS VISITANTES.      
+ SOLO SE ABRE MEDIANTE EL ACCESO OCULTO.      
+ ===================================================== -->  <div
+
+id="admin-panel"
+class="entradas-panel hidden">  <!-- CREAR CONTRASEÑA -->  <div id="admin-setup"      
+class="admin-setup hidden">  <h3>
+<i class="fa-solid fa-shield-halved"></i>
+Crear administrador
+
+</h3>  <p style="color:#cbd5e1;text-align:center;margin-bottom:20px;">      
+Crea tu contraseña de administrador.      
+</p>  <form      
+id="admin-setup-form"      
+class="entrada-form">  <div>  <label for="setup-password">      
+Nueva contraseña      
+</label>  <input      
+type="password"      
+id="setup-password"      
+minlength="4"      
+placeholder="Crea tu contraseña"      
+autocomplete="new-password"      
+required>    </div>  <div>  <label for="setup-password-confirm">      
+Repite la contraseña      
+</label>  <input      
+type="password"      
+id="setup-password-confirm"      
+minlength="4"      
+placeholder="Repite tu contraseña"      
+autocomplete="new-password"      
+required>    </div>  <button      
+type="submit"      
+class="entrada-button green">    <i class="fa-solid fa-lock"></i>
+
+CREAR CONTRASEÑA
+
+</button>  </form>  <div      
+id="setup-error"      
+class="admin-error">
+
+</div>  </div>  <!-- LOGIN -->  <div      
+id="admin-login"      
+class="admin-login">  <h3>      
+<i class="fa-solid fa-lock"></i>      
+Administrador      
+</h3>  <form      
+id="admin-login-form"      
+class="entrada-form">  <div>  <label for="admin-password">      
+Contraseña de administrador      
+</label>  <input      
+type="password"      
+id="admin-password"      
+placeholder="Introduce tu contraseña"      
+autocomplete="current-password"      
+required>    </div>  <button      
+type="submit"      
+class="entrada-button">    <i class="fa-solid fa-right-to-bracket"></i>
+
+ACCEDER AL ADMINISTRADOR
+
+</button>  </form>  <div      
+id="admin-login-error"      
+class="admin-error">  Contraseña incorrecta.
+
+</div>  <p class="admin-note">      
+El administrador permite crear eventos, gestionar entradas      
+y validar los códigos QR.      
+</p>  </div>  <!-- PANEL ADMIN -->  <div      
+id="admin-dashboard"      
+class="admin-dashboard">  <div class="admin-actions">  <button      
+type="button"      
+class="entrada-button"      
+onclick="showAdminCreate()">    <i class="fa-solid fa-plus"></i>
+
+CREAR EVENTO
+
+</button>  <button      
+type="button"      
+class="entrada-button blue"      
+onclick="showAdminScanner()">
+
+<i class="fa-solid fa-camera"></i>
+
+ESCANEAR QR
+
+</button>  <button      
+type="button"      
+class="entrada-button green"      
+onclick="showAdminTickets()">
+
+<i class="fa-solid fa-list"></i>
+
+VER ENTRADAS
+
+</button>  <button      
+type="button"      
+class="entrada-button red"      
+onclick="adminLogout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+CERRAR SESIÓN
+
+</button>  </div>  <!-- CREAR EVENTO -->  <div      
+id="admin-create"      
+class="hidden">  <h3>  <i class="fa-solid fa-calendar-plus"></i>
+
+Crear evento
+
+</h3>  <form      
+id="create-event-form"      
+class="entrada-form">  <div class="form-row">  <div>  <label for="event-name">      
+Nombre del evento      
+</label>  <input      
+type="text"      
+id="event-name"      
+placeholder="Nombre del concierto"      
+required>    </div>  <div>  <label for="event-organizer">      
+Artista / organizador      
+</label>  <input      
+type="text"      
+id="event-organizer"      
+value="pablox"      
+required>    </div>  </div>  <div class="form-row">  <div>  <label for="event-date">      
+Fecha      
+</label>  <input      
+type="date"      
+id="event-date"      
+required>    </div>  <div>  <label for="event-start">      
+Hora de inicio      
+</label>  <input      
+type="time"      
+id="event-start"      
+required>    </div>  </div>  <div class="form-row">  <div>  <label for="event-end">      
+Hora de finalización      
+</label>  <input      
+type="time"      
+id="event-end"      
+required>    </div>  <div>  <label for="event-city">      
+Ciudad / localidad      
+</label>  <input      
+type="text"      
+id="event-city"      
+placeholder="Ciudad o localidad"      
+required>    </div>  </div>  <div>  <label for="event-place">      
+Lugar exacto      
+</label>  <input      
+type="text"      
+id="event-place"      
+placeholder="Nombre del recinto o dirección"      
+required>    </div>  <div class="form-row">  <div>  <label for="event-price">      
+Precio (€)      
+</label>  <input      
+type="number"      
+id="event-price"      
+min="0"      
+step="0.01"      
+value="0"      
+required>    </div>  <div>  <label for="event-capacity">      
+Entradas disponibles      
+</label>  <input      
+type="number"      
+id="event-capacity"      
+min="1"      
+value="100"      
+required>    </div>  </div>  <div class="form-row">  <div>  <label for="event-sale-end-date">      
+Fecha límite de compra      
+</label>  <input      
+type="date"      
+id="event-sale-end-date"      
+required>    </div>  <div>  <label for="event-sale-end-time">      
+Hora límite de compra      
+</label>  <input      
+type="time"      
+id="event-sale-end-time"      
+required>    </div>  </div>  <button      
+type="submit"      
+class="entrada-button green">    <i class="fa-solid fa-calendar-check"></i>
+
+CREAR EVENTO
+
+</button>  </form>  <div      
+id="event-created-message"      
+class="admin-success">  Evento creado correctamente.
+
+</div>  </div>  <!-- ESCÁNER -->  <div      
+id="admin-scanner"      
+class="hidden">  <h3>  <i class="fa-solid fa-qrcode"></i>    Validar entrada
+
+</h3>  <div class="qr-reader-box">  <p style="color:#cbd5e1;margin-bottom:10px;">  Pulsa el botón para abrir la cámara del móvil y escanear    
+el código QR de la entrada.    </p>  <button      
+type="button"      
+class="entrada-button blue"      
+onclick="startScanner()">    <i class="fa-solid fa-camera"></i>
+
+ABRIR CÁMARA
+
+</button>  <video      
+id="qr-video"      
+autoplay      
+playsinline>
+</video>
+
+<button      
+type="button"      
+id="stop-camera-button"      
+class="entrada-button red hidden"      
+onclick="stopScanner()">
+
+<i class="fa-solid fa-stop"></i>
+
+CERRAR CÁMARA
+
+</button>  <div      
+id="scan-result"      
+class="scan-result">
+
+</div>  <div class="manual-code">  <input      
+type="text"      
+id="manual-ticket-code"      
+placeholder="O introduce el código de entrada">    <button      
+type="button"      
+class="entrada-button"      
+onclick="validateManualCode()">
+
+VALIDAR
+
+</button>  </div>  </div>  </div>  <!-- LISTADO -->  <div      
+id="admin-tickets"      
+class="hidden">  <h3>  <i class="fa-solid fa-list-check"></i>
+
+Entradas creadas
+
+</h3>  <div      
+id="admin-tickets-container">      
+</div>  </div>  <!-- CAMBIAR CONTRASEÑA -->  <div style="margin-top:25px;">  <h3>  <i class="fa-solid fa-key"></i>    Contraseña de administrador
+
+</h3>  <form      
+id="change-password-form"      
+class="entrada-form">  <div>  <label for="new-admin-password">      
+Nueva contraseña      
+</label>  <input      
+type="password"      
+id="new-admin-password"      
+minlength="4"      
+placeholder="Puedes poner la contraseña que quieras"      
+autocomplete="new-password"      
+required>    </div>  <button      
+type="submit"      
+class="entrada-button">    <i class="fa-solid fa-key"></i>
+
+GUARDAR NUEVA CONTRASEÑA
+
+</button>  </form>  <div      
+id="password-success"      
+class="admin-success">  Contraseña guardada correctamente.
+
+</div>  </div>  </div>  </div>  <!-- VISTA DE ENTRADA -->  <div      
+id="ticket-preview"      
+class="ticket-preview">  <h2>      
+ENTRADA OFICIAL      
+</h2>  <div class="ticket-line">      
+<strong>Evento:</strong>      
+<span id="preview-event"></span>      
+</div>  <div class="ticket-line">      
+<strong>Nombre:</strong>      
+<span id="preview-name"></span>      
+</div>  <div class="ticket-line">      
+<strong>Fecha:</strong>      
+<span id="preview-date"></span>      
+</div>  <div class="ticket-line">      
+<strong>Horario:</strong>      
+<span id="preview-time"></span>      
+</div>  <div class="ticket-line">      
+<strong>Ciudad / localidad:</strong>      
+<span id="preview-city"></span>      
+</div>  <div class="ticket-line">      
+<strong>Lugar:</strong>      
+<span id="preview-place"></span>      
+</div>  <div class="ticket-line">      
+<strong>Precio:</strong>      
+<span id="preview-price"></span>      
+</div>  <div class="ticket-line">      
+<strong>Código:</strong>      
+<span id="preview-code"></span>      
+</div>  <div      
+id="preview-qr"      
+class="ticket-qr">      
+</div>  </div>  </div>  </div>  <script>      /* =========================================================
+NAVEGACIÓN
+========================================================= */
+
+function switchTab(sectionId, element) {
+
+const sections =      
+    document.querySelectorAll('.content-section');      
+  
+sections.forEach(sec => {      
+    sec.classList.remove('active-section');      
+});      
+  
+const targetSection =      
+    document.getElementById(sectionId);      
+  
+if (targetSection) {      
+    targetSection.classList.add('active-section');      
+}      
+  
+const links =      
+    document.querySelectorAll('.navbar a');      
+  
+links.forEach(link => {      
+    link.classList.remove('active-link');      
+});      
+  
+const matchingLink =      
+    document.getElementById('link-' + sectionId);      
+  
+if (matchingLink) {      
+    matchingLink.classList.add('active-link');      
+} else if (element) {      
+    element.classList.add('active-link');      
+}      
+  
+window.scrollTo({      
+    top: 0,      
+    behavior: 'smooth'      
+});
+
+}
+
+/* =========================================================
+SISTEMA DE ENTRADAS
+========================================================= */
+
+const EVENTS_KEY =
+"pablox_events_v1";
+
+const TICKETS_KEY =
+"pablox_tickets_v1";
+
+const PASSWORD_KEY =
+"pablox_admin_password_v2";
+
+let scannerStream = null;
+let scannerRunning = false;
+let scannerTimer = null;
+
+/* =========================================================
+ADMINISTRADOR OCULTO
+========================================================= */
+
+/*
+El administrador NO aparece para los visitantes.
+
+Para abrirlo:
+
+entra en ENTRADAS
+
+pulsa 7 veces rápidamente sobre el título ENTRADAS
+
+
+Esto solo revela la pantalla de acceso.
+Después hace falta la contraseña.
+*/
+
+let adminTitleClicks = 0;
+let adminTitleClickTimer = null;
+
+const entradasTitle =
+document.getElementById("entradas-title");
+
+entradasTitle.addEventListener("click", function() {
+
+adminTitleClicks++;      
+  
+clearTimeout(adminTitleClickTimer);      
+  
+adminTitleClickTimer =      
+    setTimeout(() => {      
+        adminTitleClicks = 0;      
+    }, 1800);      
+  
+if (adminTitleClicks >= 7) {      
+  
+    adminTitleClicks = 0;      
+  
+    openAdminAccess();      
+}
+
+});
+
+function openAdminAccess() {
+
+const adminPanel =      
+    document.getElementById("admin-panel");      
+  
+adminPanel.classList.remove("hidden");      
+  
+prepareAdminAccess();      
+  
+adminPanel.scrollIntoView({      
+    behavior: "smooth",      
+    block: "center"      
+});
+
+}
+
+function prepareAdminAccess() {
+
+const password =      
+    getAdminPassword();      
+  
+const setup =      
+    document.getElementById("admin-setup");      
+  
+const login =      
+    document.getElementById("admin-login");      
+  
+const dashboard =      
+    document.getElementById("admin-dashboard");      
+  
+dashboard.style.display = "none";      
+  
+if (!password) {      
+  
+    setup.classList.remove("hidden");      
+  
+    login.style.display = "none";      
+  
+} else {      
+  
+    setup.classList.add("hidden");      
+  
+    login.style.display = "block";      
+}
+
+}
+
+/* =========================================================
+UTILIDADES
+========================================================= */
+
+function getEvents() {
+
+try {      
+  
+    return JSON.parse(      
+        localStorage.getItem(EVENTS_KEY)      
+    ) || [];      
+  
+} catch(e) {      
+  
+    return [];      
+}
+
+}
+
+function saveEvents(events) {
+
+localStorage.setItem(      
+    EVENTS_KEY,      
+    JSON.stringify(events)      
+);
+
+}
+
+function getTickets() {
+
+try {      
+  
+    return JSON.parse(      
+        localStorage.getItem(TICKETS_KEY)      
+    ) || [];      
+  
+} catch(e) {      
+  
+    return [];      
+}
+
+}
+
+function saveTickets(tickets) {
+
+localStorage.setItem(      
+    TICKETS_KEY,      
+    JSON.stringify(tickets)      
+);
+
+}
+
+function generateCode() {
+
+const random =      
+    Math.random()      
+    .toString(36)      
+    .substring(2,10)      
+    .toUpperCase();      
+  
+const time =      
+    Date.now()      
+    .toString(36)      
+    .toUpperCase();      
+  
+return "PX-" + time + "-" + random;
+
+}
+
+function formatDate(date) {
+
+if (!date) return "";      
+  
+const parts =      
+    date.split("-");      
+  
+if (parts.length !== 3)      
+    return date;      
+  
+return parts[2] + "/" +      
+       parts[1] + "/" +      
+       parts[0];
+
+}
+
+function euro(value) {
+
+if (Number(value) === 0) {      
+    return "GRATIS";      
+}      
+  
+return Number(value)      
+    .toFixed(2)      
+    .replace(".", ",") + " €";
+
+}
+
+/* =========================================================
+CONTRASEÑA
+========================================================= */
+
+function getAdminPassword() {
+
+return localStorage.getItem(      
+    PASSWORD_KEY      
+);
+
+}
+
+/*
+IMPORTANTE:
+Ya NO se crea una contraseña provisional.
+Si no existe contraseña, se muestra la pantalla
+para que el propietario cree la suya.
+*/
+
+function ensureAdminPassword() {
+
+return getAdminPassword();
+
+}
+
+/* =========================================================
+CREAR CONTRASEÑA POR PRIMERA VEZ
+========================================================= */
+
+document
+.getElementById("admin-setup-form")
+.addEventListener("submit", function(e) {
+
+e.preventDefault();      
+  
+const password =      
+    document      
+    .getElementById("setup-password")      
+    .value;      
+  
+const confirm =      
+    document      
+    .getElementById("setup-password-confirm")      
+    .value;      
+  
+const error =      
+    document      
+    .getElementById("setup-error");      
+  
+  
+if (password.length < 4) {      
+  
+    error.textContent =      
+        "La contraseña debe tener al menos 4 caracteres.";      
+  
+    error.style.display = "block";      
+  
+    return;      
+}      
+  
+  
+if (password !== confirm) {      
+  
+    error.textContent =      
+        "Las contraseñas no coinciden.";      
+  
+    error.style.display = "block";      
+  
+    return;      
+}      
+  
+  
+localStorage.setItem(      
+    PASSWORD_KEY,      
+    password      
+);      
+  
+  
+document      
+.getElementById("setup-password")      
+.value = "";      
+  
+document      
+.getElementById("setup-password-confirm")      
+.value = "";      
+  
+error.style.display = "none";      
+  
+  
+alert(      
+    "Contraseña de administrador creada correctamente."      
+);      
+  
+  
+document      
+.getElementById("admin-setup")      
+.classList.add("hidden");      
+  
+document      
+.getElementById("admin-login")      
+.style.display = "block";
+
+});
+
+/* =========================================================
+EVENTOS
+========================================================= */
+
+function renderEvents() {
+
+const container =      
+    document.getElementById(      
+        "events-container"      
+    );      
+  
+const events =      
+    getEvents();      
+  
+container.innerHTML = "";      
+  
+  
+if (events.length === 0) {      
+  
+    container.innerHTML = `      
+  
+        <div class="entradas-empty">      
+  
+            <i      
+            class="fa-solid fa-calendar-xmark"      
+            style="font-size:35px;margin-bottom:10px;">      
+            </i>      
+  
+            <p>      
+            No hay entradas disponibles actualmente.      
+            </p>      
+  
+        </div>      
+  
+    `;      
+  
+    return;      
+}      
+  
+  
+const now =      
+    new Date();      
+  
+  
+events.forEach(event => {      
+  
+    const saleEnd =      
+        new Date(event.saleEnd);      
+  
+    const sold =      
+        getTickets()      
+        .filter(t =>      
+            t.eventId === event.id      
+        ).length;      
+  
+    const available =      
+        Math.max(      
+            0,      
+            Number(event.capacity) - sold      
+        );      
+  
+    const saleFinished =      
+        now > saleEnd ||      
+        available <= 0;      
+  
+  
+    const card =      
+        document.createElement("div");      
+  
+    card.className =      
+        "event-card";      
+  
+  
+    card.innerHTML = `      
+  
+        <h3>      
+  
+            <i class="fa-solid fa-music"></i>      
+  
+            ${escapeHTML(event.name)}      
+  
+        </h3>      
+  
+  
+        <div class="event-data">      
+  
+            <div>      
+                <i class="fa-solid fa-calendar"></i>      
+                ${formatDate(event.date)}      
+            </div>      
+  
+            <div>      
+                <i class="fa-solid fa-clock"></i>      
+                ${event.start} - ${event.end}      
+            </div>      
+  
+            <div>      
+                <i class="fa-solid fa-location-dot"></i>      
+                ${escapeHTML(event.city)}      
+            </div>      
+  
+            <div>      
+                <i class="fa-solid fa-building"></i>      
+                ${escapeHTML(event.place)}      
+            </div>      
+  
+            <div>      
+                <i class="fa-solid fa-hourglass-end"></i>      
+                Compra hasta:      
+                ${formatDate(event.saleEndDate)}      
+                ${event.saleEndTime}      
+            </div>      
+  
+            <div>      
+                <i class="fa-solid fa-ticket"></i>      
+                Disponibles: ${available}      
+            </div>      
+  
+        </div>      
+  
+  
+        <div class="event-price">      
+            ${euro(event.price)}      
+        </div>      
+  
+  
+        ${      
+            saleFinished      
+  
+            ?      
+  
+            `      
+            <button      
+            class="entrada-button red"      
+            disabled>      
+  
+            ${      
+                available <= 0      
+                ? "AGOTADAS"      
+                : "VENTA FINALIZADA"      
+            }      
+  
+            </button>      
+            `      
+  
+            :      
+  
+            `      
+            <button      
+            class="entrada-button green"      
+            onclick="buyTicket('${event.id}')">      
+  
+            <i class="fa-solid fa-cart-shopping"></i>      
+  
+            COMPRAR ENTRADA      
+  
+            </button>      
+            `      
+        }      
+  
+    `;      
+  
+  
+    container.appendChild(card);      
+  
+});
+
+}
+
+function escapeHTML(value) {
+
+return String(value ?? "")      
+  
+    .replace(/&/g,"&amp;")      
+    .replace(/</g,"&lt;")      
+    .replace(/>/g,"&gt;")      
+    .replace(/"/g,"&quot;")      
+    .replace(/'/g,"&#039;");
+
+}
+
+/* =========================================================
+CREAR EVENTO
+========================================================= */
+
+document
+.getElementById("create-event-form")
+.addEventListener("submit", function(e) {
+
+e.preventDefault();      
+  
+  
+if (!getAdminPassword()) {      
+  
+    alert(      
+        "No existe una contraseña de administrador."      
+    );      
+  
+    adminLogout();      
+  
+    return;      
+}      
+  
+  
+const event = {      
+  
+    id:      
+        "EVENT-" + Date.now(),      
+  
+    name:      
+        document      
+        .getElementById("event-name")      
+        .value      
+        .trim(),      
+  
+    organizer:      
+        document      
+        .getElementById("event-organizer")      
+        .value      
+        .trim(),      
+  
+    date:      
+        document      
+        .getElementById("event-date")      
+        .value,      
+  
+    start:      
+        document      
+        .getElementById("event-start")      
+        .value,      
+  
+    end:      
+        document      
+        .getElementById("event-end")      
+        .value,      
+  
+    city:      
+        document      
+        .getElementById("event-city")      
+        .value      
+        .trim(),      
+  
+    place:      
+        document      
+        .getElementById("event-place")      
+        .value      
+        .trim(),      
+  
+    price:      
+        Number(      
+            document      
+            .getElementById("event-price")      
+            .value      
+        ),      
+  
+    capacity:      
+        Number(      
+            document      
+            .getElementById("event-capacity")      
+            .value      
+        ),      
+  
+    saleEndDate:      
+        document      
+        .getElementById("event-sale-end-date")      
+        .value,      
+  
+    saleEndTime:      
+        document      
+        .getElementById("event-sale-end-time")      
+        .value,      
+  
+    saleEnd:      
+        document      
+        .getElementById("event-sale-end-date")      
+        .value      
+        + "T"      
+        +      
+        document      
+        .getElementById("event-sale-end-time")      
+        .value      
+};      
+  
+  
+if (      
+    !event.name ||      
+    !event.date ||      
+    !event.start ||      
+    !event.end ||      
+    !event.city ||      
+    !event.place      
+) {      
+  
+    alert(      
+        "Completa todos los campos."      
+    );      
+  
+    return;      
+}      
+  
+  
+if (event.price < 0) {      
+  
+    alert(      
+        "El precio no puede ser negativo."      
+    );      
+  
+    return;      
+}      
+  
+  
+if (event.capacity < 1) {      
+  
+    alert(      
+        "Debe existir al menos una entrada."      
+    );      
+  
+    return;      
+}      
+  
+  
+if (      
+    new Date(event.saleEnd)      
+    < new Date()      
+) {      
+  
+    alert(      
+        "La fecha límite de compra ya ha pasado."      
+    );      
+  
+    return;      
+}      
+  
+  
+const events =      
+    getEvents();      
+  
+events.push(event);      
+  
+saveEvents(events);      
+  
+  
+document      
+.getElementById("create-event-form")      
+.reset();      
+  
+  
+document      
+.getElementById("event-organizer")      
+.value = "pablox";      
+  
+  
+const message =      
+    document      
+    .getElementById(      
+        "event-created-message"      
+    );      
+  
+  
+message.style.display =      
+    "block";      
+  
+  
+setTimeout(() => {      
+  
+    message.style.display =      
+        "none";      
+  
+}, 3000);      
+  
+  
+renderEvents();      
+  
+renderAdminTickets();
+
+});
+
+/* =========================================================
+COMPRAR ENTRADA
+========================================================= */
+
+function buyTicket(eventId) {
+
+const events =      
+    getEvents();      
+  
+const event =      
+    events.find(      
+        e => e.id === eventId      
+    );      
+  
+  
+if (!event) {      
+  
+    alert(      
+        "Evento no encontrado."      
+    );      
+  
+    return;      
+}      
+  
+  
+const now =      
+    new Date();      
+  
+  
+if (      
+    now >      
+    new Date(event.saleEnd)      
+) {      
+  
+    alert(      
+        "La venta de entradas ha terminado."      
+    );      
+  
+    renderEvents();      
+  
+    return;      
+}      
+  
+  
+const tickets =      
+    getTickets();      
+  
+  
+const eventTickets =      
+    tickets.filter(      
+        t => t.eventId === eventId      
+    );      
+  
+  
+if (      
+    eventTickets.length >=      
+    event.capacity      
+) {      
+  
+    alert(      
+        "Las entradas están agotadas."      
+    );      
+  
+    return;      
+}      
+  
+  
+const fullName =      
+    prompt(      
+        "Escribe tu nombre completo:"      
+    );      
+  
+  
+if (      
+    !fullName ||      
+    fullName.trim().length < 2      
+) {      
+  
+    alert(      
+        "Debes introducir tu nombre completo."      
+    );      
+  
+    return;      
+}      
+  
+  
+const code =      
+    generateCode();      
+  
+  
+const ticket = {      
+  
+    id: code,      
+  
+    eventId: event.id,      
+  
+    code: code,      
+  
+    fullName:      
+        fullName.trim(),      
+  
+    eventName:      
+        event.name,      
+  
+    organizer:      
+        event.organizer,      
+  
+    date:      
+        event.date,      
+  
+    start:      
+        event.start,      
+  
+    end:      
+        event.end,      
+  
+    city:      
+        event.city,      
+  
+    place:      
+        event.place,      
+  
+    price:      
+        event.price,      
+  
+    createdAt:      
+        new Date().toISOString(),      
+  
+    status:      
+        "active",      
+  
+    validatedAt:      
+        null      
+};      
+  
+  
+tickets.push(ticket);      
+  
+saveTickets(tickets);      
+  
+renderEvents();      
+  
+renderMyTickets();      
+  
+showTicket(ticket);      
+  
+alert(      
+    "Entrada creada correctamente.\n\n" +      
+    "Guarda el código de entrada y descarga el PDF."      
+);
+
+}
+
+/* =========================================================
+MIS ENTRADAS
+========================================================= */
+
+function renderMyTickets() {
+
+const container =      
+    document.getElementById(      
+        "my-tickets-container"      
+    );      
+  
+const tickets =      
+    getTickets();      
+  
+container.innerHTML = "";      
+  
+  
+if (tickets.length === 0) {      
+  
+    container.innerHTML = `      
+  
+        <div class="entradas-empty">      
+  
+            Todavía no tienes entradas.      
+  
+        </div>      
+  
+    `;      
+  
+    return;      
+}      
+  
+  
+tickets.forEach(ticket => {      
+  
+    const div =      
+        document.createElement("div");      
+  
+  
+    div.className =      
+        "ticket-item " +      
+        (      
+            ticket.status === "active"      
+            ? "active"      
+            : "used"      
+        );      
+  
+  
+    div.innerHTML = `      
+  
+        <span      
+        class="ticket-status ${ticket.status}">      
+  
+            ${      
+                ticket.status === "active"      
+                ? "ENTRADA ACTIVA"      
+                : "ENTRADA UTILIZADA"      
+            }      
+  
+        </span>      
+  
+  
+        <h3>      
+            ${escapeHTML(ticket.eventName)}      
+        </h3>      
+  
+  
+        <p      
+        style="color:#cbd5e1;line-height:1.7;">      
+  
+            <strong>Nombre:</strong>      
+            ${escapeHTML(ticket.fullName)}      
+            <br>      
+  
+            <strong>Fecha:</strong>      
+            ${formatDate(ticket.date)}      
+            <br>      
+  
+            <strong>Hora:</strong>      
+            ${ticket.start} - ${ticket.end}      
+            <br>      
+  
+            <strong>Lugar:</strong>      
+            ${escapeHTML(ticket.place)}      
+            <br>      
+  
+            <strong>Código:</strong>      
+            ${escapeHTML(ticket.code)}      
+  
+        </p>      
+  
+  
+        <div class="ticket-actions">      
+  
+  
+            <button      
+            class="entrada-button blue"      
+            onclick="showTicket('${ticket.code}')">      
+  
+                <i class="fa-solid fa-eye"></i>      
+  
+                VER ENTRADA      
+  
+            </button>      
+  
+  
+            <button      
+            class="entrada-button green"      
+            onclick="downloadTicketPDF('${ticket.code}')">      
+  
+                <i class="fa-solid fa-file-pdf"></i>      
+  
+                DESCARGAR PDF      
+  
+            </button>      
+  
+  
+        </div>      
+  
+    `;      
+  
+  
+    container.appendChild(div);      
+  
+});
+
+}
+
+/* =========================================================
+MOSTRAR ENTRADA
+========================================================= */
+
+function showTicket(code) {
+
+const tickets =      
+    getTickets();      
+  
+const ticket =      
+    tickets.find(      
+        t => t.code === code      
+    );      
+  
+  
+if (!ticket) {      
+  
+    alert(      
+        "Entrada no encontrada."      
+    );      
+  
+    return;      
+}      
+  
+  
+const preview =      
+    document.getElementById(      
+        "ticket-preview"      
+    );      
+  
+  
+preview.style.display =      
+    "block";      
+  
+  
+document      
+.getElementById("preview-event")      
+.textContent =      
+    ticket.eventName;      
+  
+  
+document      
+.getElementById("preview-name")      
+.textContent =      
+    ticket.fullName;      
+  
+  
+document      
+.getElementById("preview-date")      
+.textContent =      
+    formatDate(ticket.date);      
+  
+  
+document      
+.getElementById("preview-time")      
+.textContent =      
+    ticket.start +      
+    " - " +      
+    ticket.end;      
+  
+  
+document      
+.getElementById("preview-city")      
+.textContent =      
+    ticket.city;      
+  
+  
+document      
+.getElementById("preview-place")      
+.textContent =      
+    ticket.place;      
+  
+  
+document      
+.getElementById("preview-price")      
+.textContent =      
+    euro(ticket.price);      
+  
+  
+document      
+.getElementById("preview-code")      
+.textContent =      
+    ticket.code;      
+  
+  
+const qr =      
+    document.getElementById(      
+        "preview-qr"      
+    );      
+  
+  
+qr.innerHTML = "";      
+  
+  
+new QRCode(qr, {      
+  
+    text: ticket.code,      
+  
+    width: 180,      
+  
+    height: 180,      
+  
+    colorDark: "#000000",      
+  
+    colorLight: "#ffffff",      
+  
+    correctLevel:      
+        QRCode.CorrectLevel.H      
+  
+});      
+  
+  
+preview.scrollIntoView({      
+  
+    behavior: "smooth",      
+  
+    block: "center"      
+  
+});
+
+}
+
+/* =========================================================
+PDF
+========================================================= */
+
+function downloadTicketPDF(code) {
+
+const tickets =      
+    getTickets();      
+  
+const ticket =      
+    tickets.find(      
+        t => t.code === code      
+    );      
+  
+  
+if (!ticket) {      
+  
+    alert(      
+        "Entrada no encontrada."      
+    );      
+  
+    return;      
+}      
+  
+  
+if (!window.jspdf) {      
+  
+    alert(      
+        "No se ha podido cargar el generador PDF."      
+    );      
+  
+    return;      
+}      
+  
+  
+const { jsPDF } =      
+    window.jspdf;      
+  
+  
+const pdf =      
+    new jsPDF();      
+  
+  
+pdf.setFillColor(      
+    20,15,35      
+);      
+  
+pdf.rect(      
+    0,0,210,297,"F"      
+);      
+  
+  
+pdf.setTextColor(      
+    255,255,255      
+);      
+  
+  
+pdf.setFontSize(26);      
+  
+pdf.text(      
+    "pablox",      
+    105,      
+    25,      
+    {align:"center"}      
+);      
+  
+  
+pdf.setFontSize(18);      
+  
+pdf.text(      
+    "ENTRADA OFICIAL",      
+    105,      
+    40,      
+    {align:"center"}      
+);      
+  
+  
+pdf.setDrawColor(      
+    168,85,247      
+);      
+  
+  
+pdf.line(      
+    20,      
+    48,      
+    190,      
+    48      
+);      
+  
+  
+pdf.setFontSize(12);      
+  
+  
+pdf.text(      
+    "Evento: " +      
+    ticket.eventName,      
+    20,      
+    65      
+);      
+  
+  
+pdf.text(      
+    "Nombre: " +      
+    ticket.fullName,      
+    20,      
+    78      
+);      
+  
+  
+pdf.text(      
+    "Fecha: " +      
+    formatDate(ticket.date),      
+    20,      
+    91      
+);      
+  
+  
+pdf.text(      
+    "Hora: " +      
+    ticket.start +      
+    " - " +      
+    ticket.end,      
+    20,      
+    104      
+);      
+  
+  
+pdf.text(      
+    "Ciudad / localidad: " +      
+    ticket.city,      
+    20,      
+    117      
+);      
+  
+  
+pdf.text(      
+    "Lugar: " +      
+    ticket.place,      
+    20,      
+    130      
+);      
+  
+  
+pdf.text(      
+    "Precio: " +      
+    euro(ticket.price),      
+    20,      
+    143      
+);      
+  
+  
+pdf.text(      
+    "Código: " +      
+    ticket.code,      
+    20,      
+    156      
+);      
+  
+  
+const qrCanvas =      
+    document.createElement("div");      
+  
+  
+qrCanvas.style.position =      
+    "absolute";      
+  
+qrCanvas.style.left =      
+    "-9999px";      
+  
+  
+document.body.appendChild(      
+    qrCanvas      
+);      
+  
+  
+new QRCode(qrCanvas, {      
+  
+    text: ticket.code,      
+  
+    width: 300,      
+  
+    height: 300      
+  
+});      
+  
+  
+setTimeout(() => {      
+  
+    const canvas =      
+        qrCanvas.querySelector(      
+            "canvas"      
+        );      
+  
+  
+    if (canvas) {      
+  
+        const image =      
+            canvas.toDataURL(      
+                "image/png"      
+            );      
+  
+  
+        pdf.addImage(      
+            image,      
+            "PNG",      
+            65,      
+            170,      
+            80,      
+            80      
+        );      
+  
+    }      
+  
+  
+    pdf.setFontSize(10);      
+  
+  
+    pdf.text(      
+        ticket.status === "active"      
+        ? "ESTADO: ACTIVA"      
+        : "ESTADO: UTILIZADA",      
+        105,      
+        260,      
+        {align:"center"}      
+    );      
+  
+  
+    pdf.text(      
+        "Código QR único de entrada",      
+        105,      
+        270,      
+        {align:"center"}      
+    );      
+  
+  
+    pdf.save(      
+        "Entrada-" +      
+        ticket.code +      
+        ".pdf"      
+    );      
+  
+  
+    qrCanvas.remove();      
+  
+}, 300);
+
+}
+
+/* =========================================================
+LOGIN ADMIN
+========================================================= */
+
+document
+.getElementById("admin-login-form")
+.addEventListener("submit", function(e) {
+
+e.preventDefault();      
+  
+  
+const entered =      
+    document      
+    .getElementById("admin-password")      
+    .value;      
+  
+  
+const password =      
+    getAdminPassword();      
+  
+  
+const error =      
+    document      
+    .getElementById(      
+        "admin-login-error"      
+    );      
+  
+  
+if (!password) {      
+  
+    prepareAdminAccess();      
+  
+    return;      
+}      
+  
+  
+if (entered === password) {      
+  
+    error.style.display =      
+        "none";      
+  
+  
+    document      
+    .getElementById("admin-login")      
+    .style.display =      
+        "none";      
+  
+  
+    document      
+    .getElementById("admin-dashboard")      
+    .style.display =      
+        "block";      
+  
+  
+    document      
+    .getElementById("admin-password")      
+    .value = "";      
+  
+  
+    showAdminCreate();      
+  
+} else {      
+  
+    error.style.display =      
+        "block";      
+  
+  
+    document      
+    .getElementById("admin-password")      
+    .value = "";      
+  
+}
+
+});
+
+/* =========================================================
+CERRAR SESIÓN
+========================================================= */
+
+function adminLogout() {
+
+stopScanner();      
+  
+  
+document      
+.getElementById("admin-dashboard")      
+.style.display =      
+    "none";      
+  
+  
+document      
+.getElementById("admin-login")      
+.style.display =      
+    "block";      
+  
+  
+document      
+.getElementById("admin-password")      
+.value = "";      
+  
+  
+hideAdminPanels();      
+  
+  
+document      
+.getElementById("admin-panel")      
+.classList.add("hidden");
+
+}
+
+/* =========================================================
+ADMIN PANELES
+========================================================= */
+
+function hideAdminPanels() {
+
+document      
+.getElementById("admin-create")      
+.classList.add("hidden");      
+  
+  
+document      
+.getElementById("admin-scanner")      
+.classList.add("hidden");      
+  
+  
+document      
+.getElementById("admin-tickets")      
+.classList.add("hidden");
+
+}
+
+function showAdminCreate() {
+
+hideAdminPanels();      
+  
+  
+document      
+.getElementById("admin-create")      
+.classList.remove("hidden");
+
+}
+
+function showAdminScanner() {
+
+hideAdminPanels();      
+  
+  
+document      
+.getElementById("admin-scanner")      
+.classList.remove("hidden");
+
+}
+
+function showAdminTickets() {
+
+hideAdminPanels();      
+  
+  
+document      
+.getElementById("admin-tickets")      
+.classList.remove("hidden");      
+  
+  
+renderAdminTickets();
+
+}
+
+/* =========================================================
+CAMBIAR CONTRASEÑA
+========================================================= */
+
+document
+.getElementById("change-password-form")
+.addEventListener("submit", function(e) {
+
+e.preventDefault();      
+  
+  
+const newPassword =      
+    document      
+    .getElementById(      
+        "new-admin-password"      
+    )      
+    .value;      
+  
+  
+if (newPassword.length < 4) {      
+  
+    alert(      
+        "La contraseña debe tener al menos 4 caracteres."      
+    );      
+  
+    return;      
+}      
+  
+  
+localStorage.setItem(      
+    PASSWORD_KEY,      
+    newPassword      
+);      
+  
+  
+document      
+.getElementById(      
+    "new-admin-password"      
+)      
+.value = "";      
+  
+  
+const success =      
+    document.getElementById(      
+        "password-success"      
+    );      
+  
+  
+success.style.display =      
+    "block";      
+  
+  
+setTimeout(() => {      
+  
+    success.style.display =      
+        "none";      
+  
+}, 3000);
+
+});
+
+/* =========================================================
+ADMIN ENTRADAS
+========================================================= */
+
+function renderAdminTickets() {
+
+const container =      
+    document.getElementById(      
+        "admin-tickets-container"      
+    );      
+  
+  
+const tickets =      
+    getTickets();      
+  
+  
+container.innerHTML = "";      
+  
+  
+if (tickets.length === 0) {      
+  
+    container.innerHTML = `      
+  
+        <div class="entradas-empty">      
+  
+            No hay entradas creadas todavía.      
+  
+        </div>      
+  
+    `;      
+  
+    return;      
+}      
+  
+  
+tickets.forEach(ticket => {      
+  
+    const div =      
+        document.createElement("div");      
+  
+  
+    div.className =      
+        "ticket-item " +      
+        (      
+            ticket.status === "active"      
+            ? "active"      
+            : "used"      
+        );      
+  
+  
+    div.innerHTML = `      
+  
+        <span      
+        class="ticket-status ${ticket.status}">      
+  
+            ${      
+                ticket.status === "active"      
+                ? "ACTIVA"      
+                : "UTILIZADA"      
+            }      
+  
+        </span>      
+  
+  
+        <h3>      
+            ${escapeHTML(ticket.eventName)}      
+        </h3>      
+  
+  
+        <p      
+        style="color:#cbd5e1;line-height:1.7;">      
+  
+            <strong>Nombre:</strong>      
+            ${escapeHTML(ticket.fullName)}      
+  
+            <br>      
+  
+            <strong>Código:</strong>      
+            ${escapeHTML(ticket.code)}      
+  
+            <br>      
+  
+            <strong>Fecha:</strong>      
+            ${formatDate(ticket.date)}      
+  
+            <br>      
+  
+            <strong>Hora:</strong>      
+            ${ticket.start} - ${ticket.end}      
+  
+            <br>      
+  
+            <strong>Lugar:</strong>      
+            ${escapeHTML(ticket.city)}      
+            -      
+            ${escapeHTML(ticket.place)}      
+  
+            ${      
+                ticket.validatedAt      
+  
+                ?      
+  
+                `      
+                <br>      
+  
+                <strong>Validada:</strong>      
+                ${new Date(      
+                    ticket.validatedAt      
+                ).toLocaleString()}      
+                `      
+  
+                :      
+  
+                ""      
+            }      
+  
+        </p>      
+  
+  
+        <div class="ticket-actions">      
+  
+  
+            <button      
+            class="entrada-button blue"      
+            onclick="showTicket('${ticket.code}')">      
+  
+                VER      
+  
+            </button>      
+  
+  
+            <button      
+            class="entrada-button"      
+            onclick="downloadTicketPDF('${ticket.code}')">      
+  
+                PDF      
+  
+            </button>      
+  
+  
+            ${      
+                ticket.status === "active"      
+  
+                ?      
+  
+                `      
+                <button      
+                class="entrada-button green"      
+                onclick="validateTicket('${ticket.code}')">      
+  
+                    VALIDAR      
+  
+                </button>      
+                `      
+  
+                :      
+  
+                ""      
+            }      
+  
+  
+        </div>      
+  
+    `;      
+  
+  
+    container.appendChild(div);      
+  
+});
+
+}
+
+/* =========================================================
+VALIDAR ENTRADA
+========================================================= */
+
+function validateTicket(code) {
+
+code =      
+    String(code || "")      
+    .trim();      
+  
+  
+if (!code) {      
+  
+    showScanResult(      
+        false,      
+        "Código de entrada vacío."      
+    );      
+  
+    return false;      
+}      
+  
+  
+const tickets =      
+    getTickets();      
+  
+  
+const index =      
+    tickets.findIndex(      
+        ticket =>      
+            ticket.code === code      
+    );      
+  
+  
+if (index === -1) {      
+  
+    showScanResult(      
+        false,      
+        "ENTRADA NO VÁLIDA<br><small>El código no existe.</small>"      
+    );      
+  
+    return false;      
+}      
+  
+  
+const ticket =      
+    tickets[index];      
+  
+  
+if (      
+    ticket.status !== "active"      
+) {      
+  
+    showScanResult(      
+        false,      
+        `      
+        ENTRADA YA UTILIZADA      
+        <br>      
+        <small>      
+        Esta entrada ya fue validada y no puede volver a utilizarse.      
+        </small>      
+        `      
+    );      
+  
+    return false;      
+}      
+  
+  
+ticket.status =      
+    "used";      
+  
+  
+ticket.validatedAt =      
+    new Date().toISOString();      
+  
+  
+tickets[index] =      
+    ticket;      
+  
+  
+saveTickets(tickets);      
+  
+  
+showScanResult(      
+    true,      
+    `      
+    ENTRADA VÁLIDA      
+    <br><br>      
+  
+    <strong>      
+    ${escapeHTML(ticket.fullName)}      
+    </strong>      
+  
+    <br>      
+  
+    ${escapeHTML(ticket.eventName)}      
+  
+    <br>      
+  
+    ${formatDate(ticket.date)}      
+    — ${ticket.start}      
+  
+    <br><br>      
+  
+    <strong>      
+    ENTRADA VALIDADA CORRECTAMENTE      
+    </strong>      
+  
+    <br>      
+  
+    <small>      
+    Esta entrada ha quedado desactivada.      
+    </small>      
+    `      
+);      
+  
+  
+renderMyTickets();      
+  
+renderAdminTickets();      
+  
+  
+return true;
+
+}
+
+function validateManualCode() {
+
+const code =      
+    document      
+    .getElementById(      
+        "manual-ticket-code"      
+    )      
+    .value      
+    .trim();      
+  
+  
+validateTicket(code);      
+  
+  
+document      
+.getElementById(      
+    "manual-ticket-code"      
+)      
+.value = "";
+
+}
+
+function showScanResult(valid, html) {
+
+const result =      
+    document.getElementById(      
+        "scan-result"      
+    );      
+  
+  
+result.className =      
+    "scan-result " +      
+    (      
+        valid      
+        ? "valid"      
+        : "invalid"      
+    );      
+  
+  
+result.innerHTML =      
+    html;
+
+}
+
+/* =========================================================
+CÁMARA QR
+========================================================= */
+
+async function startScanner() {
+
+const video =      
+    document.getElementById(      
+        "qr-video"      
+    );      
+  
+  
+const stopButton =      
+    document.getElementById(      
+        "stop-camera-button"      
+    );      
+  
+  
+const result =      
+    document.getElementById(      
+        "scan-result"      
+    );      
+  
+  
+result.className =      
+    "scan-result";      
+  
+result.innerHTML =      
+    "";      
+  
+  
+if (      
+    !navigator.mediaDevices ||      
+    !navigator.mediaDevices.getUserMedia      
+) {      
+  
+    showScanResult(      
+        false,      
+        "Tu navegador no permite utilizar la cámara."      
+    );      
+  
+    return;      
+}      
+  
+  
+try {      
+  
+    scannerStream =      
+        await navigator.mediaDevices      
+        .getUserMedia({      
+  
+            video: {      
+  
+                facingMode: {      
+                    ideal: "environment"      
+                }      
+  
+            },      
+  
+            audio: false      
+  
+        });      
+  
+  
+    video.srcObject =      
+        scannerStream;      
+  
+  
+    video.style.display =      
+        "block";      
+  
+  
+    stopButton      
+    .classList      
+    .remove("hidden");      
+  
+  
+    scannerRunning =      
+        true;      
+  
+  
+    if ("BarcodeDetector" in window) {      
+  
+        const detector =      
+            new BarcodeDetector({      
+  
+                formats: [      
+                    "qr_code"      
+                ]      
+  
+            });      
+  
+  
+        scanWithBarcodeDetector(      
+            detector,      
+            video      
+        );      
+  
+    } else {      
+  
+        showScanResult(      
+            false,      
+            `      
+            Cámara abierta.      
+            <br>      
+            <small>      
+            Este navegador no ofrece lector QR automático.      
+            Puedes utilizar el campo de código manual.      
+            </small>      
+            `      
+        );      
+  
+    }      
+  
+  
+} catch(error) {      
+  
+    showScanResult(      
+        false,      
+        `      
+        No se pudo abrir la cámara.      
+        <br>      
+        <small>      
+        Comprueba que has dado permiso para utilizarla.      
+        </small>      
+        `      
+    );      
+  
+}
+
+}
+
+async function scanWithBarcodeDetector(
+detector,
+video
+) {
+
+if (!scannerRunning)      
+    return;      
+  
+  
+try {      
+  
+    const codes =      
+        await detector.detect(      
+            video      
+        );      
+  
+  
+    if (codes.length > 0) {      
+  
+        const value =      
+            codes[0].rawValue;      
+  
+  
+        if (value) {      
+  
+            validateTicket(      
+                value      
+            );      
+  
+  
+            stopScanner();      
+  
+  
+            return;      
+        }      
+    }      
+  
+  
+} catch(error) {      
+    /* Continúa intentando */      
+}      
+  
+  
+scannerTimer =      
+    setTimeout(() => {      
+  
+        scanWithBarcodeDetector(      
+            detector,      
+            video      
+        );      
+  
+    }, 250);
+
+}
+
+function stopScanner() {
+
+scannerRunning =      
+    false;      
+  
+  
+if (scannerTimer) {      
+  
+    clearTimeout(      
+        scannerTimer      
+    );      
+  
+    scannerTimer =      
+        null;      
+}      
+  
+  
+if (scannerStream) {      
+  
+    scannerStream      
+    .getTracks()      
+    .forEach(      
+        track =>      
+            track.stop()      
+    );      
+  
+    scannerStream =      
+        null;      
+}      
+  
+  
+const video =      
+    document.getElementById(      
+        "qr-video"      
+    );      
+  
+  
+video.srcObject =      
+    null;      
+  
+  
+video.style.display =      
+    "none";      
+  
+  
+document      
+.getElementById(      
+    "stop-camera-button"      
+)      
+.classList      
+.add("hidden");
+
+}
+
+/* =========================================================
+INICIO
+========================================================= */
+
+ensureAdminPassword();
+
+renderEvents();
+
+renderMyTickets();
+
+</script>  </body>
+
+</html>
