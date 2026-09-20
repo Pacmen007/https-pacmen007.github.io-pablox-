@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<title>pablox | LA X-GANG</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Bungee&family=Bungee+Shade&family=Playfair+Display:wght@500;600;700&family=Orbitron:wght@500;600;700;800&family=Chakra+Petch:wght@500;600;700&display=swap"
+rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:
+    radial-gradient(circle at top left,#4b004f 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#28002e 0%,transparent 40%),
+    linear-gradient(135deg,#09000d,#17000e,#090009);
+    color:white;
+    min-height:100vh;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* NAV */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    flex-wrap:wrap;
+    padding:14px 10px;
+    background:rgba(8,0,12,.94);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+nav button{
+    background:transparent;
+    border:0;
+    color:#eee;
+    padding:10px 13px;
+    font-family:"Orbitron",sans-serif;
+    font-size:12px;
+    letter-spacing:1px;
+    transition:.25s;
+}
+
+nav button:hover,
+nav button.active{
+    color:#d18aff;
+    text-shadow:0 0 12px #9f3cff;
+}
+
+/* SECCIONES */
+
+.section{
+    display:none;
+    min-height:calc(100vh - 70px);
+    padding:55px 7%;
+    animation:fadeIn .35s ease;
+}
+
+.section.active{
+    display:block;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.section-title{
+    text-align:center;
+    margin:10px 0 45px;
+    font-family:"Bungee",sans-serif;
+    font-size:clamp(30px,6vw,58px);
+    color:#d29aff;
+    text-shadow:
+        0 0 8px #8e24aa,
+        0 0 25px #6a1b9a;
+}
+
+.subtitle{
+    text-align:center;
+    color:#ddd;
+    margin-top:-30px;
+    margin-bottom:35px;
+}
+
+/* INICIO */
+
+.hero{
+    min-height:calc(100vh - 70px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.logo{
+    font-family:"Bungee Shade",sans-serif;
+    font-size:clamp(60px
