@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Fragmentos - Redes Sociales | pablox</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --danger: #f43f5e;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: var(--accent);
+        }
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .audio-preview-box {
+            background: #0b0f19;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 28px;
+            text-align: center;
+        }
+        .audio-preview-box h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+        .btn-play {
+            background: var(--accent);
+            color: #0f172a;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+        }
+        .btn-play:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .btn-play:active {
+            transform: translateY(0);
+        }
+        .status-text {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .footer-info {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎵 Biblioteca de Sonidos & Previsualización</h1>
+    <p class="subtitle">Configura el fragmento exacto que sonará en la biblioteca oficial de Instagram y TikTok para tus publicaciones.</p>
+
+    <div class="form-group">
+        <label for="platform">Red Social / Biblioteca</label>
+        <select id="platform">
+            <option value="tiktok">TikTok Sound Library</option>
+            <option value="instagram">Instagram Audio Library</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label for="artist">Artista</label>
+            <input type="text" id="artist" value="pablox" placeholder="Ej. pablox">
+        </div>
+        <div class="form-group">
+            <label for="song">Canción</label>
+            <input type="text" id="song" value="Eclipse" placeholder="Ej. Eclipse, La Noche Brilla...">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label for="second">Segundo de inicio</label>
+            <input type="text" id="second" value="0:15" placeholder="Ej. 0:15 o 15s">
+        </div>
+        <div class="form-group">
+            <label for="duration">Duración del clip</label>
+            <select id="duration">
+                <option value="15">15 segundos</option>
+                <option value="30" selected>30 segundos</option>
+                <option value="60">60 segundos</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="audio-preview-box">
+        <h3 id="preview-title">Previsualizar fragmento: pablox - Eclipse</h3>
+        <p class="status-text" id="status-msg">Listo para simular la reproducción desde el segundo seleccionado.</p>
+        <br>
+        <button class="btn-play" onclick="togglePlay()">
+            <span id="play-icon">▶</span> <span id="play-text">Escuchar Fragmento</span>
+        </button>
+    </div>
+
+    <div class="footer-info">
+        Conectado a la sincronización oficial de lanzamientos independientes (LA X-GANG).
+    </div>
+</div>
+
+<script>
+    let isPlaying = false;
+    let timer = null;
+
+    const artistInput = document.getElementById('artist');
+    const songInput = document.getElementById('song');
+    const secondInput = document.getElementById('second');
+    const previewTitle = document.getElementById('preview-title');
+    const playIcon = document.getElementById('play-icon');
+    const playText = document.getElementById('play-text');
+    const statusMsg = document.getElementById('status-msg');
+
+    function updateTitle() {
+        const artist = artistInput.value || 'Artista';
+        const song = songInput.value || 'Canción';
+        previewTitle.innerText = `Previsualizar fragmento: ${artist} - ${song}`;
+    }
+
+    artistInput.addEventListener('input', updateTitle);
+    songInput.addEventListener('input', updateTitle);
+
+    function togglePlay() {
+        const btn = document.querySelector('.btn-play');
+        if (!isPlaying) {
+            isPlaying = true;
+            playIcon.innerText = '⏸';
+            playText.innerText = 'Pausar Reproducción';
+            statusMsg.innerText = `Reproduciendo biblioteca oficial desde el segundo ${secondInput.value}...`;
+            btn.style.background = '#f43f5e';
+            btn.style.boxShadow = '0 4px 12px rgba(244, 63, 94, 0.3)';
+
+            timer = setTimeout(() => {
+                stopPlay();
+            }, 5000); 
+        } else {
+            stopPlay();
+        }
+    }
+
+    function stopPlay() {
+        isPlaying = false;
+        playIcon.innerText = '▶';
+        playText.innerText = 'Escuchar Fragmento';
+        statusMsg.innerText = 'Fragmento pausado. Listo para probar otro segundo.';
+        const btn = document.querySelector('.btn-play');
+        btn.style.background = '#38bdf8';
+        btn.style.boxShadow = '0 4px 12px rgba(56, 189, 248, 0.3)';
+        if (timer) clearTimeout(timer);
+    }
+</script>
+
+</body>
+</html>
